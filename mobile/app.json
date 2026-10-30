@@ -1,0 +1,74 @@
+{
+  "expo": {
+    "name": "Songa",
+    "slug": "songa",
+    "scheme": "songa",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F9F7F8",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "app.songa.mobile"
+    },
+    "android": {
+      "package": "app.songa.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#F9F7F8",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 160,
+          "resizeMode": "contain",
+          "backgroundColor": "#F9F7F8"
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Songa listens while you hold the mic so it can translate what you say."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Songa uses the camera to read signs, menus and transit boards for you.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Songa lets you pick saved photos of menus, tickets and brochures.",
+          "cameraPermission": "Songa uses the camera to add photos to your travel journal.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Songa uses your location to guide you back to your saved anchor point, even offline."
+        }
+      ],
+      "expo-font",
+      "expo-asset"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

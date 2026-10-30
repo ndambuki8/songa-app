@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+backend/.env
+
+# Mobile (see mobile/.gitignore for Expo specifics)
+mobile/.env
+mobile/.env.local
+
+.DS_Store
