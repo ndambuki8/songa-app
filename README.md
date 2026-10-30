@@ -1,6 +1,6 @@
 # Songa
 
-A context-aware travel companion for the [Meta Global AI Developer Hackathon](https://cerebralvalley.ai/e/meta-ai-developer-hackathon), theme *Build for Your World*. Songa breaks language barriers with intent-driven voice interpretation, tap-to-explain vision built on SAM 3.1, an ambient journal that compiles itself into an itinerary, and an offline compass back to your lodging.
+Songa is a context-aware travel companion. Songa breaks language barriers with intent-driven voice interpretation, tap-to-explain vision built on SAM 3.1, an ambient journal that compiles itself into an itinerary, and an offline compass back to your lodging.
 
 ```
 songa-app/
