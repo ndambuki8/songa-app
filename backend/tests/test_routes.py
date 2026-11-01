@@ -363,6 +363,46 @@ def test_ask_about_outlined_item_without_location_skips_places_and_highlights():
     assert "Approximate location" not in prompt
 
 
+def test_ask_sends_recent_history_as_a_follow_up():
+    llm = ScriptedLLM([json_reply({"title": "Spice", "answer": "Mild.", "find": []})])
+    history = [{"question": f"q{i}", "answer": f"a{i}"} for i in range(8)]
+    response = client_for(llm).post(
+        "/api/vision/ask",
+        json={"image_b64": make_jpeg_b64(), "question": "Is it spicy?", "scene": "menu", "history": history},
+        headers=AUTH,
+    )
+    assert response.status_code == 200, response.text
+    prompt = llm.requests[0][1]["content"][0]["text"]
+    assert "Conversation so far about this photo" in prompt
+    assert "New question (a follow-up): Is it spicy?" in prompt
+    assert "Traveler: q2" in prompt and "You: a7" in prompt  # last 6 kept
+    assert "Traveler: q1" not in prompt
+
+
+def test_location_reaches_menu_prompts_without_landmark_lookup():
+    places = FakePlaces()
+    reply = json_reply({"detected_object": "Ugali", "contextual_description": "Maize staple.", "safety_precautions": []})
+    llm = ScriptedLLM([reply, json_reply({"title": "Ugali", "answer": "Maize.", "find": []})])
+    client = client_for(llm, places=places)
+    gps = {"latitude": -1.2864, "longitude": 36.8172, "place_label": "Westlands, Nairobi, Kenya"}
+    image = make_jpeg_b64()
+    tap = client.post(
+        "/api/vision/sam-isolate", json={"image_b64": image, "click_x": 100, "click_y": 60, "scene": "menu", **gps}, headers=AUTH
+    )
+    assert tap.status_code == 200, tap.text
+    asked = client.post(
+        "/api/vision/ask", json={"image_b64": image, "question": "Is this spicy?", "scene": "menu", **gps}, headers=AUTH
+    )
+    assert asked.status_code == 200, asked.text
+    for request in llm.requests:
+        assert "currently in Westlands, Nairobi, Kenya (GPS -1.286, 36.817)" in request[1]["content"][0]["text"]
+    assert places.calls == []  # a food question on a menu does not need landmarks
+
+    llm.replies.append(json_reply({"title": "Area", "answer": "Westlands.", "find": []}))
+    client.post("/api/vision/ask", json={"image_b64": image, "question": "What area is this?", "scene": "menu", **gps}, headers=AUTH)
+    assert places.calls == [(-1.2864, 36.8172)]
+
+
 def test_ask_validates_inputs_and_expiry():
     client = client_for(ScriptedLLM([]))
     image = make_jpeg_b64(100, 100)

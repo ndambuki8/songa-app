@@ -1,6 +1,8 @@
-import { ActivityIndicator, KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
+import { useRef } from 'react';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 import { ErrorBanner, PrimaryButton, Screen, SegmentedControl, SongaText } from '@/components/ui';
+import { useKeyboardOverlap, type ViewHandle } from '@/lib/useKeyboardOverlap';
 import type { SceneMode } from '@/services/api/vision';
 import { RADII, SONGA_THEME, SPACING } from '@/theme';
 
@@ -29,15 +31,22 @@ interface VisualInterpreterViewProps {
 }
 
 export function VisualInterpreterView({ vision, cameraActive }: VisualInterpreterViewProps) {
+  const root = useRef<ViewHandle>(null);
+  // Lifts the question box above the keyboard; the photo shrinks to make room.
+  const keyboardOverlap = useKeyboardOverlap(root);
+  const typing = keyboardOverlap > 0;
+
   const showingPhoto = vision.capturedImage !== null && vision.stage !== 'camera';
   const busyLabel = vision.stage === 'preparing' || vision.stage === 'segmenting' ? BUSY_LABELS[vision.stage] : null;
-  // One card at a time: a question's answer takes the place of the tap explanation until it is closed.
-  const showAnswer = vision.asking || vision.answer !== null;
+  // One card at a time: the conversation takes the place of the tap explanation until it is hidden.
+  const showAnswer = vision.threadOpen && vision.thread.length > 0;
   const showAnalysis = !showAnswer && (vision.stage === 'analyzing' || vision.selectedAnalysisData !== null);
   const askDisabled = busyLabel !== null || vision.stage === 'analyzing' || vision.asking;
+  // While typing a follow-up, the conversation matters more than the photo, so the photo steps aside.
+  const hidePhoto = typing && (showAnswer || showAnalysis);
 
   return (
-    <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <View ref={root} style={[styles.flex, { paddingBottom: keyboardOverlap }]} collapsable={false}>
       <Screen
         title="Look"
         subtitle={showingPhoto ? 'Tap an item, or ask a question below' : 'Snap a menu, sign, market stall or place'}
@@ -47,7 +56,7 @@ export function VisualInterpreterView({ vision, cameraActive }: VisualInterprete
       >
         {!showingPhoto ? <SegmentedControl options={SCENES} value={vision.scene} onChange={vision.setScene} /> : null}
 
-        <View style={styles.stage}>
+        <View style={[styles.stage, typing ? styles.stageTyping : null, hidePhoto ? styles.hidden : null]}>
           {showingPhoto && vision.capturedImage ? (
             <SegmentedImage
               uri={vision.capturedImage.uri}
@@ -84,10 +93,11 @@ export function VisualInterpreterView({ vision, cameraActive }: VisualInterprete
 
         {showAnswer ? (
           <AnswerCard
-            answer={vision.answer}
-            loading={vision.asking}
+            thread={vision.thread}
             highlightCount={vision.highlights.length}
+            placeLabel={vision.place?.label ?? null}
             onClose={vision.closeAnswer}
+            onStartOver={vision.startOver}
           />
         ) : null}
 
@@ -103,13 +113,14 @@ export function VisualInterpreterView({ vision, cameraActive }: VisualInterprete
           <AskBar
             scene={vision.scene}
             hasSelection={vision.hasSelection}
+            followUp={vision.hasConversation}
             disabled={askDisabled}
-            showSuggestions={!showAnswer && !showAnalysis}
+            showSuggestions={!showAnswer && !showAnalysis && !typing}
             onAsk={(question) => void vision.ask(question)}
           />
         ) : null}
       </Screen>
-    </KeyboardAvoidingView>
+    </View>
   );
 }
 
@@ -120,6 +131,14 @@ const styles = StyleSheet.create({
   stage: {
     flex: 1,
     marginVertical: SPACING.md,
+  },
+  stageTyping: {
+    marginVertical: SPACING.sm,
+    minHeight: 120,
+  },
+  // Kept mounted (not unmounted) so the photo and its boxes come back instantly when the keyboard closes.
+  hidden: {
+    display: 'none',
   },
   busyOverlay: {
     position: 'absolute',

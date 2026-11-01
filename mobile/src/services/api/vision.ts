@@ -1,4 +1,5 @@
 import { REQUEST_TIMEOUT_MS } from '@/config/env';
+import type { CurrentPlace } from '@/lib/location';
 
 import { FALLBACK_MESSAGES, postJson, postNdjson } from './client';
 import { fail, ok, type ApiResult } from './result';
@@ -34,6 +35,16 @@ export interface IsolateRequest {
   scene: SceneMode;
   /** The traveler's allergies and diet, so alerts are personal. */
   needs: string | null;
+  /** Where the photo was taken, so local dishes, prices and signs are read correctly. */
+  place: CurrentPlace | null;
+}
+
+function placeFields(place: CurrentPlace | null) {
+  return {
+    latitude: place?.coordinates.latitude ?? null,
+    longitude: place?.coordinates.longitude ?? null,
+    place_label: place?.label ?? null,
+  };
 }
 
 export function requestSegmentAnalysis(request: IsolateRequest): Promise<ApiResult<IsolateResponse>> {
@@ -48,6 +59,7 @@ export function requestSegmentAnalysis(request: IsolateRequest): Promise<ApiResu
       home_currency: request.homeCurrency,
       scene: request.scene,
       traveler_needs: request.needs,
+      ...placeFields(request.place),
     },
     IsolateResponseSchema,
     REQUEST_TIMEOUT_MS.analyze,
@@ -64,8 +76,10 @@ export interface AskRequest {
   travelerLocale: string;
   homeCurrency: string;
   scene: SceneMode;
-  coordinates: { latitude: number; longitude: number } | null;
+  place: CurrentPlace | null;
   needs: string | null;
+  /** Earlier exchanges about this photo, oldest first, so the question is answered as a follow-up. */
+  history: { question: string; answer: string }[];
 }
 
 export interface AskAnswer {
@@ -101,9 +115,12 @@ export async function askAboutPhoto(request: AskRequest, handlers: AskHandlers):
       traveler_locale: request.travelerLocale,
       home_currency: request.homeCurrency,
       scene: request.scene,
-      latitude: request.coordinates?.latitude ?? null,
-      longitude: request.coordinates?.longitude ?? null,
+      ...placeFields(request.place),
       traveler_needs: request.needs,
+      history: request.history.slice(-6).map((turn) => ({
+        question: turn.question.slice(0, 300),
+        answer: turn.answer.slice(0, 1500),
+      })),
     },
     (raw) => {
       const event = AskStreamEventSchema.safeParse(raw);

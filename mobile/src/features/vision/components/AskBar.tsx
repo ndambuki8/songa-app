@@ -19,13 +19,15 @@ interface AskBarProps {
   scene: SceneMode;
   /** An item is tapped, so questions are about it rather than the whole photo. */
   hasSelection: boolean;
+  /** Something was already asked or explained about this photo, so the next question is a follow-up. */
+  followUp: boolean;
   disabled: boolean;
   /** Suggestions are hidden while an answer or explanation card is open, to keep the photo visible. */
   showSuggestions: boolean;
   onAsk: (question: string) => void;
 }
 
-export function AskBar({ scene, hasSelection, disabled, showSuggestions, onAsk }: AskBarProps) {
+export function AskBar({ scene, hasSelection, followUp, disabled, showSuggestions, onAsk }: AskBarProps) {
   const [draft, setDraft] = useState('');
   const suggestions = hasSelection ? ITEM_SUGGESTIONS : PHOTO_SUGGESTIONS[scene];
   const canSend = !disabled && draft.trim().length > 0;
@@ -59,7 +61,7 @@ export function AskBar({ scene, hasSelection, disabled, showSuggestions, onAsk }
         <TextInput
           value={draft}
           onChangeText={setDraft}
-          placeholder={hasSelection ? 'Ask about the selected item…' : 'Ask about this photo…'}
+          placeholder={followUp ? 'Ask a follow-up…' : hasSelection ? 'Ask about the selected item…' : 'Ask about this photo…'}
           placeholderTextColor={SONGA_THEME.textMuted}
           style={styles.input}
           editable={!disabled}

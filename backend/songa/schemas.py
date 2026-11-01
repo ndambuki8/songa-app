@@ -88,12 +88,22 @@ class IsolateRequest(StrictModel):
     home_currency: str = Field(default="USD", pattern=r"^[A-Z]{3}$")
     scene: SceneMode = "general"
     traveler_needs: str | None = Field(default=None, max_length=500)
+    latitude: float | None = Field(default=None, ge=-90, le=90)
+    longitude: float | None = Field(default=None, ge=-180, le=180)
+    place_label: str | None = Field(default=None, max_length=160)
 
     @model_validator(mode="after")
     def _one_image_source(self) -> IsolateRequest:
         if bool(self.image_id) == bool(self.image_b64):
             raise ValueError("Provide exactly one of image_id or image_b64.")
         return self
+
+
+class AskTurn(StrictModel):
+    """One earlier exchange about the same photo. The phone keeps the thread; the server stores nothing."""
+
+    question: str = Field(min_length=1, max_length=300)
+    answer: str = Field(min_length=1, max_length=1500)
 
 
 class AskRequest(StrictModel):
@@ -109,6 +119,10 @@ class AskRequest(StrictModel):
     latitude: float | None = Field(default=None, ge=-90, le=90)
     longitude: float | None = Field(default=None, ge=-180, le=180)
     traveler_needs: str | None = Field(default=None, max_length=500)
+    #: Human-readable place from the phone's reverse geocoder, e.g. "Kabukicho, Shinjuku, Tokyo, Japan".
+    place_label: str | None = Field(default=None, max_length=160)
+    #: Earlier exchanges about this photo, oldest first. Only the most recent ones are used.
+    history: list[AskTurn] = Field(default_factory=list, max_length=20)
 
     @model_validator(mode="after")
     def _valid_sources(self) -> AskRequest:

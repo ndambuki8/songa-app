@@ -93,6 +93,20 @@ def needs_instruction(traveler_needs: str | None) -> str:
     )
 
 
+def location_instruction(place_label: str | None, coordinates: tuple[float, float] | None) -> str:
+    """Where the traveler is right now, so dishes, prices, customs and signs are read the way locals mean them."""
+    place = (place_label or "").strip()
+    if not place and coordinates is None:
+        return ""
+    where = place or "an unnamed spot"
+    gps = f" (GPS {coordinates[0]:.3f}, {coordinates[1]:.3f})" if coordinates else ""
+    return (
+        f"\nThe traveler is currently in {where}{gps}. Use this to interpret local dishes and ingredients, the "
+        "local currency and typical prices, customs, and signs as locals mean them (for example a regional dish "
+        "name or a local transit line). Mention the place only when it helps the traveler."
+    )
+
+
 def vision_analysis_user(
     *,
     scene: str,
@@ -101,10 +115,13 @@ def vision_analysis_user(
     crop_url: str,
     context_url: str,
     traveler_needs: str | None = None,
+    place_label: str | None = None,
+    coordinates: tuple[float, float] | None = None,
 ) -> list[dict[str, Any]]:
     instructions = (
         f"{SCENE_GUIDANCE.get(scene, SCENE_GUIDANCE['general'])} "
         f"Traveler language: {traveler_locale}. Home currency: {home_currency}."
+        f"{location_instruction(place_label, coordinates)}"
         f"{needs_instruction(traveler_needs)}"
     )
     return [
@@ -140,6 +157,11 @@ How to answer:
 6. find: up to 3 short English noun phrases for concrete things visible in the photo that answer the
    question, so they can be highlighted (for example "price tag", "exit sign", "noodle bowl", "clock tower").
    Use [] when the answer is about the whole scene or nothing specific is visible.
+7. Conversation: you may receive what you and the traveler already said about this same photo. Treat the new
+   question as a follow-up in that conversation. Resolve "it", "that", "there", "the second one" and similar
+   from it. Build on what you already said instead of repeating it, keep facts consistent with your earlier
+   answers, and correct yourself plainly if the new question shows you were wrong. Do not mention that you
+   have a history; just answer like someone who remembers.
 
 Respond with only a JSON object, no prose, matching exactly:
 {
@@ -160,20 +182,25 @@ def vision_ask_user(
     nearby: list[tuple[str, int]],
     image_url: str,
     traveler_needs: str | None = None,
+    place_label: str | None = None,
+    history: list[tuple[str, str]] | None = None,
 ) -> list[dict[str, Any]]:
     lines = [
         SCENE_GUIDANCE.get(scene, SCENE_GUIDANCE["general"]),
-        f"Traveler language: {traveler_locale}. Home currency: {home_currency}.{needs_instruction(traveler_needs)}",
+        f"Traveler language: {traveler_locale}. Home currency: {home_currency}."
+        f"{location_instruction(place_label, location)}{needs_instruction(traveler_needs)}",
         "The outlined item is what the question refers to." if has_focus else "The question is about the whole photo.",
     ]
-    if location:
-        lines.append(f"Approximate location: {location[0]:.3f}, {location[1]:.3f}.")
     if nearby:
         listed = "; ".join(f"{name} ({distance} m)" for name, distance in nearby)
         lines.append(f"Notable places nearby (Wikipedia, nearest first): {listed}.")
-    elif location:
-        lines.append("No notable places are listed nearby.")
-    lines.append(f"Question: {question.strip()}")
+    if history:
+        lines.append("Conversation so far about this photo, oldest first:")
+        for asked, answered in history:
+            lines.append(f"- Traveler: {asked.strip()}\n  You: {answered.strip()}")
+        lines.append(f"New question (a follow-up): {question.strip()}")
+    else:
+        lines.append(f"Question: {question.strip()}")
     return [
         {"type": "text", "text": "\n".join(lines)},
         {"type": "image_url", "image_url": {"url": image_url}},

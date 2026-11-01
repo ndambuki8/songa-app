@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import re
 from collections.abc import AsyncIterator
 
 from fastapi import APIRouter, Depends
@@ -40,6 +41,8 @@ def _note_sam_backend(timer: StageTimer, engines: Engines) -> None:
         timer.stages[f"sam_{served}"] = timer.stages.pop("sam")
 
 ASK_IMAGE_MAX_EDGE = 1536
+#: Earlier exchanges sent to the model; older ones are dropped to keep prompts short and fast.
+MAX_HISTORY_TURNS = 6
 MAX_FIND_CONCEPTS = 3
 MAX_HIGHLIGHTS = 12
 MAX_NEARBY_PLACES = 10
@@ -132,6 +135,8 @@ async def sam_isolate(
                 crop_url=to_data_url(isolation.crop_jpeg),
                 context_url=to_data_url(isolation.context_jpeg),
                 traveler_needs=body.traveler_needs,
+                place_label=body.place_label,
+                coordinates=_coordinates(body.latitude, body.longitude),
             ),
             output_model=VisionModelOutput,
             max_tokens=900,
@@ -168,8 +173,28 @@ def _clean_find(phrases: list[str]) -> list[str]:
     return cleaned[:MAX_FIND_CONCEPTS]
 
 
+def _coordinates(latitude: float | None, longitude: float | None) -> tuple[float, float] | None:
+    return (latitude, longitude) if latitude is not None and longitude is not None else None
+
+
+# Landmark lookups add up to ~2.5 s, so they run for the Places scene and for questions about places, not for
+# "is this spicy?" on a menu. GPS and the place name still reach every prompt.
+_PLACE_QUESTION = re.compile(
+    r"\b(where|place|here|area|neighbou?rhood|district|landmark|building|monument|temple|church|mosque|museum|"
+    r"history|historic|built|famous|street|square|park|station|near|nearby|around|visit|city|town)\b",
+    re.IGNORECASE,
+)
+
+
+def _wants_landmarks(body: AskRequest) -> bool:
+    if body.scene == "general":
+        return True
+    recent = " ".join([body.question, *(turn.question for turn in body.history[-2:])])
+    return bool(_PLACE_QUESTION.search(recent))
+
+
 async def _nearby(engines: Engines, body: AskRequest) -> list[NearbyPlace]:
-    if engines.places is None or body.latitude is None or body.longitude is None:
+    if engines.places is None or body.latitude is None or body.longitude is None or not _wants_landmarks(body):
         return []
     try:
         return (await engines.places.nearby(body.latitude, body.longitude))[:MAX_NEARBY_PLACES]
@@ -223,10 +248,12 @@ async def ask(
                 traveler_locale=body.traveler_locale,
                 home_currency=body.home_currency,
                 has_focus=focus is not None,
-                location=(body.latitude, body.longitude) if body.latitude is not None and body.longitude is not None else None,
+                location=_coordinates(body.latitude, body.longitude),
                 nearby=[(place.name, place.distance_m) for place in nearby],
                 image_url=to_data_url(jpeg),
                 traveler_needs=body.traveler_needs,
+                place_label=body.place_label,
+                history=[(turn.question, turn.answer) for turn in body.history[-MAX_HISTORY_TURNS:]],
             ),
             output_model=AskModelOutput,
             max_tokens=1000,
