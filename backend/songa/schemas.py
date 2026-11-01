@@ -259,9 +259,19 @@ class VisionModelOutput(BaseModel):
     safety_precautions: list[str] = Field(default_factory=list)
 
 
+class AskPoint(BaseModel):
+    """One option or fact in an answer, e.g. a dish: label "Nấm Hương skewer", price "30K (about $1.20)"."""
+
+    label: str = Field(min_length=1)
+    text: str = ""
+    price: str | None = None
+
+
 class AskModelOutput(BaseModel):
     title: str = Field(min_length=1)
     answer: str = Field(min_length=1)
+    points: list[AskPoint] = Field(default_factory=list)
+    alerts: list[str] = Field(default_factory=list)
     find: list[str] = Field(default_factory=list)
 
 

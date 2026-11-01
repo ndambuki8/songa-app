@@ -7,6 +7,7 @@ import {
   AskStreamEventSchema,
   IsolateResponseSchema,
   SegmentResponseSchema,
+  type AskPoint,
   type BoundingBox,
   type IsolateResponse,
   type Segment,
@@ -85,6 +86,8 @@ export interface AskRequest {
 export interface AskAnswer {
   title: string;
   answer: string;
+  points: AskPoint[];
+  alerts: string[];
   /** Things the model said are visible and worth highlighting; highlights follow when non-empty. */
   find: string[];
   latencyMs: number;
@@ -133,6 +136,8 @@ export async function askAboutPhoto(request: AskRequest, handlers: AskHandlers):
         handlers.onAnswer({
           title: event.data.title,
           answer: event.data.answer,
+          points: event.data.points,
+          alerts: event.data.alerts,
           find: event.data.find,
           latencyMs: event.data.latency_ms,
         });

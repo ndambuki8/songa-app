@@ -73,12 +73,23 @@ export const IsolateResponseSchema = z.object({
 });
 export type IsolateResponse = z.infer<typeof IsolateResponseSchema>;
 
+export const AskPointSchema = z.object({
+  label: z.string(),
+  text: z.string().default(''),
+  price: z.string().nullable().default(null),
+});
+export type AskPoint = z.infer<typeof AskPointSchema>;
+
 /** Events from `POST /api/vision/ask`, one JSON object per line. */
 export const AskStreamEventSchema = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('answer'),
     title: z.string(),
     answer: z.string(),
+    /** Options or facts (dishes, sights, steps), best first. Older gateways omit it. */
+    points: z.array(AskPointSchema).default([]),
+    /** Warnings the traveler must not miss, including conflicts with their own needs. */
+    alerts: z.array(z.string()).default([]),
     find: z.array(z.string()),
     ...timed,
   }),

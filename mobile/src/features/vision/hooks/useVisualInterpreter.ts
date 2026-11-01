@@ -3,7 +3,7 @@ import { useCallback, useRef, useState } from 'react';
 import { prepareImageForUpload, type PreparedImage } from '@/lib/imagePreparation';
 import { smallestContaining, type Point } from '@/lib/imageScaling';
 import { currentPlace, type CurrentPlace } from '@/lib/location';
-import type { BoundingBox, IsolateResponse, Segment } from '@/services/api/schemas';
+import type { AskPoint, BoundingBox, IsolateResponse, Segment } from '@/services/api/schemas';
 import {
   askAboutPhoto,
   requestSegmentAnalysis,
@@ -29,9 +29,24 @@ export interface ThreadTurn {
   title: string | null;
   /** Null while the answer is still on its way. */
   answer: string | null;
+  /** Optional: turns created before structured answers existed (or kept across a hot reload) lack them. */
+  points?: AskPoint[];
+  alerts?: string[];
   latencyMs: number | null;
   /** True while SAM 3.1 is still looking for the things the answer mentions. */
   highlightsPending: boolean;
+}
+
+/** The full answer as plain text, so follow-ups like "the second one" can refer to a listed option. */
+function historyText(turn: ThreadTurn & { answer: string }): string {
+  const { points = [], alerts = [] } = turn;
+  const lines = [turn.answer];
+  points.forEach((point, index) => {
+    const price = point.price ? ` (${point.price})` : '';
+    lines.push(`${index + 1}. ${point.label}${price}${point.text ? `: ${point.text}` : ''}`);
+  });
+  if (alerts.length > 0) lines.push(`Warnings: ${alerts.join('; ')}`);
+  return lines.join('\n');
 }
 
 function explainTurnText(analysis: IsolateResponse): string {
@@ -177,6 +192,8 @@ export function useVisualInterpreter() {
           question: `What is this? (tapped: ${analysis.detected_object})`,
           title: analysis.detected_object,
           answer: explainTurnText(analysis),
+          points: [],
+          alerts: [],
           latencyMs: analysis.latency_ms,
           highlightsPending: false,
         },
@@ -205,14 +222,24 @@ export function useVisualInterpreter() {
       // Everything already answered about this photo, oldest first.
       const history = threadRef.current
         .filter((turn): turn is ThreadTurn & { answer: string } => turn.answer !== null)
-        .map((turn) => ({ question: turn.question, answer: turn.answer }));
+        .map((turn) => ({ question: turn.question, answer: historyText(turn) }));
 
       setError(null);
       setHighlights([]);
       setThreadOpen(true);
       updateThread((current) => [
         ...current,
-        { id: turnId, kind: 'ask', question, title: null, answer: null, latencyMs: null, highlightsPending: false },
+        {
+          id: turnId,
+          kind: 'ask',
+          question,
+          title: null,
+          answer: null,
+          points: [],
+          alerts: [],
+          latencyMs: null,
+          highlightsPending: false,
+        },
       ]);
 
       const request: AskRequest = {
@@ -236,6 +263,8 @@ export function useVisualInterpreter() {
           patchTurn({
             title: reply.title,
             answer: reply.answer,
+            points: reply.points,
+            alerts: reply.alerts,
             latencyMs: reply.latencyMs,
             highlightsPending: reply.find.length > 0,
           });

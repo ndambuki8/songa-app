@@ -82,10 +82,17 @@ Respond with only a JSON object, no prose, matching exactly:
 }"""
 
 
-def needs_instruction(traveler_needs: str | None) -> str:
+def needs_instruction(traveler_needs: str | None, *, structured_alerts: bool = False) -> str:
     """Personal allergies and diet the traveler set up in the app; conflicts must come first and be explicit."""
     if not traveler_needs or not traveler_needs.strip():
         return ""
+    if structured_alerts:
+        return (
+            f"\nThe traveler's own needs: {traveler_needs.strip()}. For anything that may conflict with them, add "
+            "an alert naming the item and the reason, first in the alerts list (for example \"Satay sauce: often "
+            "contains peanuts, which you are allergic to\"), and do not recommend it in points. Do not repeat "
+            "their needs when nothing conflicts."
+        )
     return (
         f"\nThe traveler's own needs: {traveler_needs.strip()}. If anything here may conflict with them, say so "
         "first and plainly, starting with \"For you:\" (for example \"For you: likely contains peanuts, which you "
@@ -142,9 +149,17 @@ You receive:
 - Sometimes their approximate location and a list of notable places within about 1 km, taken from
   Wikipedia. Those places are real and nearby, but they may or may not be in the photo.
 
-How to answer:
-1. Answer the actual question directly, in the traveler's language, in 2 to 6 short sentences. Speak to
-   the traveler ("you"). No preamble, no restating the question.
+How to answer. The reply is shown on a small phone screen, so structure beats prose:
+1. answer: the direct answer in 1 to 3 short sentences, in the traveler's language, speaking to the traveler
+   ("you"). No preamble, no restating the question. Plain text only: no markdown, no bullet characters, no
+   asterisks, no emojis.
+   points: when the answer involves several options or facts (dishes to try, things to see, directions, steps),
+   put them here instead of in the answer, at most 6, best first. label is the name exactly as a local would
+   recognise it, with a short gloss in the traveler's language if it is foreign (for example
+   "Nấm Hương (mushroom skewer)"). text is one short sentence on why or what it is. price is the visible price
+   with an approximate home-currency conversion, like "30K (about $1.20)", or null. Use [] for a simple answer.
+   alerts: short warnings the traveler must not miss, at most 3, each naming the item and the reason (for
+   example "Sườn ribs: topped with sesame"). Use [] when nothing needs a warning.
 2. Translate any visible text that matters for the question.
 3. Where am I / what is this place / history: identify the place from visible clues (signs, names,
    architecture, landmarks) and check them against the nearby places. Name a place only when the clues
@@ -152,8 +167,8 @@ How to answer:
    If you cannot tell, say so and mention the most likely nearby candidates instead. Give history only
    when you are confident it belongs to this place; never invent dates, names or stories.
 4. Prices: give the original amount and an approximate conversion to the home currency, marked "about".
-5. Food and safety: mention likely allergens, pork, alcohol, raw food, scams or transit warnings when they
-   are relevant to the question.
+5. Food and safety: put likely allergens, pork, alcohol, raw food, scams or transit warnings that are relevant
+   to the question in alerts.
 6. find: up to 3 short English noun phrases for concrete things visible in the photo that answer the
    question, so they can be highlighted (for example "price tag", "exit sign", "noodle bowl", "clock tower").
    Use [] when the answer is about the whole scene or nothing specific is visible.
@@ -166,7 +181,9 @@ How to answer:
 Respond with only a JSON object, no prose, matching exactly:
 {
   "title": "<2 to 6 word heading for the answer, in the traveler's language>",
-  "answer": "<the answer>",
+  "answer": "<1 to 3 sentences>",
+  "points": [{"label": "<name>", "text": "<one sentence>", "price": "<price or null>"}],
+  "alerts": ["<item: reason>"],
   "find": ["<noun phrase>", "..."]
 }"""
 
@@ -188,7 +205,7 @@ def vision_ask_user(
     lines = [
         SCENE_GUIDANCE.get(scene, SCENE_GUIDANCE["general"]),
         f"Traveler language: {traveler_locale}. Home currency: {home_currency}."
-        f"{location_instruction(place_label, location)}{needs_instruction(traveler_needs)}",
+        f"{location_instruction(place_label, location)}{needs_instruction(traveler_needs, structured_alerts=True)}",
         "The outlined item is what the question refers to." if has_focus else "The question is about the whole photo.",
     ]
     if nearby:

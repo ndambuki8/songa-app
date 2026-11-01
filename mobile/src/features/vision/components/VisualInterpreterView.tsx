@@ -33,7 +33,7 @@ interface VisualInterpreterViewProps {
 export function VisualInterpreterView({ vision, cameraActive }: VisualInterpreterViewProps) {
   const root = useRef<ViewHandle>(null);
   // Lifts the question box above the keyboard; the photo shrinks to make room.
-  const keyboardOverlap = useKeyboardOverlap(root);
+  const { overlap: keyboardOverlap, onLayout: onRootLayout } = useKeyboardOverlap(root);
   const typing = keyboardOverlap > 0;
 
   const showingPhoto = vision.capturedImage !== null && vision.stage !== 'camera';
@@ -46,7 +46,12 @@ export function VisualInterpreterView({ vision, cameraActive }: VisualInterprete
   const hidePhoto = typing && (showAnswer || showAnalysis);
 
   return (
-    <View ref={root} style={[styles.flex, { paddingBottom: keyboardOverlap }]} collapsable={false}>
+    <View
+      ref={root}
+      style={[styles.flex, { paddingBottom: keyboardOverlap }]}
+      collapsable={false}
+      onLayout={onRootLayout}
+    >
       <Screen
         title="Look"
         subtitle={showingPhoto ? 'Tap an item, or ask a question below' : 'Snap a menu, sign, market stall or place'}

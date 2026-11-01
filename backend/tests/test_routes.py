@@ -496,4 +496,32 @@ def test_traveler_needs_reach_both_look_prompts():
     assert asked.status_code == 200, asked.text
     assert needs in llm.requests[0][1]["content"][0]["text"]
     assert needs in llm.requests[1][1]["content"][0]["text"]
-    assert '"For you:"' in llm.requests[1][1]["content"][0]["text"]
+    assert '"For you:"' in llm.requests[0][1]["content"][0]["text"]  # tap: safety list prefix
+    assert "first in the alerts list" in llm.requests[1][1]["content"][0]["text"]  # ask: structured alerts
+
+
+def test_ask_returns_structured_points_and_alerts_without_markdown():
+    reply = json_reply(
+        {
+            "title": "**My picks**",
+            "answer": "Start light, then a sandwich.",
+            "points": [
+                {"label": "**Nấm Hương** (mushroom skewer)", "text": "- Grilled, smoky.", "price": "30K (about $1.20)"},
+                {"label": "  ", "text": "dropped"},
+                {"label": "Katsu sandwich", "text": "Fried chicken, cabbage.", "price": None},
+            ],
+            "alerts": ["Sườn ribs: topped with sesame", " "],
+            "find": [],
+        }
+    )
+    response = client_for(ScriptedLLM([reply])).post(
+        "/api/vision/ask", json={"image_b64": make_jpeg_b64(), "question": "What do you recommend?", "scene": "menu"}, headers=AUTH
+    )
+    assert response.status_code == 200, response.text
+    event = _stream_events(response)[0]
+    assert event["title"] == "My picks"
+    assert event["points"] == [
+        {"label": "Nấm Hương (mushroom skewer)", "text": "Grilled, smoky.", "price": "30K (about $1.20)"},
+        {"label": "Katsu sandwich", "text": "Fried chicken, cabbage.", "price": None},
+    ]
+    assert event["alerts"] == ["Sườn ribs: topped with sesame"]

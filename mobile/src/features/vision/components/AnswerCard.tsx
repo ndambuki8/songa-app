@@ -6,6 +6,7 @@ import { Card, SongaText } from '@/components/ui';
 import { BORDERS, RADII, SONGA_THEME, SPACING } from '@/theme';
 
 import type { ThreadTurn } from '../hooks/useVisualInterpreter';
+import { AnswerBody } from './AnswerBody';
 
 interface AnswerCardProps {
   thread: readonly ThreadTurn[];
@@ -74,12 +75,7 @@ export function AnswerCard({ thread, highlightCount, placeLabel, onClose, onStar
                   <SongaText variant="caption">Thinking…</SongaText>
                 </View>
               ) : (
-                <View style={styles.answer}>
-                  {turn.title ? <SongaText variant="subtitle">{turn.title}</SongaText> : null}
-                  <SongaText variant="body" selectable>
-                    {turn.answer}
-                  </SongaText>
-                </View>
+                <AnswerBody title={turn.title} answer={turn.answer} points={turn.points} alerts={turn.alerts} />
               )}
             </View>
           ),
@@ -104,8 +100,9 @@ export function AnswerCard({ thread, highlightCount, placeLabel, onClose, onStar
 }
 
 const styles = StyleSheet.create({
+  // A list of options needs room; the photo above shrinks to make it.
   card: {
-    maxHeight: 340,
+    maxHeight: 420,
   },
   header: {
     flexDirection: 'row',
@@ -139,9 +136,6 @@ const styles = StyleSheet.create({
     backgroundColor: SONGA_THEME.background,
     borderWidth: BORDERS.hairline,
     borderColor: SONGA_THEME.textDark,
-  },
-  answer: {
-    gap: SPACING.xs,
   },
   explain: {
     flexDirection: 'row',

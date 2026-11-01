@@ -44,6 +44,8 @@ ASK_IMAGE_MAX_EDGE = 1536
 #: Earlier exchanges sent to the model; older ones are dropped to keep prompts short and fast.
 MAX_HISTORY_TURNS = 6
 MAX_FIND_CONCEPTS = 3
+MAX_POINTS = 6
+MAX_ALERTS = 3
 MAX_HIGHLIGHTS = 12
 MAX_NEARBY_PLACES = 10
 
@@ -164,6 +166,14 @@ def _clamp_focus(bbox: BoundingBox | None, width: int, height: int) -> Box | Non
     return Box(left, top, right - left, bottom - top)
 
 
+_MARKDOWN = re.compile(r"(\*\*|__|`|^#{1,6}\s+|^\s*[-*•]\s+)", re.MULTILINE)
+
+
+def _plain(text: str) -> str:
+    """The app renders structure itself, so stray markdown from the model is stripped."""
+    return " ".join(_MARKDOWN.sub("", text).split())
+
+
 def _clean_find(phrases: list[str]) -> list[str]:
     cleaned: list[str] = []
     for phrase in phrases:
@@ -263,8 +273,14 @@ async def ask(
     first = ndjson_line(
         {
             "type": "answer",
-            "title": output.title.strip(),
-            "answer": output.answer.strip(),
+            "title": _plain(output.title),
+            "answer": _plain(output.answer),
+            "points": [
+                {"label": _plain(p.label), "text": _plain(p.text), "price": _plain(p.price or "") or None}
+                for p in output.points
+                if _plain(p.label)
+            ][:MAX_POINTS],
+            "alerts": [_plain(a) for a in output.alerts if _plain(a)][:MAX_ALERTS],
             "find": find,
             **timer.report(),
         }
