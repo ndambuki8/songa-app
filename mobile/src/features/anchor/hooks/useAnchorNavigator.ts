@@ -10,6 +10,7 @@ import {
   relativeArrowAngle,
   type Coordinates,
 } from '@/lib/geo';
+import { loadTrip } from '@/features/trip/tripStore';
 import { STORAGE_KEYS, readJson, removeKey, writeJson } from '@/storage/keyValue';
 
 const POLL_INTERVAL_MS = 2000;
@@ -35,7 +36,14 @@ export function useAnchorNavigator() {
   const [locking, setLocking] = useState(false);
   const [gpsSearching, setGpsSearching] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [suggestedLabel, setSuggestedLabel] = useState<string | null>(null);
   const pollInFlight = useRef(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      void loadTrip().then((trip) => setSuggestedLabel(trip?.draft.stay.trim() || null));
+    }, []),
+  );
 
   useEffect(() => {
     void readJson(STORAGE_KEYS.anchor, AnchorSchema).then(setAnchorCoordinates);
@@ -117,7 +125,7 @@ export function useAnchorNavigator() {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
           accuracy: position.coords.accuracy ?? null,
-          label: label.trim() || 'Home base',
+          label: label.trim() || suggestedLabel || 'Home base',
           lockedAt: new Date().toISOString(),
         };
         const saved = await writeJson(STORAGE_KEYS.anchor, anchor);
@@ -130,7 +138,7 @@ export function useAnchorNavigator() {
         setLocking(false);
       }
     },
-    [ensurePermission],
+    [ensurePermission, suggestedLabel],
   );
 
   const clearAnchor = useCallback(async () => {
@@ -159,6 +167,7 @@ export function useAnchorNavigator() {
     bearingHeading,
     navigation,
     gpsSearching,
+    suggestedLabel,
     locking,
     error,
     dismissError: () => setError(null),

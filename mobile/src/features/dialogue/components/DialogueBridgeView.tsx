@@ -12,7 +12,8 @@ import { DialogueZone } from './DialogueZone';
 const STATUS_LABELS: Record<ApiLoadingState, string | null> = {
   idle: null,
   recording: 'Listening',
-  processing: 'Interpreting',
+  processing: 'Translating',
+  reviewing: 'Check before it speaks',
   speaking: 'Speaking',
 };
 
@@ -22,17 +23,20 @@ interface DialogueBridgeViewProps {
 
 export function DialogueBridgeView({ bridge }: DialogueBridgeViewProps) {
   const insets = useSafeAreaInsets();
-  const busy = bridge.apiLoadingState === 'processing';
+  const state = bridge.apiLoadingState;
+  const busy = state === 'processing';
+  const reviewing = state === 'reviewing';
 
   const zoneProps = (zone: Speaker) => {
     const isActive = bridge.activeSpeaker === zone;
-    const otherIsRecording = bridge.apiLoadingState === 'recording' && !isActive;
+    const otherIsRecording = state === 'recording' && !isActive;
+    const showStatus = isActive || state === 'speaking' || (reviewing && zone === 'traveler');
     return {
       content: selectZoneContent(bridge.lastTurn, zone),
-      statusLabel: isActive || bridge.apiLoadingState === 'speaking' ? STATUS_LABELS[bridge.apiLoadingState] : null,
-      recording: isActive && bridge.apiLoadingState === 'recording',
+      statusLabel: showStatus ? STATUS_LABELS[state] : null,
+      recording: isActive && state === 'recording',
       processing: isActive && busy,
-      micDisabled: busy || otherIsRecording,
+      micDisabled: busy || reviewing || otherIsRecording,
       onMicPress: () => bridge.toggleRecording(zone),
     };
   };
@@ -41,7 +45,7 @@ export function DialogueBridgeView({ bridge }: DialogueBridgeViewProps) {
     <View style={[styles.root, { paddingTop: insets.top + SPACING.sm }]}>
       <DialogueZone
         {...zoneProps('resident')}
-        inverted
+        resident
         languageCaption="They speak"
         locale={bridge.residentLocale}
         onLocaleChange={bridge.setResidentLocale}
@@ -54,12 +58,12 @@ export function DialogueBridgeView({ bridge }: DialogueBridgeViewProps) {
         <Pressable
           accessibilityRole="button"
           accessibilityLabel="Replay last translation"
-          disabled={!bridge.lastTurn}
+          disabled={!bridge.canReplay}
           onPress={bridge.replay}
           hitSlop={10}
-          style={!bridge.lastTurn ? styles.hidden : null}
+          style={!bridge.canReplay ? styles.hidden : null}
         >
-          <Ionicons name="volume-high" size={22} color={SONGA_THEME.primaryAccent} />
+          <Ionicons name="volume-high" size={24} color={SONGA_THEME.primaryAccent} />
         </Pressable>
       </View>
 
@@ -70,6 +74,7 @@ export function DialogueBridgeView({ bridge }: DialogueBridgeViewProps) {
         languageCaption="You speak"
         locale={bridge.travelerLocale}
         onLocaleChange={bridge.setTravelerLocale}
+        review={reviewing ? { onConfirm: bridge.confirmTurn, onRetry: bridge.retryTurn } : null}
       />
     </View>
   );

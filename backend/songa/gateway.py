@@ -14,7 +14,7 @@ from songa.core.auth import require_api_key
 from songa.core.errors import SongaError
 from songa.core.telemetry import elapsed_ms
 from songa.engines import Engines
-from songa.routes import dialogue, health, logbook, vision
+from songa.routes import dialogue, health, logbook, trip, vision
 
 logger = logging.getLogger("songa.gateway")
 
@@ -77,4 +77,5 @@ def create_app(settings: Settings, engines: Engines) -> FastAPI:
     app.include_router(dialogue.router, dependencies=protected)
     app.include_router(vision.router, dependencies=protected)
     app.include_router(logbook.router, dependencies=protected)
+    app.include_router(trip.router, dependencies=protected)
     return app

@@ -1,4 +1,5 @@
-import { useCallback, useRef, useState } from 'react';
+import * as Speech from 'expo-speech';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { prepareImageForUpload, type PreparedImage } from '@/lib/imagePreparation';
 import { smallestContaining, type Point } from '@/lib/imageScaling';
@@ -23,6 +24,8 @@ export function useVisualInterpreter() {
   const [error, setError] = useState<string | null>(null);
   const analysisRequest = useRef(0);
 
+  useEffect(() => () => void Speech.stop(), []);
+
   const segment = useCallback(
     async (image: PreparedImage) => {
       setStage('segmenting');
@@ -35,7 +38,7 @@ export function useVisualInterpreter() {
       setImageId(result.data.image_id);
       setSegmentationMasks(result.data.segments);
       if (result.data.segments.length === 0) {
-        setError('No distinct items were found. You can still tap anywhere on the photo.');
+        setError('No items stood out. You can still tap anything on the photo.');
       }
       setStage('ready');
     },
@@ -104,7 +107,15 @@ export function useVisualInterpreter() {
     [capturedImage, homeCurrency, imageId, scene, segmentationMasks, stage, travelerLocale],
   );
 
+  const readAloud = useCallback(() => {
+    if (!selectedAnalysisData) return;
+    const { detected_object, safety_precautions, price_breakdown, contextual_description } = selectedAnalysisData;
+    const script = [detected_object, ...safety_precautions, price_breakdown, contextual_description].filter(Boolean).join('. ');
+    void Speech.stop().then(() => Speech.speak(script, { language: travelerLocale }));
+  }, [selectedAnalysisData, travelerLocale]);
+
   const clearSelection = useCallback(() => {
+    void Speech.stop();
     analysisRequest.current++;
     setSelectedAnalysisData(null);
     setSelectedSegmentId(null);
@@ -113,6 +124,7 @@ export function useVisualInterpreter() {
   }, [stage]);
 
   const retake = useCallback(() => {
+    void Speech.stop();
     analysisRequest.current++;
     setCapturedImage(null);
     setImageId(null);
@@ -140,6 +152,7 @@ export function useVisualInterpreter() {
     processPhoto,
     retrySegmentation,
     selectAt,
+    readAloud,
     clearSelection,
     retake,
   };

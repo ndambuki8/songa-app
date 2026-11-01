@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
-import { Alert, StyleSheet, TextInput, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { Card, ErrorBanner, PrimaryButton, Screen, SongaText, StatusPill } from '@/components/ui';
 import { formatClockTime } from '@/lib/dates';
@@ -18,7 +18,7 @@ export function AnchorView({ anchor }: AnchorViewProps) {
   return (
     <Screen
       title="Anchor"
-      subtitle="Works fully offline: GPS and compass only"
+      subtitle="Your way back, even without data"
       headerAccessory={<StatusPill label="Offline-ready" />}
       scrollable
     >
@@ -36,22 +36,21 @@ function LockForm({ anchor }: AnchorViewProps) {
   return (
     <Card tone="bordered" style={styles.lockCard}>
       <Ionicons name="home-outline" size={32} color={SONGA_THEME.primaryAccent} />
-      <SongaText variant="title">Lock your home base</SongaText>
+      <SongaText variant="title">Save where you are staying</SongaText>
       <SongaText variant="body" color="textMuted">
-        When you check in, lock this spot. If data or maps fail later, Songa still points you back here with a
-        compass arrow and the distance in meters.
+        Do this when you arrive. Later, an arrow points you back here, even with no data or maps.
       </SongaText>
       <TextInput
         value={label}
         onChangeText={setLabel}
-        placeholder="Name it, e.g. Hotel Sakura"
+        placeholder={anchor.suggestedLabel ?? 'Name it, e.g. Hotel Sakura'}
         placeholderTextColor={SONGA_THEME.textMuted}
         style={styles.input}
         accessibilityLabel="Anchor name"
         maxLength={40}
       />
       <PrimaryButton
-        label="Lock Anchor Location"
+        label="Save this spot"
         icon="lock-closed"
         loading={anchor.locking}
         onPress={() => void anchor.lockAnchorLocation(label)}
@@ -64,6 +63,7 @@ function LockForm({ anchor }: AnchorViewProps) {
 }
 
 function Navigator({ anchor }: AnchorViewProps) {
+  const [showDetails, setShowDetails] = useState(false);
   const point = anchor.anchorCoordinates!;
   const nav = anchor.navigation;
   const distance = nav ? formatDistance(nav.distanceMeters) : null;
@@ -105,23 +105,39 @@ function Navigator({ anchor }: AnchorViewProps) {
           <View style={styles.readout}>
             {distance ? (
               <View style={styles.distanceRow}>
-                <SongaText variant="metric">{distance.value}</SongaText>
+                <SongaText variant="hero">{distance.value}</SongaText>
                 <SongaText variant="title">{distance.unit}</SongaText>
               </View>
             ) : (
               <SongaText variant="subtitle">Finding your position…</SongaText>
             )}
-            {nav ? (
-              <SongaText variant="label" color="textMuted">
-                {cardinalDirection(nav.bearingToAnchor)} · {Math.round(nav.bearingToAnchor)}° from north
+            {nav && nav.arrowRotation === null ? (
+              <SongaText variant="caption" align="center">
+                Hold the phone flat. The arrow appears once the compass is ready.
               </SongaText>
             ) : null}
-            {nav && nav.arrowRotation === null ? (
-              <SongaText variant="caption">Compass warming up. The arrow activates once a heading is available.</SongaText>
+            {anchor.gpsSearching ? (
+              <SongaText variant="caption" align="center">
+                Looking for GPS. Step toward open sky.
+              </SongaText>
             ) : null}
-            {anchor.gpsSearching ? <SongaText variant="caption">Waiting for a GPS fix. Move toward open sky.</SongaText> : null}
-            {anchor.currentAccuracy !== null ? (
-              <SongaText variant="caption">GPS accuracy ±{Math.round(anchor.currentAccuracy)} m</SongaText>
+            {nav ? (
+              <Pressable
+                accessibilityRole="button"
+                accessibilityState={{ expanded: showDetails }}
+                onPress={() => setShowDetails((value) => !value)}
+                hitSlop={10}
+              >
+                <SongaText variant="label" color="primaryAccent">
+                  {showDetails ? 'Hide details' : 'Details'}
+                </SongaText>
+              </Pressable>
+            ) : null}
+            {nav && showDetails ? (
+              <SongaText variant="caption" align="center">
+                {cardinalDirection(nav.bearingToAnchor)} · {Math.round(nav.bearingToAnchor)}° from north
+                {anchor.currentAccuracy !== null ? ` · GPS ±${Math.round(anchor.currentAccuracy)} m` : ''}
+              </SongaText>
             ) : null}
           </View>
         </>

@@ -76,6 +76,21 @@ export const ItineraryResponseSchema = z.object({
 });
 export type ItineraryResponse = z.infer<typeof ItineraryResponseSchema>;
 
+export const TripBriefingResponseSchema = z.object({
+  destination: z.string(),
+  destination_locale: z.string(),
+  summary: z.string(),
+  days: z.array(z.object({ date: z.string(), title: z.string(), suggestions: z.array(z.string()) })),
+  phrases: z.array(z.object({ meaning: z.string(), phrase: z.string(), pronunciation: z.string().nullable().optional() })),
+  etiquette: z.array(z.string()),
+  safety: z.array(z.string()),
+  money: z.array(z.string()),
+  getting_around: z.array(z.string()),
+  emergency_numbers: z.array(z.object({ label: z.string(), number: z.string() })),
+  ...timed,
+});
+export type TripBriefing = z.infer<typeof TripBriefingResponseSchema>;
+
 export const ErrorEnvelopeSchema = z.object({
   error: z.object({
     code: z.string(),

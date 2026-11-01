@@ -11,6 +11,7 @@ export const TYPOGRAPHY = {
   label: { fontSize: 14, lineHeight: 18, fontWeight: '600', color: SONGA_THEME.textDark },
   caption: { fontSize: 12, lineHeight: 16, fontWeight: '400', color: SONGA_THEME.textMuted },
   metric: { fontSize: 44, lineHeight: 50, fontWeight: '800', color: SONGA_THEME.textDark },
+  hero: { fontSize: 72, lineHeight: 78, fontWeight: '800', color: SONGA_THEME.textDark },
 } as const satisfies Record<string, TextStyle>;
 
 export type TypographyVariant = keyof typeof TYPOGRAPHY;

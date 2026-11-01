@@ -5,6 +5,27 @@ export function localDayKey(date: Date): string {
   return `${date.getFullYear()}-${month}-${day}`;
 }
 
+function parseDayKey(dayKey: string): Date {
+  const [year, month, day] = dayKey.split('-').map(Number);
+  return new Date(year ?? 1970, (month ?? 1) - 1, day ?? 1);
+}
+
+export function addDays(dayKey: string, days: number): string {
+  const date = parseDayKey(dayKey);
+  date.setDate(date.getDate() + days);
+  return localDayKey(date);
+}
+
+/** Short, localized day label such as `Tue, 3 Nov`. */
+export function formatDayLabel(dayKey: string, locale: string): string {
+  const date = parseDayKey(dayKey);
+  try {
+    return date.toLocaleDateString(locale, { weekday: 'short', day: 'numeric', month: 'short' });
+  } catch {
+    return dayKey;
+  }
+}
+
 export function deviceTimeZone(): string {
   try {
     return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';

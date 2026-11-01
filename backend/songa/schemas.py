@@ -142,6 +142,50 @@ class CompileItineraryResponse(TimedResponse):
     events: list[ItineraryEvent]
 
 
+# Trip ---------------------------------------------------------------------------------------------
+
+
+class TripBriefingRequest(StrictModel):
+    destination: str = Field(min_length=2, max_length=120)
+    start_date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
+    days: int = Field(ge=1, le=14)
+    stay: str | None = Field(default=None, max_length=160)
+    needs: str | None = Field(default=None, max_length=400)
+    traveler_locale: str = Field(default="en-US", pattern=LOCALE_PATTERN)
+    destination_locale: str = Field(pattern=LOCALE_PATTERN)
+    home_currency: str = Field(default="USD", pattern=r"^[A-Z]{3}$")
+
+
+class TripDay(BaseModel):
+    date: str
+    title: str
+    suggestions: list[str] = Field(default_factory=list)
+
+
+class TripPhrase(BaseModel):
+    meaning: str
+    phrase: str
+    pronunciation: str | None = None
+
+
+class EmergencyNumber(BaseModel):
+    label: str
+    number: str
+
+
+class TripBriefingResponse(TimedResponse):
+    destination: str
+    destination_locale: str
+    summary: str
+    days: list[TripDay]
+    phrases: list[TripPhrase]
+    etiquette: list[str]
+    safety: list[str]
+    money: list[str]
+    getting_around: list[str]
+    emergency_numbers: list[EmergencyNumber]
+
+
 # Model output contracts (what Muse Wonder must return) --------------------------------------------
 
 
@@ -161,3 +205,14 @@ class VisionModelOutput(BaseModel):
 class ItineraryModelOutput(BaseModel):
     summary: str
     events: list[ItineraryEvent]
+
+
+class TripBriefingModelOutput(BaseModel):
+    summary: str = Field(min_length=1)
+    days: list[TripDay] = Field(default_factory=list)
+    phrases: list[TripPhrase] = Field(default_factory=list)
+    etiquette: list[str] = Field(default_factory=list)
+    safety: list[str] = Field(default_factory=list)
+    money: list[str] = Field(default_factory=list)
+    getting_around: list[str] = Field(default_factory=list)
+    emergency_numbers: list[EmergencyNumber] = Field(default_factory=list)

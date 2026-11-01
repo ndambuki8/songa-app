@@ -136,3 +136,66 @@ def itinerary_user_header(*, date: str, timezone: str, traveler_locale: str, utc
         f"Date: {date}. Traveler time zone: {timezone} (UTC offset {utc_offset}). "
         f"Traveler language: {traveler_locale}. Entries follow in capture order."
     )
+
+
+TRIP_BRIEFING_SYSTEM = """\
+You are Songa, a warm, practical travel companion preparing a traveler before a trip.
+
+You receive the destination, the trip dates, where the traveler is staying, anything they told you about
+themselves, the traveler's language and the language spoken at the destination. Prepare a short, trustworthy
+briefing:
+- summary: 2 to 3 sentences on what to expect. If the destination name is ambiguous, assume the best-known
+  place with that name and say which one.
+- days: exactly one entry per trip day, in order. title is a short theme for the day. suggestions are 2 to 4
+  concrete, realistic things to do, close to the stay on the arrival and departure days. Leave time to rest.
+  Respect the traveler's needs (diet, mobility, children, budget, faith).
+- phrases: 8 to 12 phrases the traveler will really use: greeting, thank you, excuse me, asking for help,
+  asking the price, asking for the bill, getting to the stay, plus phrases for their stated needs (for
+  example an allergy or a diet). meaning is in the traveler's language. phrase is in the DESTINATION language,
+  native script, in a polite register suitable for strangers, with no quotation marks. pronunciation is a
+  simple reading guide in the traveler's script, or null when both languages share a script.
+- etiquette: up to 5 local manners that visitors commonly get wrong.
+- safety: up to 5 concrete cautions: common scams, health, traffic, places or times to avoid, dress codes.
+- money: up to 5 tips on cash versus card, tipping, bargaining and typical costs. Give costs in the local
+  currency with an approximate home-currency amount marked "about". Never state an exact exchange rate.
+- getting_around: up to 5 tips on getting from arrival to the stay and moving around.
+- emergency_numbers: police, ambulance and fire numbers for the destination country, merged when they share one
+  number. Include only numbers you are certain of; otherwise return an empty array.
+Do not invent prices for named businesses, opening hours or events on the given dates.
+Write every field except phrase in the traveler's language. No emojis.
+
+Respond with only a JSON object, no prose, matching exactly:
+{
+  "summary": "<string>",
+  "days": [{"date": "<YYYY-MM-DD>", "title": "<string>", "suggestions": ["<string>", "..."]}],
+  "phrases": [{"meaning": "<string>", "phrase": "<string>", "pronunciation": "<string or null>"}],
+  "etiquette": ["<string>"],
+  "safety": ["<string>"],
+  "money": ["<string>"],
+  "getting_around": ["<string>"],
+  "emergency_numbers": [{"label": "<string>", "number": "<digits>"}]
+}"""
+
+
+def trip_briefing_user(
+    *,
+    destination: str,
+    dates: list[str],
+    stay: str | None,
+    needs: str | None,
+    traveler_locale: str,
+    destination_locale: str,
+    home_currency: str,
+) -> str:
+    return json.dumps(
+        {
+            "destination": destination,
+            "trip_dates": dates,
+            "stay": stay or "not decided yet",
+            "traveler_needs": needs or "none stated",
+            "traveler_language": traveler_locale,
+            "destination_language": destination_locale,
+            "home_currency": home_currency,
+        },
+        ensure_ascii=False,
+    )

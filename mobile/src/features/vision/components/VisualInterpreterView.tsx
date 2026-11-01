@@ -17,8 +17,8 @@ const SCENES: readonly { value: SceneMode; label: string }[] = [
 ];
 
 const BUSY_LABELS = {
-  preparing: 'Preparing photo…',
-  segmenting: 'Finding items with SAM 3.1…',
+  preparing: 'Getting the photo ready…',
+  segmenting: 'Finding things you can tap…',
 } as const;
 
 interface VisualInterpreterViewProps {
@@ -34,9 +34,9 @@ export function VisualInterpreterView({ vision, cameraActive }: VisualInterprete
   return (
     <Screen
       title="Look"
-      subtitle={showingPhoto ? 'Tap any item to have it explained' : 'Snap a menu, sign or transit board'}
+      subtitle={showingPhoto ? 'Tap anything on the photo to have it explained' : 'Point at a menu, sign or price tag'}
       headerAccessory={
-        showingPhoto ? <PrimaryButton label="Retake" icon="camera-outline" variant="outline" compact onPress={vision.retake} /> : null
+        showingPhoto && showAnalysis ? <PrimaryButton label="Retake" icon="camera-outline" variant="outline" compact onPress={vision.retake} /> : null
       }
     >
       {!showingPhoto ? <SegmentedControl options={SCENES} value={vision.scene} onChange={vision.setScene} /> : null}
@@ -80,7 +80,10 @@ export function VisualInterpreterView({ vision, cameraActive }: VisualInterprete
           analysis={vision.selectedAnalysisData}
           loading={vision.stage === 'analyzing'}
           onClose={vision.clearSelection}
+          onReadAloud={vision.readAloud}
         />
+      ) : showingPhoto && !busyLabel ? (
+        <PrimaryButton label="Take another photo" icon="camera-outline" variant="outline" onPress={vision.retake} />
       ) : null}
     </Screen>
   );

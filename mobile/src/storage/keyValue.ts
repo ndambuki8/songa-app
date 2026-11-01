@@ -6,6 +6,7 @@ export const STORAGE_KEYS = {
   anchor: 'songa.anchor.v1',
   logbookEntries: 'songa.logbook.entries.v1',
   itineraryPrefix: 'songa.itinerary.v1.',
+  trip: 'songa.trip.v1',
 } as const;
 
 /** Reads and validates a JSON value. Corrupt or outdated data is treated as missing. */

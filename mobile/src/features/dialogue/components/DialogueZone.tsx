@@ -1,6 +1,8 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
-import { LanguagePicker, SongaText, StatusPill } from '@/components/ui';
+import { LanguagePicker, PrimaryButton, SongaText, StatusPill } from '@/components/ui';
 import { RADII, SONGA_THEME, SPACING } from '@/theme';
 
 import type { ZoneContent } from '../zoneContent';
@@ -16,8 +18,9 @@ interface DialogueZoneProps {
   processing: boolean;
   micDisabled: boolean;
   onMicPress: () => void;
-  /** Rotates the zone 180deg so a person facing the traveler can read it. */
-  inverted?: boolean;
+  /** Rotates the zone 180deg and switches to the green surface for the person facing the traveler. */
+  resident?: boolean;
+  review?: { onConfirm: () => void; onRetry: () => void } | null;
 }
 
 export function DialogueZone({
@@ -30,32 +33,69 @@ export function DialogueZone({
   processing,
   micDisabled,
   onMicPress,
-  inverted = false,
+  resident = false,
+  review = null,
 }: DialogueZoneProps) {
+  const [showNote, setShowNote] = useState(false);
+  const textColor = resident ? 'background' : undefined;
+
   return (
-    <View style={[styles.zone, inverted ? styles.inverted : null]}>
+    <View style={[styles.zone, resident ? styles.resident : null]}>
       <View style={styles.topRow}>
         <LanguagePicker caption={languageCaption} locale={locale} onChange={onLocaleChange} />
         {statusLabel ? <StatusPill label={statusLabel} active={recording} busy={processing} /> : null}
       </View>
 
       <ScrollView style={styles.body} contentContainerStyle={styles.bodyContent}>
-        <SongaText variant="caption">{content.caption}</SongaText>
-        <SongaText variant="display" selectable>
+        <SongaText variant="caption" color={textColor}>
+          {content.caption}
+        </SongaText>
+        <SongaText variant="display" color={textColor} selectable>
           {content.headline}
         </SongaText>
-        {content.detail ? <SongaText variant="caption">{content.detail}</SongaText> : null}
+        {content.detail ? (
+          <SongaText variant="body" color={resident ? 'background' : 'textMuted'}>
+            {content.detail}
+          </SongaText>
+        ) : null}
+        {content.note ? (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityState={{ expanded: showNote }}
+            onPress={() => setShowNote((value) => !value)}
+            style={styles.noteToggle}
+            hitSlop={8}
+          >
+            <Ionicons name={showNote ? 'chevron-up' : 'information-circle-outline'} size={16} color={SONGA_THEME.primaryAccent} />
+            <SongaText variant="label" color="primaryAccent">
+              Why it is phrased this way
+            </SongaText>
+          </Pressable>
+        ) : null}
+        {content.note && showNote ? <SongaText variant="body">{content.note}</SongaText> : null}
       </ScrollView>
 
-      <View style={styles.micRow}>
-        <MicButton
-          recording={recording}
-          processing={processing}
-          disabled={micDisabled}
-          onPress={onMicPress}
-          accessibilityLabel={recording ? 'Stop recording and translate' : `Record in ${languageCaption}`}
-        />
-      </View>
+      {review ? (
+        <View style={styles.reviewRow}>
+          <View style={styles.reviewButton}>
+            <PrimaryButton label="Try again" icon="refresh" variant="outline" onPress={review.onRetry} />
+          </View>
+          <View style={styles.reviewButton}>
+            <PrimaryButton label="Say it" icon="volume-high" onPress={review.onConfirm} />
+          </View>
+        </View>
+      ) : (
+        <View style={styles.micRow}>
+          <MicButton
+            inverse={resident}
+            recording={recording}
+            processing={processing}
+            disabled={micDisabled}
+            onPress={onMicPress}
+            accessibilityLabel={recording ? 'Stop recording and translate' : `Record in ${languageCaption}`}
+          />
+        </View>
+      )}
     </View>
   );
 }
@@ -68,7 +108,8 @@ const styles = StyleSheet.create({
     padding: SPACING.lg,
     gap: SPACING.md,
   },
-  inverted: {
+  resident: {
+    backgroundColor: SONGA_THEME.primaryAccent,
     transform: [{ rotate: '180deg' }],
   },
   topRow: {
@@ -83,7 +124,20 @@ const styles = StyleSheet.create({
   bodyContent: {
     gap: SPACING.xs,
   },
+  noteToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.xs,
+    marginTop: SPACING.sm,
+  },
   micRow: {
     alignItems: 'center',
+  },
+  reviewRow: {
+    flexDirection: 'row',
+    gap: SPACING.sm,
+  },
+  reviewButton: {
+    flex: 1,
   },
 });

@@ -13,4 +13,5 @@ export const REQUEST_TIMEOUT_MS = {
   segment: 60_000,
   analyze: 45_000,
   itinerary: 90_000,
+  trip: 90_000,
 } as const;

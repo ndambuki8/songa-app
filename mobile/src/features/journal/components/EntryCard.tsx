@@ -41,7 +41,7 @@ export function EntryCard({ entry, onRemove, onRetryTranscription }: EntryCardPr
       {entry.kind === 'voice' && entry.transcription === 'pending' ? (
         <View style={styles.inline}>
           <ActivityIndicator size="small" color={SONGA_THEME.primaryAccent} />
-          <SongaText variant="caption">Transcribing…</SongaText>
+          <SongaText variant="caption">Saved. Writing it down…</SongaText>
         </View>
       ) : null}
 
@@ -49,7 +49,7 @@ export function EntryCard({ entry, onRemove, onRetryTranscription }: EntryCardPr
         <Pressable accessibilityRole="button" onPress={onRetryTranscription} style={styles.inline}>
           <Ionicons name="refresh" size={14} color={SONGA_THEME.primaryAccent} />
           <SongaText variant="label" color="primaryAccent">
-            Retry transcription
+            Could not write this down. Try again
           </SongaText>
         </Pressable>
       ) : null}
