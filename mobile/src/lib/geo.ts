@@ -57,3 +57,40 @@ export function formatDistance(meters: number): { value: string; unit: 'm' | 'km
   if (meters < 1000) return { value: String(Math.round(meters)), unit: 'm' };
   return { value: (meters / 1000).toFixed(meters < 10_000 ? 2 : 1), unit: 'km' };
 }
+
+export interface GpsFix extends Coordinates {
+  /** Radius of uncertainty in meters, as reported by the device. */
+  accuracy: number;
+}
+
+/**
+ * Combines several GPS fixes taken while standing still into one precise point.
+ * Keeps only the fixes close to the best accuracy seen, then averages them weighted by 1/accuracy², so a single
+ * jumpy reading cannot drag the anchor. The reported accuracy is the best single fix: averaging reduces random
+ * jitter, but GPS errors are correlated over seconds, so claiming more would be dishonest.
+ */
+export function combineFixes(fixes: readonly GpsFix[]): GpsFix | null {
+  const valid = fixes.filter((fix) => Number.isFinite(fix.accuracy) && fix.accuracy > 0);
+  if (valid.length === 0) return null;
+  const best = Math.min(...valid.map((fix) => fix.accuracy));
+  const cutoff = Math.max(best * 1.5, best + 5);
+  const used = valid.filter((fix) => fix.accuracy <= cutoff);
+
+  let weightSum = 0;
+  let latitude = 0;
+  let longitude = 0;
+  for (const fix of used) {
+    const weight = 1 / (fix.accuracy * fix.accuracy);
+    weightSum += weight;
+    latitude += fix.latitude * weight;
+    longitude += fix.longitude * weight;
+  }
+  return { latitude: latitude / weightSum, longitude: longitude / weightSum, accuracy: best };
+}
+
+/** Exponential smoothing for compass headings that handles the 359° to 0° wrap. */
+export function smoothHeading(previous: number | null, next: number, factor = 0.3): number {
+  if (previous === null) return normalizeDegrees(next);
+  const delta = ((normalizeDegrees(next) - normalizeDegrees(previous) + 540) % 360) - 180;
+  return normalizeDegrees(previous + delta * factor);
+}

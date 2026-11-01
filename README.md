@@ -5,17 +5,18 @@ Songa is a context-aware travel companion. Songa breaks language barriers with i
 ```
 songa-app/
   mobile/    Expo SDK 58 + Expo Router (TypeScript, strict)
-  backend/   CPU-only FastAPI gateway on Modal; Muse Wonder, SAM 3.1 and Muse Voice Transcribe via the Meta Model API
+  backend/   FastAPI gateway on Modal (CPU); Muse Wonder, SAM 3.1 and Muse Voice Transcribe via the Meta Model API,
+             plus optional self-hosted SAM 3 on a Modal GPU
 ```
 
 ## Features
 
 | Tab | What it does | Pipeline |
 | --- | --- | --- |
-| Speak | Split screen. The resident half is rotated 180 degrees for the person across the table. Either side taps the mic, and the other side hears a culturally polite rendering of the intent. | expo-audio, then `POST /api/dialogue/intent-bridge` (Muse Voice Transcribe, then Muse Wonder), then expo-speech |
-| Look | Photograph a menu, sign or transit board. SAM 3.1 finds items by concept ("menu item", "price", "sign"). Tap one to get a translation, a price conversion and safety or allergen alerts. | `POST /api/vision/segment` (SAM 3.1 concept prompts), then `POST /api/vision/sam-isolate` (SAM 3.1 point prompt, crop, Muse Wonder vision) |
-| Journal | Capture notes, voice memos and photos during the day. "Compile my day" turns them into a chronological timeline. | `POST /api/transcribe` (Muse Voice Transcribe) per memo, then `POST /api/logbook/compile-itinerary` (Muse Wonder) |
-| Anchor | Lock your lodging's GPS position. An arrow and the distance in meters guide you back with no network or map tiles. | expo-location (2 s polling plus heading), Haversine and bearing math in `mobile/src/lib/geo.ts`, AsyncStorage |
+| Speak | Split screen. The resident half is rotated 180 degrees for the person across the table. Either side taps the mic, and the other side hears a culturally polite rendering of the intent. What Songa heard appears as soon as it is transcribed, before the translation is ready. | expo-audio (mono 16 kHz AAC), then `POST /api/dialogue/intent-bridge/stream` (NDJSON: a `transcript` event from Muse Voice Transcribe, then a `result` event from Muse Wonder), then expo-speech. The app falls back to the one-shot `POST /api/dialogue/intent-bridge` if the gateway returns 404. |
+| Look | Photograph a menu, sign, market stall or place. SAM 3.1 finds items by concept ("menu item", "price", "landmark"). Tap one to get a translation, a price conversion and safety or allergen alerts. Or type a question ("Where am I?", "Which dishes are vegetarian?"), about the whole photo or the tapped item. The answer comes first, then SAM 3.1 highlights the things it mentions. For place questions, the gateway cross-checks the photo against Wikipedia landmarks within 1 km of the phone's GPS. | `POST /api/vision/segment` (SAM 3.1 concept prompts), then `POST /api/vision/sam-isolate` (SAM 3.1 point prompt, crop, Muse Wonder vision) or `POST /api/vision/ask` (NDJSON: an `answer` event from Muse Wonder, grounded by Wikipedia GeoSearch, then a `highlights` event from SAM 3.1) |
+| Journal | Capture moments during the day: notes, voice memos and photos. "My day" turns them into a first-person diary timeline, written in your voice, with plans and reminders listed separately under "For later". It writes itself when you open it and updates when moments change. Times shown with `~` are estimates. | `POST /api/transcribe` (Muse Voice Transcribe) per memo, then `POST /api/logbook/compile-itinerary` (Muse Wonder) |
+| Anchor | Anchor where you're staying: Songa watches GPS for up to 20 s and averages the sharpest fixes into one precise point (it stops early at ±8 m), then looks up the street address. An arrow and the distance guide you back with no network or map tiles. "Show a local" holds two cards written once in the local language and saved for offline use: **Take me home** (your address and taxi phrases) and **My needs** (allergies, diet and medical notes). Each phrase can be read aloud. Your needs also make Look's food alerts personal ("For you: likely contains peanuts"). | expo-location (`watchPositionAsync` plus smoothed heading), `combineFixes` and Haversine math in `mobile/src/lib/geo.ts`, `POST /api/cards/local` (Muse Wonder), expo-speech, AsyncStorage |
 
 Every backend response includes `latency_ms` and a per-stage `timings` breakdown. Errors use a single envelope, `{ "error": { "code", "message" }, "latency_ms" }`, with semantic HTTP statuses (400, 401, 410, 413, 422, 502, 503, 504).
 
@@ -41,14 +42,17 @@ modal run modal_app.py::smoke                        # one real call to each Met
 modal deploy modal_app.py                            # prints https://<workspace>--songa-gateway.modal.run
 ```
 
-- No GPUs are used, so a Modal account without a payment method works. The gateway is a single CPU container with ffmpeg, and it scales to zero.
+- With the default `SAM_BACKEND=meta`, no GPUs are used, so a Modal account without a payment method works. The gateway is a single CPU container with ffmpeg, and it scales to zero.
+- Every setting is documented in `backend/.env.example`, split into runtime settings (read from the Modal secret) and deploy-time settings (read from your shell by `modal deploy`).
 - All inference goes through the Meta Model API at `https://api.meta.ai/v1` with one key:
   - Muse Wonder (`muse-wonder-1.0`, Chat Completions)
   - SAM 3.1 (`sam-3.1`, Responses API; output parsed with Meta's `meta-sam-parser`)
   - Muse Voice Transcribe (`muse-voice-transcribe-1.0`, `/asr/transcribe`)
 - The phone records AAC (m4a). Voice Transcribe accepts WAV only, so the gateway converts each clip to mono 24 kHz PCM with ffmpeg.
 - Voice Transcribe supports 25 languages. For locales outside that list (for example Kiswahili), no language hint is sent and the model detects the language itself.
+- An idle gateway container stays up for 5 minutes (`SONGA_SCALEDOWN_S`, default 300), so only the first request of a conversation pays the cold start of about 5 s. The app also pings `/health` when Speak opens and when a recording starts, so a cold container boots while the person is still talking.
 - For a live demo, deploy with `SONGA_WARM=1 modal deploy modal_app.py` to keep one gateway container warm. Redeploy without it afterwards.
+- **Self-hosted SAM (optional).** Set `SAM_BACKEND=modal` in the Modal secret to run SAM 3 on Songa's own GPU (class `SamGpu`, L4 with A10 fallback via `SONGA_SAM_GPU`). The GPU starts from a GPU memory snapshot in about 6 s and shuts down after 3 idle minutes (`SONGA_SAM_SCALEDOWN_S`). Until it answers, hosted Meta SAM serves Look, so a cold or capacity-starved GPU never blocks the app. Responses show which one answered in `timings` (`sam_gpu` or `sam_fallback`). Compare both with `modal run modal_app.py::benchmark_sam`.
 
 Run the tests (no API keys needed; HTTP calls are mocked):
 
@@ -61,7 +65,7 @@ cd backend && python -m pytest
 ```bash
 cd mobile
 npm install
-cp .env.example .env.local          # set EXPO_PUBLIC_SONGA_API_URL and EXPO_PUBLIC_SONGA_API_KEY
+cp .env.example .env                # set EXPO_PUBLIC_SONGA_API_URL and EXPO_PUBLIC_SONGA_API_KEY
 npx expo start
 ```
 

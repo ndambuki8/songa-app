@@ -27,11 +27,15 @@ class Settings:
     meta_api_base_url: str = "https://api.meta.ai/v1"
     muse_model_id: str = "muse-wonder-1.0"
     muse_reasoning_effort: str = "low"
+    # Speak is latency-critical: "minimal" measured ~2.2 s median vs ~3.5 s for "low" with the same output.
+    speak_reasoning_effort: str = "minimal"
     muse_json_mode: bool = True
     muse_timeout_s: float = 40.0
 
     transcribe_model_id: str = "muse-voice-transcribe-1.0"
     sam_model_id: str = "sam-3.1"
+    # "meta": hosted SAM 3.1 on the Meta Model API. "modal": Songa's own SAM 3 on a Modal GPU (class SamGpu).
+    sam_backend: str = "meta"
     sam_score_threshold: float = 0.35
     media_timeout_s: float = 60.0
 
@@ -52,10 +56,12 @@ class Settings:
             meta_api_base_url=os.environ.get("META_API_BASE_URL", cls.meta_api_base_url).rstrip("/"),
             muse_model_id=os.environ.get("MUSE_MODEL_ID", cls.muse_model_id),
             muse_reasoning_effort=os.environ.get("MUSE_REASONING_EFFORT", cls.muse_reasoning_effort),
+            speak_reasoning_effort=os.environ.get("SPEAK_REASONING_EFFORT", cls.speak_reasoning_effort),
             muse_json_mode=_env_bool("MUSE_JSON_MODE", True),
             muse_timeout_s=float(os.environ.get("MUSE_TIMEOUT_S", cls.muse_timeout_s)),
             transcribe_model_id=os.environ.get("TRANSCRIBE_MODEL_ID", cls.transcribe_model_id),
             sam_model_id=os.environ.get("SAM_MODEL_ID", cls.sam_model_id),
+            sam_backend=os.environ.get("SAM_BACKEND", cls.sam_backend).strip().lower() or cls.sam_backend,
             sam_score_threshold=float(os.environ.get("SAM_SCORE_THRESHOLD", cls.sam_score_threshold)),
             media_timeout_s=float(os.environ.get("META_MEDIA_TIMEOUT_S", cls.media_timeout_s)),
             max_audio_bytes=_env_int("SONGA_MAX_AUDIO_BYTES", cls.max_audio_bytes),

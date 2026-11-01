@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 from PIL import Image
 
 from songa.config import Settings
-from songa.engines import ChatMessage, Engines, Isolation, RawSegment, Transcript
+from songa.engines import ChatMessage, Engines, Isolation, NearbyPlace, RawSegment, Transcript
 from songa.stores import InMemoryImageStore
 
 API_KEY = "test-key"
@@ -63,22 +63,46 @@ class ScriptedLLM:
     replies: list[str | Callable[[list[ChatMessage]], str]]
     requests: list[list[ChatMessage]] = field(default_factory=list)
 
-    async def complete(self, messages: list[ChatMessage], *, max_tokens: int) -> str:
+    efforts: list[str | None] = field(default_factory=list)
+
+    async def complete(
+        self, messages: list[ChatMessage], *, max_tokens: int, reasoning_effort: str | None = None
+    ) -> str:
         self.requests.append(messages)
+        self.efforts.append(reasoning_effort)
         reply = self.replies.pop(0)
         return reply(messages) if callable(reply) else reply
+
+
+@dataclass
+class FakePlaces:
+    places: list[NearbyPlace] = field(
+        default_factory=lambda: [NearbyPlace("Kenyatta International Convention Centre", 120), NearbyPlace("City Hall", 240)]
+    )
+    calls: list[tuple[float, float]] = field(default_factory=list)
+
+    async def nearby(self, latitude: float, longitude: float) -> list[NearbyPlace]:
+        self.calls.append((latitude, longitude))
+        return list(self.places)
 
 
 def json_reply(payload: dict) -> str:
     return json.dumps(payload, ensure_ascii=False)
 
 
-def build_engines(llm: ScriptedLLM, *, stt: FakeSpeechToText | None = None, segmenter: FakeSegmenter | None = None) -> Engines:
+def build_engines(
+    llm: ScriptedLLM,
+    *,
+    stt: FakeSpeechToText | None = None,
+    segmenter: FakeSegmenter | None = None,
+    places: FakePlaces | None = None,
+) -> Engines:
     return Engines(
         stt=stt or FakeSpeechToText(),
         segmenter=segmenter or FakeSegmenter(),
         images=InMemoryImageStore(ttl_s=60),
         llm=llm,
+        places=places,
     )
 
 

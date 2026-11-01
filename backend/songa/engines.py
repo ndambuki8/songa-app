@@ -1,7 +1,7 @@
 """Interfaces between HTTP routes and the inference backends.
 
-Routes depend only on these protocols. `modal_app.py` binds them to GPU containers and the Meta
-Model API; tests bind them to in-process fakes.
+Routes depend only on these protocols. `modal_app.py` binds them to the Meta Model API; tests bind
+them to in-process fakes.
 """
 
 from __future__ import annotations
@@ -53,11 +53,27 @@ class ImageStore(Protocol):
     async def get(self, image_id: str) -> bytes | None: ...
 
 
+@dataclass(frozen=True)
+class NearbyPlace:
+    name: str
+    distance_m: int
+
+
+class PlaceLookup(Protocol):
+    async def nearby(self, latitude: float, longitude: float) -> list[NearbyPlace]:
+        """Notable places around a point, nearest first. Returns [] on any failure; never raises."""
+        ...
+
+
 ChatMessage = dict[str, Any]
 
 
 class LanguageModel(Protocol):
-    async def complete(self, messages: list[ChatMessage], *, max_tokens: int) -> str: ...
+    async def complete(
+        self, messages: list[ChatMessage], *, max_tokens: int, reasoning_effort: str | None = None
+    ) -> str:
+        """`reasoning_effort` overrides the client's default for this call; None keeps the default."""
+        ...
 
 
 @dataclass(frozen=True)
@@ -66,3 +82,4 @@ class Engines:
     segmenter: Segmenter
     images: ImageStore
     llm: LanguageModel
+    places: PlaceLookup | None = None

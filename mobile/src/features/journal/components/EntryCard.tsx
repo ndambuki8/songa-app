@@ -45,6 +45,10 @@ export function EntryCard({ entry, onRemove, onRetryTranscription }: EntryCardPr
         </View>
       ) : null}
 
+      {entry.kind === 'voice' && entry.transcription === 'done' && !entry.text?.trim() ? (
+        <SongaText variant="caption">No speech was heard in this memo.</SongaText>
+      ) : null}
+
       {entry.kind === 'voice' && entry.transcription === 'failed' ? (
         <Pressable accessibilityRole="button" onPress={onRetryTranscription} style={styles.inline}>
           <Ionicons name="refresh" size={14} color={SONGA_THEME.primaryAccent} />

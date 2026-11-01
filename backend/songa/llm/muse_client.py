@@ -35,7 +35,9 @@ class MuseWonderClient:
     async def aclose(self) -> None:
         await self._http.aclose()
 
-    async def complete(self, messages: list[ChatMessage], *, max_tokens: int) -> str:
+    async def complete(
+        self, messages: list[ChatMessage], *, max_tokens: int, reasoning_effort: str | None = None
+    ) -> str:
         if not self._api_key:
             raise ServiceMisconfigured("META_API_KEY is not configured on the server.")
 
@@ -44,8 +46,9 @@ class MuseWonderClient:
             "messages": messages,
             "max_completion_tokens": max_tokens,
         }
-        if self._reasoning_effort:
-            body["reasoning_effort"] = self._reasoning_effort
+        effort = reasoning_effort or self._reasoning_effort
+        if effort:
+            body["reasoning_effort"] = effort
         if self._json_mode:
             body["response_format"] = {"type": "json_object"}
 

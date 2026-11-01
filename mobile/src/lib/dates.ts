@@ -13,6 +13,17 @@ export function deviceTimeZone(): string {
   }
 }
 
+/** "Friday, 31 October" in the device language, falling back to the day key. */
+export function formatDayHeading(dayKey: string): string {
+  const [year, month, day] = dayKey.split('-').map(Number);
+  if (!year || !month || !day) return dayKey;
+  try {
+    return new Date(year, month - 1, day).toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
+  } catch {
+    return dayKey;
+  }
+}
+
 export function formatClockTime(iso: string): string {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return '';

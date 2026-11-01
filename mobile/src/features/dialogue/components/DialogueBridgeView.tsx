@@ -28,7 +28,7 @@ export function DialogueBridgeView({ bridge }: DialogueBridgeViewProps) {
     const isActive = bridge.activeSpeaker === zone;
     const otherIsRecording = bridge.apiLoadingState === 'recording' && !isActive;
     return {
-      content: selectZoneContent(bridge.lastTurn, zone),
+      content: selectZoneContent(bridge.lastTurn, zone, bridge.pendingTranscript),
       statusLabel: isActive || bridge.apiLoadingState === 'speaking' ? STATUS_LABELS[bridge.apiLoadingState] : null,
       recording: isActive && bridge.apiLoadingState === 'recording',
       processing: isActive && busy,

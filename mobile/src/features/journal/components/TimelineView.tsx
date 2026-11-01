@@ -9,16 +9,23 @@ import { SONGA_THEME, SPACING } from '@/theme';
 interface TimelineViewProps {
   summary: string;
   events: readonly ItineraryEvent[];
+  toDo: readonly string[];
 }
 
 const DOT = 14;
 const RAIL = 2;
 
-export function TimelineView({ summary, events }: TimelineViewProps) {
+/** Older days were written with "Unknown location"; newer ones leave the place empty. */
+function hasPlace(location: string): boolean {
+  const trimmed = location.trim();
+  return trimmed.length > 0 && trimmed.toLowerCase() !== 'unknown location';
+}
+
+export function TimelineView({ summary, events, toDo }: TimelineViewProps) {
   return (
     <View style={styles.root}>
       <Card>
-        <SongaText variant="label">Your day</SongaText>
+        <SongaText variant="label">My day</SongaText>
         <SongaText variant="body">{summary}</SongaText>
       </Card>
 
@@ -28,7 +35,13 @@ export function TimelineView({ summary, events }: TimelineViewProps) {
           return (
             <View key={`${event.timestamp}-${index}`} style={styles.row}>
               <View style={styles.timeColumn}>
-                <SongaText variant="caption">{formatClockTime(event.timestamp)}</SongaText>
+                <SongaText
+                  variant="caption"
+                  accessibilityLabel={event.time_is_estimate ? `About ${formatClockTime(event.timestamp)}` : undefined}
+                >
+                  {event.time_is_estimate ? '~' : ''}
+                  {formatClockTime(event.timestamp)}
+                </SongaText>
               </View>
               <View style={styles.railColumn}>
                 <View style={styles.dot} />
@@ -36,16 +49,32 @@ export function TimelineView({ summary, events }: TimelineViewProps) {
               </View>
               <View style={[styles.content, isLast ? null : styles.contentSpacing]}>
                 <SongaText variant="subtitle">{event.activity}</SongaText>
-                <View style={styles.location}>
-                  <Ionicons name="location-outline" size={14} color={SONGA_THEME.textMuted} />
-                  <SongaText variant="caption">{event.location}</SongaText>
-                </View>
+                {hasPlace(event.location) ? (
+                  <View style={styles.location}>
+                    <Ionicons name="location-outline" size={14} color={SONGA_THEME.textMuted} />
+                    <SongaText variant="caption">{event.location}</SongaText>
+                  </View>
+                ) : null}
                 {event.notes ? <SongaText variant="body">{event.notes}</SongaText> : null}
               </View>
             </View>
           );
         })}
       </View>
+
+      {toDo.length > 0 ? (
+        <Card tone="plain">
+          <SongaText variant="label">For later</SongaText>
+          {toDo.map((item) => (
+            <View key={item} style={styles.todo}>
+              <Ionicons name="ellipse-outline" size={14} color={SONGA_THEME.primaryAccent} style={styles.todoIcon} />
+              <SongaText variant="body" style={styles.todoText}>
+                {item}
+              </SongaText>
+            </View>
+          ))}
+        </Card>
+      ) : null}
     </View>
   );
 }
@@ -54,11 +83,21 @@ const styles = StyleSheet.create({
   root: {
     gap: SPACING.xl,
   },
+  todo: {
+    flexDirection: 'row',
+    gap: SPACING.sm,
+  },
+  todoIcon: {
+    marginTop: SPACING.xs,
+  },
+  todoText: {
+    flex: 1,
+  },
   row: {
     flexDirection: 'row',
   },
   timeColumn: {
-    width: 48,
+    width: 52,
     paddingTop: SPACING.xxs,
   },
   railColumn: {

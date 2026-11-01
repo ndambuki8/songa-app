@@ -6,6 +6,7 @@ from songa.gateway import create_app
 from tests.fakes import (
     AUDIO_B64,
     AUTH,
+    FakePlaces,
     FakeSegmenter,
     FakeSpeechToText,
     ScriptedLLM,
@@ -72,6 +73,59 @@ def test_intent_bridge_happy_path():
     assert isinstance(data["latency_ms"], int)
     assert stt.calls[0][1] == "en"
     assert llm.requests[0][0]["role"] == "developer"
+
+
+def test_intent_bridge_uses_speak_reasoning_effort():
+    llm = ScriptedLLM([INTENT_OK])
+    response = client_for(llm).post(
+        "/api/dialogue/intent-bridge", json={"audio_b64": AUDIO_B64, "target_locale": "ja-JP"}, headers=AUTH
+    )
+    assert response.status_code == 200
+    assert llm.efforts == ["minimal"]
+
+
+def _stream_events(response) -> list[dict]:
+    import json
+
+    return [json.loads(line) for line in response.text.splitlines() if line.strip()]
+
+
+def test_intent_bridge_stream_sends_transcript_then_result():
+    stt = FakeSpeechToText()
+    response = client_for(ScriptedLLM([INTENT_OK]), stt=stt).post(
+        "/api/dialogue/intent-bridge/stream",
+        json={"audio_b64": AUDIO_B64, "source_locale": "en-US", "target_locale": "ja-JP"},
+        headers=AUTH,
+    )
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("application/x-ndjson")
+    events = _stream_events(response)
+    assert [event["type"] for event in events] == ["transcript", "result"]
+    assert events[0]["text"] == stt.text
+    assert set(events[0]["timings"]) == {"decode", "transcribe"}
+    result = events[1]
+    assert result["culturally_refined_translation"] == "すみません、駅はどちらでしょうか。"
+    assert result["raw_transcription"] == stt.text
+    assert set(result["timings"]) == {"decode", "transcribe", "muse"}
+
+
+def test_intent_bridge_stream_reports_model_failure_in_band():
+    response = client_for(ScriptedLLM(["nope", "still nope"])).post(
+        "/api/dialogue/intent-bridge/stream", json={"audio_b64": AUDIO_B64, "target_locale": "ja-JP"}, headers=AUTH
+    )
+    assert response.status_code == 200
+    events = _stream_events(response)
+    assert [event["type"] for event in events] == ["transcript", "error"]
+    assert events[1]["status"] == 502
+    assert events[1]["error"]["code"] == "invalid_model_output"
+
+
+def test_intent_bridge_stream_keeps_http_status_for_silence():
+    response = client_for(ScriptedLLM([]), stt=FakeSpeechToText(text=" ")).post(
+        "/api/dialogue/intent-bridge/stream", json={"audio_b64": AUDIO_B64, "target_locale": "ja-JP"}, headers=AUTH
+    )
+    assert response.status_code == 422
+    assert response.json()["error"]["code"] == "no_speech"
 
 
 def test_intent_bridge_repairs_invalid_model_json_once():
@@ -175,6 +229,14 @@ def test_isolate_with_cached_image_and_expiry():
     assert expired.json()["error"]["code"] == "expired"
 
 
+def test_vision_warm_is_protected_and_safe_without_gpu():
+    client = client_for(ScriptedLLM([]))
+    assert client.post("/api/vision/warm").status_code == 401
+    response = client.post("/api/vision/warm", headers=AUTH)
+    assert response.status_code == 200
+    assert response.json()["warming"] is False
+
+
 def test_isolate_rejects_out_of_bounds_click_and_ambiguous_source():
     client = client_for(ScriptedLLM([]))
     image = make_jpeg_b64(100, 100)
@@ -195,8 +257,9 @@ def test_compile_itinerary_orders_events_and_filters_ids():
                     "events": [
                         {"timestamp": "2026-10-29T19:00:00+09:00", "activity": "Dinner", "location": "Shinjuku", "source_entry_ids": ["b", "ghost"]},
                         {"timestamp": "2026-10-29T09:30:00+09:00", "activity": "Senso-ji", "location": "Asakusa", "notes": None, "source_entry_ids": ["a"]},
-                        {"timestamp": "evening-ish", "activity": "Walk", "location": "Unknown location", "source_entry_ids": []},
+                        {"timestamp": "evening-ish", "activity": "Walk", "time_is_estimate": True, "source_entry_ids": []},
                     ],
+                    "to_do": ["Book the train to Kyoto", "  "],
                 }
             )
         ]
@@ -218,6 +281,9 @@ def test_compile_itinerary_orders_events_and_filters_ids():
     events = response.json()["events"]
     assert [e["activity"] for e in events] == ["Senso-ji", "Dinner", "Walk"]
     assert events[1]["source_entry_ids"] == ["b"]
+    assert events[2]["time_is_estimate"] is True and events[2]["location"] == ""
+    assert events[0]["time_is_estimate"] is False
+    assert response.json()["to_do"] == ["Book the train to Kyoto"]
 
     content = llm.requests[0][1]["content"]
     assert "UTC offset +09:00" in content[0]["text"]
@@ -232,3 +298,162 @@ def test_compile_itinerary_rejects_empty_entries():
         headers=AUTH,
     )
     assert response.status_code == 422
+
+
+# Look: ask a question about a photo ---------------------------------------------------------------
+
+ASK_OK = json_reply(
+    {
+        "title": "Kenyatta Conference Centre",
+        "answer": "This is almost certainly the KICC, 120 m from you. It opened in 1973.",
+        "find": ["tower", "  ", "TOWER", "sign", "door", "extra"],
+    }
+)
+
+
+def test_ask_answers_then_highlights_with_location_grounding():
+    places = FakePlaces()
+    segmenter = FakeSegmenter()
+    llm = ScriptedLLM([ASK_OK])
+    client = client_for(llm, segmenter=segmenter, places=places)
+    image_id = client.post("/api/vision/segment", json={"image_b64": make_jpeg_b64()}, headers=AUTH).json()["image_id"]
+
+    response = client.post(
+        "/api/vision/ask",
+        json={"image_id": image_id, "question": "Where am I?", "latitude": -1.2889, "longitude": 36.8233},
+        headers=AUTH,
+    )
+    assert response.status_code == 200, response.text
+    events = _stream_events(response)
+    assert [event["type"] for event in events] == ["answer", "highlights"]
+    assert events[0]["title"] == "Kenyatta Conference Centre"
+    # Blank and duplicate phrases dropped, capped at 3.
+    assert events[0]["find"] == ["tower", "sign", "door"]
+    assert segmenter.concepts_seen[-1] == ["tower", "sign", "door"]
+    assert [s["label"] for s in events[1]["segments"]] == ["menu item", "price"]
+    assert all(s["id"].startswith("hl_") for s in events[1]["segments"])
+
+    assert places.calls == [(-1.2889, 36.8233)]
+    prompt = llm.requests[0][1]["content"][0]["text"]
+    assert "Kenyatta International Convention Centre (120 m)" in prompt
+    assert "Question: Where am I?" in prompt
+    assert "whole photo" in prompt
+
+
+def test_ask_about_outlined_item_without_location_skips_places_and_highlights():
+    places = FakePlaces()
+    segmenter = FakeSegmenter()
+    llm = ScriptedLLM([json_reply({"title": "Ramen", "answer": "Pork broth.", "find": []})])
+    response = client_for(llm, segmenter=segmenter, places=places).post(
+        "/api/vision/ask",
+        json={
+            "image_b64": make_jpeg_b64(),
+            "question": "Is there pork in this?",
+            "focus_bbox": {"x": 40, "y": 40, "width": 200, "height": 60},
+            "scene": "menu",
+        },
+        headers=AUTH,
+    )
+    assert response.status_code == 200, response.text
+    assert [event["type"] for event in _stream_events(response)] == ["answer"]
+    assert places.calls == []
+    assert segmenter.concepts_seen == []
+    prompt = llm.requests[0][1]["content"][0]["text"]
+    assert "outlined item" in prompt
+    assert "Approximate location" not in prompt
+
+
+def test_ask_validates_inputs_and_expiry():
+    client = client_for(ScriptedLLM([]))
+    image = make_jpeg_b64(100, 100)
+    expired = client.post("/api/vision/ask", json={"image_id": "img_missing", "question": "What is this?"}, headers=AUTH)
+    assert expired.status_code == 410
+    blank = client.post("/api/vision/ask", json={"image_b64": image, "question": "   "}, headers=AUTH)
+    assert blank.status_code == 422
+    half_gps = client.post("/api/vision/ask", json={"image_b64": image, "question": "Where?", "latitude": 1.0}, headers=AUTH)
+    assert half_gps.status_code == 422
+    off_image = client.post(
+        "/api/vision/ask",
+        json={"image_b64": image, "question": "What?", "focus_bbox": {"x": 500, "y": 500, "width": 10, "height": 10}},
+        headers=AUTH,
+    )
+    assert off_image.status_code == 400
+
+
+# Anchor: show-a-local cards -----------------------------------------------------------------------
+
+CARD_OK = json_reply(
+    {
+        "title_local": "ホテル桜",
+        "title_meaning": "Hotel Sakura",
+        "body_local": "東京都台東区浅草1-2-3。ここまでお願いします。",
+        "body_meaning": "1-2-3 Asakusa, Taito, Tokyo. Please take me here.",
+        "phrases": [{"local": "ここに行ってください", "meaning": "Please take me here"}, {"local": " ", "meaning": "x"}],
+    }
+)
+
+
+def test_home_card_sends_address_and_drops_blank_phrases():
+    llm = ScriptedLLM([CARD_OK])
+    response = client_for(llm).post(
+        "/api/cards/local",
+        json={
+            "kind": "home",
+            "target_locale": "ja-JP",
+            "target_country": "Japan",
+            "place_name": "Hotel Sakura",
+            "address": "1-2-3 Asakusa, Taito, Tokyo",
+            "latitude": 35.7148,
+            "longitude": 139.7967,
+        },
+        headers=AUTH,
+    )
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert data["kind"] == "home" and data["target_locale"] == "ja-JP"
+    assert data["title_local"] == "ホテル桜"
+    assert data["phrases"] == [{"local": "ここに行ってください", "meaning": "Please take me here"}]
+    sent = llm.requests[0][1]["content"]
+    assert '"address": "1-2-3 Asakusa, Taito, Tokyo"' in sent
+    assert '"coordinates": [35.7148, 139.7967]' in sent
+    assert "allergies" not in sent
+
+
+def test_needs_card_requires_content():
+    client = client_for(ScriptedLLM([]))
+    empty = client.post("/api/cards/local", json={"kind": "needs", "target_locale": "ja-JP"}, headers=AUTH)
+    assert empty.status_code == 422
+    no_place = client.post("/api/cards/local", json={"kind": "home", "target_locale": "ja-JP"}, headers=AUTH)
+    assert no_place.status_code == 422
+
+
+def test_needs_card_sends_only_needs():
+    llm = ScriptedLLM([CARD_OK])
+    response = client_for(llm).post(
+        "/api/cards/local",
+        json={"kind": "needs", "target_locale": "th-TH", "allergies": ["Peanuts"], "diet": ["Halal"], "place_name": "x"},
+        headers=AUTH,
+    )
+    assert response.status_code == 200, response.text
+    sent = llm.requests[0][1]["content"]
+    assert '"allergies": ["Peanuts"]' in sent and '"diet": ["Halal"]' in sent
+    assert "place_name" not in sent
+
+
+def test_traveler_needs_reach_both_look_prompts():
+    reply = json_reply({"detected_object": "Pad thai", "contextual_description": "Noodles.", "safety_precautions": []})
+    llm = ScriptedLLM([reply, json_reply({"title": "Pad thai", "answer": "Noodles.", "find": []})])
+    client = client_for(llm)
+    image = make_jpeg_b64()
+    needs = "Allergies: peanuts. Diet: halal."
+    isolate = client.post(
+        "/api/vision/sam-isolate",
+        json={"image_b64": image, "click_x": 100, "click_y": 60, "traveler_needs": needs},
+        headers=AUTH,
+    )
+    assert isolate.status_code == 200, isolate.text
+    asked = client.post("/api/vision/ask", json={"image_b64": image, "question": "Is this safe?", "traveler_needs": needs}, headers=AUTH)
+    assert asked.status_code == 200, asked.text
+    assert needs in llm.requests[0][1]["content"][0]["text"]
+    assert needs in llm.requests[1][1]["content"][0]["text"]
+    assert '"For you:"' in llm.requests[1][1]["content"][0]["text"]

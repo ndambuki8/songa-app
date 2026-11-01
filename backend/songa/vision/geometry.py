@@ -15,7 +15,8 @@ SCENE_CONCEPTS: dict[str, list[str]] = {
     "menu": ["menu item", "dish photo", "price"],
     "signage": ["sign", "text", "arrow", "timetable"],
     "market": ["product", "food", "price tag"],
-    "general": ["sign", "text", "food", "product"],
+    # "Places" in the app: landmarks and buildings first, then readable signage.
+    "general": ["landmark", "building", "sign", "text"],
 }
 
 OUTLINE_RGB = (11, 132, 87)

@@ -101,4 +101,5 @@ async def compile_itinerary(
         )
 
     events = order_events(output.events, {entry.id for entry in body.entries})
-    return CompileItineraryResponse(summary=output.summary, events=events, **timer.report())
+    to_do = [item.strip() for item in output.to_do if item.strip()]
+    return CompileItineraryResponse(summary=output.summary, events=events, to_do=to_do, **timer.report())

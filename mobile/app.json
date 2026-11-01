@@ -61,7 +61,7 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Songa uses your location to guide you back to your saved anchor point, even offline."
+          "locationWhenInUsePermission": "Songa uses your location to guide you back to your saved anchor point, even offline, and to tell you about the places you photograph."
         }
       ],
       "expo-font",
