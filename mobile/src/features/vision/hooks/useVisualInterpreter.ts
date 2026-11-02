@@ -1,18 +1,25 @@
+import * as Haptics from 'expo-haptics';
 import * as Speech from 'expo-speech';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { prepareImageForUpload, type PreparedImage } from '@/lib/imagePreparation';
 import { smallestContaining, type Point } from '@/lib/imageScaling';
-import type { IsolateResponse, Segment } from '@/services/api/schemas';
-import { requestSegmentAnalysis, requestSegmentation, type SceneMode } from '@/services/api/vision';
+import type { IsolateResponse, MenuCheckResponse, Segment } from '@/services/api/schemas';
+import { requestMenuCheck, requestSegmentAnalysis, requestSegmentation, type SceneMode } from '@/services/api/vision';
 import { usePreferences } from '@/storage/preferences';
+
+import { describeFoodNeeds, verdictBySegment } from '../foodNeeds';
 
 const UPLOAD_MAX_EDGE = 1536;
 
 export type VisionStage = 'camera' | 'preparing' | 'segmenting' | 'ready' | 'analyzing';
 
+function speak(text: string, language: string) {
+  void Speech.stop().then(() => Speech.speak(text, { language }));
+}
+
 export function useVisualInterpreter() {
-  const { travelerLocale, homeCurrency } = usePreferences();
+  const { travelerLocale, residentLocale, homeCurrency, foodNeeds } = usePreferences();
   const [scene, setScene] = useState<SceneMode>('menu');
   const [stage, setStage] = useState<VisionStage>('camera');
   const [capturedImage, setCapturedImage] = useState<PreparedImage | null>(null);
@@ -21,10 +28,45 @@ export function useVisualInterpreter() {
   const [tapPoint, setTapPoint] = useState<Point | null>(null);
   const [selectedSegmentId, setSelectedSegmentId] = useState<string | null>(null);
   const [selectedAnalysisData, setSelectedAnalysisData] = useState<IsolateResponse | null>(null);
+  const [menuCheck, setMenuCheck] = useState<MenuCheckResponse | null>(null);
+  const [checkingMenu, setCheckingMenu] = useState(false);
+  const [menuCheckFailed, setMenuCheckFailed] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const analysisRequest = useRef(0);
+  const menuRequest = useRef(0);
+
+  const needsText = describeFoodNeeds(foodNeeds);
 
   useEffect(() => () => void Speech.stop(), []);
+
+  const checkMenu = useCallback(
+    async (image: PreparedImage, cachedImageId: string | null, segments: readonly Segment[]) => {
+      if (!needsText) return;
+      const requestId = ++menuRequest.current;
+      setCheckingMenu(true);
+      setMenuCheckFailed(false);
+      setMenuCheck(null);
+
+      const base = { segments, needs: needsText, travelerLocale, localLocale: residentLocale };
+      let result = await requestMenuCheck(cachedImageId ? { ...base, imageId: cachedImageId } : { ...base, imageId: null, imageBase64: image.base64 });
+      if (!result.ok && result.error.kind === 'expired') {
+        result = await requestMenuCheck({ ...base, imageId: null, imageBase64: image.base64 });
+      }
+      if (requestId !== menuRequest.current) return;
+
+      setCheckingMenu(false);
+      if (!result.ok) {
+        setMenuCheckFailed(true);
+        setError(result.error.message);
+        return;
+      }
+      setMenuCheck(result.data);
+      const hasAvoid = result.data.dishes.some((dish) => dish.verdict === 'avoid');
+      void Haptics.notificationAsync(hasAvoid ? Haptics.NotificationFeedbackType.Warning : Haptics.NotificationFeedbackType.Success);
+      speak(result.data.spoken_summary, travelerLocale);
+    },
+    [needsText, residentLocale, travelerLocale],
+  );
 
   const segment = useCallback(
     async (image: PreparedImage) => {
@@ -37,22 +79,28 @@ export function useVisualInterpreter() {
       }
       setImageId(result.data.image_id);
       setSegmentationMasks(result.data.segments);
-      if (result.data.segments.length === 0) {
+      setStage('ready');
+      if (scene === 'menu' && needsText) {
+        void checkMenu(image, result.data.image_id, result.data.segments);
+      } else if (result.data.segments.length === 0) {
         setError('No items stood out. You can still tap anything on the photo.');
       }
-      setStage('ready');
     },
-    [scene],
+    [checkMenu, needsText, scene],
   );
 
   const processPhoto = useCallback(
     async (sourceUri: string) => {
+      menuRequest.current++;
       setError(null);
       setSelectedAnalysisData(null);
       setSelectedSegmentId(null);
       setTapPoint(null);
       setSegmentationMasks([]);
       setImageId(null);
+      setMenuCheck(null);
+      setCheckingMenu(false);
+      setMenuCheckFailed(false);
       setStage('preparing');
       try {
         const prepared = await prepareImageForUpload(sourceUri, UPLOAD_MAX_EDGE);
@@ -71,6 +119,12 @@ export function useVisualInterpreter() {
     setError(null);
     void segment(capturedImage);
   }, [capturedImage, segment]);
+
+  const runMenuCheck = useCallback(() => {
+    if (!capturedImage) return;
+    setError(null);
+    void checkMenu(capturedImage, imageId, segmentationMasks);
+  }, [capturedImage, checkMenu, imageId, segmentationMasks]);
 
   const selectAt = useCallback(
     async (point: Point) => {
@@ -111,8 +165,21 @@ export function useVisualInterpreter() {
     if (!selectedAnalysisData) return;
     const { detected_object, safety_precautions, price_breakdown, contextual_description } = selectedAnalysisData;
     const script = [detected_object, ...safety_precautions, price_breakdown, contextual_description].filter(Boolean).join('. ');
-    void Speech.stop().then(() => Speech.speak(script, { language: travelerLocale }));
+    speak(script, travelerLocale);
   }, [selectedAnalysisData, travelerLocale]);
+
+  const readMenuSummary = useCallback(() => {
+    if (menuCheck) speak(menuCheck.spoken_summary, travelerLocale);
+  }, [menuCheck, travelerLocale]);
+
+  const speakStaffQuestion = useCallback(() => {
+    if (menuCheck?.staff_question) speak(menuCheck.staff_question, residentLocale);
+  }, [menuCheck, residentLocale]);
+
+  const highlightSegment = useCallback((segmentId: string | null) => {
+    setTapPoint(null);
+    setSelectedSegmentId((current) => (segmentId === current ? null : segmentId));
+  }, []);
 
   const clearSelection = useCallback(() => {
     void Speech.stop();
@@ -126,15 +193,21 @@ export function useVisualInterpreter() {
   const retake = useCallback(() => {
     void Speech.stop();
     analysisRequest.current++;
+    menuRequest.current++;
     setCapturedImage(null);
     setImageId(null);
     setSegmentationMasks([]);
     setSelectedAnalysisData(null);
     setSelectedSegmentId(null);
     setTapPoint(null);
+    setMenuCheck(null);
+    setCheckingMenu(false);
+    setMenuCheckFailed(false);
     setError(null);
     setStage('camera');
   }, []);
+
+  const segmentVerdicts = useMemo(() => verdictBySegment(menuCheck?.dishes ?? []), [menuCheck]);
 
   return {
     scene,
@@ -143,16 +216,25 @@ export function useVisualInterpreter() {
     capturedImage,
     capturedImageURI: capturedImage?.uri ?? null,
     segmentationMasks,
+    segmentVerdicts,
     selectedSegmentId,
     tapPoint,
     selectedAnalysisData,
+    menuCheck,
+    checkingMenu,
+    menuCheckFailed,
+    hasFoodNeeds: needsText.length > 0,
     error,
     dismissError: () => setError(null),
     reportError: setError,
     processPhoto,
     retrySegmentation,
+    runMenuCheck,
     selectAt,
     readAloud,
+    readMenuSummary,
+    speakStaffQuestion,
+    highlightSegment,
     clearSelection,
     retake,
   };

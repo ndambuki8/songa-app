@@ -103,6 +103,44 @@ class IsolateResponse(TimedResponse):
     segment_bbox: BoundingBox
 
 
+Verdict = Literal["safe", "ask", "avoid"]
+
+
+class MenuMark(StrictModel):
+    id: str = Field(min_length=1, max_length=64)
+    bbox: BoundingBox
+
+
+class MenuCheckRequest(StrictModel):
+    image_id: str | None = Field(default=None, max_length=64)
+    image_b64: str | None = None
+    marks: list[MenuMark] = Field(default_factory=list, max_length=40)
+    needs: str = Field(min_length=2, max_length=400)
+    traveler_locale: str = Field(default="en-US", pattern=LOCALE_PATTERN)
+    local_locale: str | None = Field(default=None, pattern=LOCALE_PATTERN)
+
+    @model_validator(mode="after")
+    def _one_image_source(self) -> MenuCheckRequest:
+        if bool(self.image_id) == bool(self.image_b64):
+            raise ValueError("Provide exactly one of image_id or image_b64.")
+        return self
+
+
+class MenuDish(BaseModel):
+    name: str
+    verdict: Verdict
+    reason: str
+    segment_id: str | None = None
+    bbox: BoundingBox | None = None
+
+
+class MenuCheckResponse(TimedResponse):
+    spoken_summary: str
+    staff_question: str | None
+    staff_question_meaning: str | None
+    dishes: list[MenuDish]
+
+
 # Logbook ------------------------------------------------------------------------------------------
 
 
@@ -200,6 +238,20 @@ class VisionModelOutput(BaseModel):
     contextual_description: str = Field(min_length=1)
     price_breakdown: str | None = None
     safety_precautions: list[str] = Field(default_factory=list)
+
+
+class MenuDishModelOutput(BaseModel):
+    mark: int | None = None
+    name: str = Field(min_length=1)
+    verdict: Verdict
+    reason: str = Field(min_length=1)
+
+
+class MenuCheckModelOutput(BaseModel):
+    spoken_summary: str = Field(min_length=1)
+    staff_question: str | None = None
+    staff_question_meaning: str | None = None
+    dishes: list[MenuDishModelOutput] = Field(default_factory=list)
 
 
 class ItineraryModelOutput(BaseModel):

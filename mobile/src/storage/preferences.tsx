@@ -9,14 +9,20 @@ const PreferencesSchema = z.object({
   travelerLocale: z.string(),
   residentLocale: z.string(),
   onboarded: z.boolean().optional(),
+  foodNeeds: z.object({ tags: z.array(z.string()), note: z.string() }).optional(),
 });
 type Preferences = z.infer<typeof PreferencesSchema>;
+export type FoodNeeds = NonNullable<Preferences['foodNeeds']>;
+
+const NO_FOOD_NEEDS: FoodNeeds = { tags: [], note: '' };
 
 interface PreferencesContextValue extends Preferences {
   loaded: boolean;
   homeCurrency: string;
+  foodNeeds: FoodNeeds;
   setTravelerLocale: (locale: string) => void;
   setResidentLocale: (locale: string) => void;
+  setFoodNeeds: (needs: FoodNeeds) => void;
   completeOnboarding: () => void;
 }
 
@@ -52,8 +58,10 @@ export function PreferencesProvider({ children }: { children: ReactNode }) {
       ...preferences,
       loaded,
       homeCurrency: findLanguage(preferences.travelerLocale).currency,
+      foodNeeds: preferences.foodNeeds ?? NO_FOOD_NEEDS,
       setTravelerLocale: (travelerLocale) => update({ travelerLocale }),
       setResidentLocale: (residentLocale) => update({ residentLocale }),
+      setFoodNeeds: ({ tags, note }) => update({ foodNeeds: { tags, note: note.trim() } }),
       completeOnboarding: () => update({ onboarded: true }),
     }),
     [loaded, preferences, update],

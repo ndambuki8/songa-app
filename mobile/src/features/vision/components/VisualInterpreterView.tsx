@@ -6,6 +6,8 @@ import { RADII, SONGA_THEME, SPACING } from '@/theme';
 
 import type { VisualInterpreter } from '../hooks/useVisualInterpreter';
 import { AnalysisCard } from './AnalysisCard';
+import { FoodNeedsButton } from './FoodNeedsSheet';
+import { MenuCheckCard } from './MenuCheckCard';
 import { SegmentedImage } from './SegmentedImage';
 import { VisionCamera } from './VisionCamera';
 
@@ -30,16 +32,28 @@ export function VisualInterpreterView({ vision, cameraActive }: VisualInterprete
   const showingPhoto = vision.capturedImage !== null && vision.stage !== 'camera';
   const busyLabel = vision.stage === 'preparing' || vision.stage === 'segmenting' ? BUSY_LABELS[vision.stage] : null;
   const showAnalysis = vision.stage === 'analyzing' || vision.selectedAnalysisData !== null;
+  const showMenuCheck = vision.checkingMenu || vision.menuCheck !== null;
+  const canCheckMenu = showingPhoto && vision.scene === 'menu' && !busyLabel && !showMenuCheck;
+  const errorRetry = !showingPhoto
+    ? undefined
+    : vision.menuCheckFailed
+      ? vision.runMenuCheck
+      : vision.segmentationMasks.length === 0
+        ? vision.retrySegmentation
+        : undefined;
 
   return (
     <Screen
       title="Look"
       subtitle={showingPhoto ? 'Tap anything on the photo to have it explained' : 'Point at a menu, sign or price tag'}
       headerAccessory={
-        showingPhoto && showAnalysis ? <PrimaryButton label="Retake" icon="camera-outline" variant="outline" compact onPress={vision.retake} /> : null
+        showingPhoto && (showAnalysis || showMenuCheck) ? (
+          <PrimaryButton label="Retake" icon="camera-outline" variant="outline" compact onPress={vision.retake} />
+        ) : null
       }
     >
       {!showingPhoto ? <SegmentedControl options={SCENES} value={vision.scene} onChange={vision.setScene} /> : null}
+      {!showingPhoto && vision.scene === 'menu' ? <FoodNeedsButton /> : null}
 
       <View style={styles.stage}>
         {showingPhoto && vision.capturedImage ? (
@@ -47,6 +61,7 @@ export function VisualInterpreterView({ vision, cameraActive }: VisualInterprete
             uri={vision.capturedImage.uri}
             imageSize={vision.capturedImage}
             segments={vision.segmentationMasks}
+            verdicts={vision.segmentVerdicts}
             selectedSegmentId={vision.selectedSegmentId}
             tapPoint={vision.tapPoint}
             onTapImagePoint={(point) => void vision.selectAt(point)}
@@ -71,7 +86,7 @@ export function VisualInterpreterView({ vision, cameraActive }: VisualInterprete
         <ErrorBanner
           message={vision.error}
           onDismiss={vision.dismissError}
-          onRetry={showingPhoto && vision.segmentationMasks.length === 0 ? vision.retrySegmentation : undefined}
+          onRetry={errorRetry}
         />
       ) : null}
 
@@ -82,8 +97,26 @@ export function VisualInterpreterView({ vision, cameraActive }: VisualInterprete
           onClose={vision.clearSelection}
           onReadAloud={vision.readAloud}
         />
+      ) : showMenuCheck ? (
+        <MenuCheckCard
+          result={vision.menuCheck}
+          loading={vision.checkingMenu}
+          selectedSegmentId={vision.selectedSegmentId}
+          onSelectDish={vision.highlightSegment}
+          onReadAloud={vision.readMenuSummary}
+          onAskStaff={vision.speakStaffQuestion}
+        />
       ) : showingPhoto && !busyLabel ? (
-        <PrimaryButton label="Take another photo" icon="camera-outline" variant="outline" onPress={vision.retake} />
+        <View style={styles.actions}>
+          {canCheckMenu ? (
+            vision.hasFoodNeeds ? (
+              <PrimaryButton label="Check this menu for my needs" icon="restaurant-outline" onPress={vision.runMenuCheck} />
+            ) : (
+              <FoodNeedsButton />
+            )
+          ) : null}
+          <PrimaryButton label="Take another photo" icon="camera-outline" variant="outline" onPress={vision.retake} />
+        </View>
       ) : null}
     </Screen>
   );
@@ -93,6 +126,9 @@ const styles = StyleSheet.create({
   stage: {
     flex: 1,
     marginVertical: SPACING.md,
+  },
+  actions: {
+    gap: SPACING.sm,
   },
   busyOverlay: {
     position: 'absolute',
