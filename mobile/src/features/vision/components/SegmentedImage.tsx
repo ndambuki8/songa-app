@@ -9,6 +9,8 @@ interface SegmentedImageProps {
   uri: string;
   imageSize: Size;
   segments: readonly Segment[];
+  /** Matches for the last question. When present they replace the scene boxes so the answer stands out. */
+  highlights?: readonly Segment[];
   selectedSegmentId: string | null;
   tapPoint: Point | null;
   onTapImagePoint: (point: Point) => void;
@@ -16,7 +18,17 @@ interface SegmentedImageProps {
 
 const TAP_MARKER = 18;
 
-export function SegmentedImage({ uri, imageSize, segments, selectedSegmentId, tapPoint, onTapImagePoint }: SegmentedImageProps) {
+export function SegmentedImage({
+  uri,
+  imageSize,
+  segments,
+  highlights = [],
+  selectedSegmentId,
+  tapPoint,
+  onTapImagePoint,
+}: SegmentedImageProps) {
+  const showingHighlights = highlights.length > 0;
+  const boxes = showingHighlights ? highlights : segments;
   const [container, setContainer] = useState<Size>({ width: 0, height: 0 });
   const frame = useMemo(() => computeContainFrame(container, imageSize), [container, imageSize]);
 
@@ -45,9 +57,9 @@ export function SegmentedImage({ uri, imageSize, segments, selectedSegmentId, ta
         accessibilityRole="imagebutton"
         accessibilityLabel="Captured photo. Tap an item to explain it."
       >
-        {segments.map((segment) => {
+        {boxes.map((segment) => {
           const rect = imageRectToView(segment.bbox, frame);
-          const selected = segment.id === selectedSegmentId;
+          const selected = !showingHighlights && segment.id === selectedSegmentId;
           return (
             <View
               key={segment.id}
@@ -55,6 +67,7 @@ export function SegmentedImage({ uri, imageSize, segments, selectedSegmentId, ta
               style={[
                 styles.box,
                 { left: rect.x, top: rect.y, width: rect.width, height: rect.height },
+                showingHighlights ? styles.boxHighlight : null,
                 selected ? styles.boxSelected : null,
               ]}
             />
@@ -83,6 +96,10 @@ const styles = StyleSheet.create({
     borderWidth: BORDERS.hairline,
     borderColor: SONGA_THEME.primaryAccent,
     borderRadius: RADII.sm,
+  },
+  boxHighlight: {
+    borderWidth: BORDERS.heavy,
+    borderColor: SONGA_THEME.primaryAccent,
   },
   boxSelected: {
     borderWidth: BORDERS.heavy,

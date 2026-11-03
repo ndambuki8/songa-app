@@ -12,5 +12,7 @@ export const REQUEST_TIMEOUT_MS = {
   transcribe: 30_000,
   segment: 60_000,
   analyze: 45_000,
+  ask: 60_000,
+  card: 45_000,
   itinerary: 90_000,
 } as const;

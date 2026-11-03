@@ -40,6 +40,7 @@ async def complete_structured(
     user_content: str | list[dict[str, Any]],
     output_model: type[T],
     max_tokens: int,
+    reasoning_effort: str | None = None,
 ) -> T:
     """Asks the model for JSON matching `output_model`, with one self-repair round on invalid output."""
     messages: list[ChatMessage] = [
@@ -49,7 +50,7 @@ async def complete_structured(
 
     last_error = ""
     for attempt in range(2):
-        reply = await llm.complete(messages, max_tokens=max_tokens)
+        reply = await llm.complete(messages, max_tokens=max_tokens, reasoning_effort=reasoning_effort)
         try:
             return output_model.model_validate(extract_json_object(reply))
         except (ValueError, ValidationError) as exc:

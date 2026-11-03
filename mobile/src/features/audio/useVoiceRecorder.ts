@@ -1,5 +1,6 @@
 import {
   RecordingPresets,
+  type RecordingOptions,
   requestRecordingPermissionsAsync,
   setAudioModeAsync,
   useAudioRecorder,
@@ -8,6 +9,18 @@ import {
 import { useCallback, useRef } from 'react';
 
 const MIN_RECORDING_MS = 400;
+
+/**
+ * Speech-tuned AAC: mono, 16 kHz, 32 kbit/s. About 4x smaller than HIGH_QUALITY (stereo 44.1 kHz, 128 kbit/s),
+ * so uploads finish sooner on mobile data. Speech recognisers work at 16 kHz, so nothing useful is lost.
+ */
+const SPEECH_RECORDING: RecordingOptions = {
+  ...RecordingPresets.HIGH_QUALITY,
+  sampleRate: 16_000,
+  numberOfChannels: 1,
+  bitRate: 32_000,
+  web: { ...RecordingPresets.HIGH_QUALITY.web, bitsPerSecond: 32_000 },
+};
 
 export type RecorderFailure = 'permission_denied' | 'too_short' | 'device_error';
 
@@ -20,7 +33,7 @@ export type RecordingOutcome =
  * recording mode while capturing so that expo-speech playback afterwards uses the loudspeaker.
  */
 export function useVoiceRecorder() {
-  const recorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
+  const recorder = useAudioRecorder(SPEECH_RECORDING);
   const state = useAudioRecorderState(recorder, 200);
   const startedAt = useRef<number | null>(null);
 

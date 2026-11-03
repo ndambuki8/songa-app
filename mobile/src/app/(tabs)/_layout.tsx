@@ -27,8 +27,10 @@ export default function TabsLayout() {
           borderTopWidth: BORDERS.hard,
         },
         sceneStyle: { backgroundColor: SONGA_THEME.background },
+        tabBarHideOnKeyboard: true,
       }}
     >
+      {/* tabBarHideOnKeyboard: on Android the tab bar would otherwise ride up on top of the keyboard. */}
       <Tabs.Screen name="index" options={{ title: 'Speak', tabBarIcon: tabIcon('chatbubbles', 'chatbubbles-outline') }} />
       <Tabs.Screen name="look" options={{ title: 'Look', tabBarIcon: tabIcon('scan', 'scan-outline') }} />
       <Tabs.Screen name="journal" options={{ title: 'Journal', tabBarIcon: tabIcon('book', 'book-outline') }} />

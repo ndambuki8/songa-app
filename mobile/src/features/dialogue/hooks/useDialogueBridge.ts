@@ -1,8 +1,9 @@
-import * as Haptics from 'expo-haptics';
 import * as Speech from 'expo-speech';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { RECORDER_FAILURE_MESSAGES, useVoiceRecorder } from '@/features/audio/useVoiceRecorder';
+import { tapFeedback } from '@/lib/haptics';
+import { warmUpGateway } from '@/services/api/client';
 import { dispatchAudioPayloadToModalServerless } from '@/services/api/dialogue';
 import { usePreferences } from '@/storage/preferences';
 
@@ -19,17 +20,25 @@ export interface DialogueTurn {
   latencyMs: number;
 }
 
+/** What the server heard, shown while the translation is still being written. */
+export interface PendingTranscript {
+  speaker: Speaker;
+  text: string;
+}
+
 export function useDialogueBridge() {
   const recorder = useVoiceRecorder();
   const { travelerLocale, residentLocale, setTravelerLocale, setResidentLocale } = usePreferences();
   const [apiLoadingState, setApiLoadingState] = useState<ApiLoadingState>('idle');
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
   const [lastTurn, setLastTurn] = useState<DialogueTurn | null>(null);
+  const [pendingTranscript, setPendingTranscript] = useState<PendingTranscript | null>(null);
   const [error, setError] = useState<string | null>(null);
   const mounted = useRef(true);
 
   useEffect(() => {
     mounted.current = true;
+    warmUpGateway();
     return () => {
       mounted.current = false;
       void Speech.stop();
@@ -57,13 +66,15 @@ export function useDialogueBridge() {
   const startRecording = useCallback(
     async (speaker: Speaker) => {
       setError(null);
+      // Boot a cold gateway container while the person is still speaking.
+      warmUpGateway();
       await Speech.stop();
       const started = await recorder.start();
       if (!started.ok) {
         setError(RECORDER_FAILURE_MESSAGES[started.reason]);
         return;
       }
-      void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      tapFeedback('medium');
       setActiveSpeaker(speaker);
       setApiLoadingState('recording');
     },
@@ -75,7 +86,7 @@ export function useDialogueBridge() {
     if (!speaker) return;
 
     const recording = await recorder.stop();
-    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    tapFeedback('light');
     if (!recording.ok) {
       setApiLoadingState('idle');
       setActiveSpeaker(null);
@@ -87,9 +98,16 @@ export function useDialogueBridge() {
     const targetLocale = speaker === 'traveler' ? residentLocale : travelerLocale;
 
     setApiLoadingState('processing');
-    const result = await dispatchAudioPayloadToModalServerless(recording.uri, { sourceLocale, targetLocale });
+    const result = await dispatchAudioPayloadToModalServerless(recording.uri, {
+      sourceLocale,
+      targetLocale,
+      onTranscript: (text) => {
+        if (mounted.current) setPendingTranscript({ speaker, text });
+      },
+    });
     if (!mounted.current) return;
     setActiveSpeaker(null);
+    setPendingTranscript(null);
 
     if (!result.ok) {
       setApiLoadingState('idle');
@@ -132,6 +150,7 @@ export function useDialogueBridge() {
     apiLoadingState,
     activeSpeaker,
     lastTurn,
+    pendingTranscript,
     transcriptText: lastTurn?.transcriptText ?? '',
     processedIntentText: lastTurn?.processedIntentText ?? '',
     error,

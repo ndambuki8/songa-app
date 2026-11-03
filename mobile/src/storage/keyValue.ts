@@ -4,6 +4,7 @@ import type { z } from 'zod';
 export const STORAGE_KEYS = {
   preferences: 'songa.preferences.v1',
   anchor: 'songa.anchor.v1',
+  localCards: 'songa.cards.v1',
   logbookEntries: 'songa.logbook.entries.v1',
   itineraryPrefix: 'songa.itinerary.v1.',
 } as const;

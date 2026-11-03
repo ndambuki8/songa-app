@@ -18,10 +18,33 @@ export const LogbookEntrySchema = z.object({
 });
 export type LogbookEntry = z.infer<typeof LogbookEntrySchema>;
 
+/** Moments that can go into the written-up day: notes, transcribed memos and photos. */
+export function isUsableMoment(entry: LogbookEntry): boolean {
+  if (entry.kind === 'photo') return entry.mediaUri !== null;
+  return Boolean(entry.text?.trim());
+}
+
+/** Order-independent fingerprint of the moments (and their text) a day was written from. */
+export function momentsSignature(entries: readonly LogbookEntry[]): string {
+  return entries
+    .map((entry) => `${entry.id}:${entry.text?.trim() ?? ''}`)
+    .sort()
+    .join('|');
+}
+
 const EntriesSchema = z.array(LogbookEntrySchema);
 
-const StoredItinerarySchema = ItineraryResponseSchema.extend({ compiledAt: z.string() });
-export type StoredItinerary = ItineraryResponse & { compiledAt: string };
+const StoredItinerarySchema = ItineraryResponseSchema.extend({
+  compiledAt: z.string(),
+  /** Fingerprint of the moments it was written from; a mismatch means the day needs rewriting. */
+  sourceSignature: z.string().optional(),
+  sourceIds: z.array(z.string()).optional(),
+});
+export type StoredItinerary = ItineraryResponse & {
+  compiledAt: string;
+  sourceSignature?: string;
+  sourceIds?: string[];
+};
 
 export async function loadEntries(): Promise<LogbookEntry[]> {
   return (await readJson(STORAGE_KEYS.logbookEntries, EntriesSchema)) ?? [];

@@ -1,12 +1,38 @@
+# Secrets: real env files never leave the machine. Only the *.env.example templates are committed.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
 # Python
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
 .venv/
-backend/.env
+venv/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Local AI-agent tooling (downloaded skills and docs, editor agent state)
+.agents/
+backend/.agents/
+.kiro/
 
 # Mobile (see mobile/.gitignore for Expo specifics)
-mobile/.env
-mobile/.env.local
+mobile/.expo/
+mobile/node_modules/
 
+# Editors and OS
+.vscode/
+.idea/
+*.swp
 .DS_Store
+Thumbs.db
+*.log
+
+# Local PR description draft (pasted into GitHub, not committed)
+PR_BODY.md

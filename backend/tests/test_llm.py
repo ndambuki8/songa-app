@@ -72,6 +72,17 @@ def test_muse_client_sends_openai_compatible_request():
     assert seen["body"]["reasoning_effort"] == "low"
 
 
+def test_muse_client_per_call_effort_overrides_default():
+    seen: dict = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen["body"] = json.loads(request.content)
+        return httpx.Response(200, json={"choices": [{"message": {"content": "{}"}}]})
+
+    asyncio.run(_client(handler).complete([], max_tokens=5, reasoning_effort="minimal"))
+    assert seen["body"]["reasoning_effort"] == "minimal"
+
+
 def test_muse_client_flattens_content_parts():
     def handler(_: httpx.Request) -> httpx.Response:
         return httpx.Response(200, json={"choices": [{"message": {"content": [{"type": "text", "text": "a"}, {"type": "text", "text": "b"}]}}]})
