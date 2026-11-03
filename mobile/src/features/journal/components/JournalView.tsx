@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Alert, StyleSheet, View } from 'react-native';
 
 import { ErrorBanner, PrimaryButton, Screen, SegmentedControl, SongaText } from '@/components/ui';
 import { SONGA_THEME, SPACING } from '@/theme';
@@ -28,6 +28,12 @@ export function JournalView({ logbook }: JournalViewProps) {
     setTab('itinerary');
     void logbook.compileDay();
   };
+
+  const confirmDiscard = () =>
+    Alert.alert('Remove this itinerary?', 'Your moments stay saved. You can put the day together again later.', [
+      { text: 'Keep', style: 'cancel' },
+      { text: 'Remove', style: 'destructive', onPress: logbook.discardItinerary },
+    ]);
 
   return (
     <Screen title="Journal" subtitle={`Today · ${logbook.today}`} scrollable>
@@ -69,8 +75,8 @@ export function JournalView({ logbook }: JournalViewProps) {
             )}
 
             <PrimaryButton
-              label={logbook.itinerary ? 'Recompile my day' : 'Compile my day'}
-              icon="git-commit-outline"
+              label={logbook.itinerary ? 'Update my day' : 'Put my day together'}
+              icon="sparkles-outline"
               loading={logbook.compiling}
               disabled={logbook.entries.length === 0}
               onPress={compile}
@@ -79,18 +85,19 @@ export function JournalView({ logbook }: JournalViewProps) {
         ) : logbook.compiling ? (
           <View style={styles.compiling}>
             <ActivityIndicator color={SONGA_THEME.primaryAccent} size="large" />
-            <SongaText variant="label">Muse Wonder is organising your day…</SongaText>
+            <SongaText variant="label">Putting your day in order…</SongaText>
           </View>
         ) : logbook.itinerary ? (
           <>
             <TimelineView summary={logbook.itinerary.summary} events={logbook.itinerary.events} />
-            <PrimaryButton label="Discard itinerary" variant="outline" icon="trash-outline" onPress={logbook.discardItinerary} />
+            <PrimaryButton label="Add more moments" icon="add" onPress={() => setTab('moments')} />
+            <PrimaryButton label="Start over" variant="outline" icon="trash-outline" onPress={confirmDiscard} />
           </>
         ) : (
           <EmptyState
             icon="map-outline"
             title="No itinerary yet"
-            body="Capture a few moments, then tap Compile my day to build a timeline."
+            body="Capture a few moments, then tap Put my day together."
           />
         )}
       </View>

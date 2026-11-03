@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 from songa.core.media import downscale, encode_jpeg
 from songa.engines import RawSegment
@@ -118,6 +118,28 @@ def render_isolated_crop(image: Image.Image, mask: np.ndarray, box: Box, *, fade
     composed = np.where(region_mask[..., None], region, faded).astype(np.uint8)
     crop = Image.fromarray(composed)
     return encode_jpeg(downscale(crop, 1024), quality=90)
+
+
+def render_numbered_marks(image: Image.Image, boxes: list[Box], *, max_edge: int = 1536) -> bytes:
+    """Outlines each box and tags it with its 1-based number so the model can refer to items by number."""
+    marked = downscale(image, max_edge).copy()
+    scale = marked.width / image.width
+    draw = ImageDraw.Draw(marked)
+    stroke = max(2, round(max(marked.size) / 300))
+    font_size = max(16, round(max(marked.size) / 32))
+    font = ImageFont.load_default(size=font_size)
+    for number, box in enumerate(boxes, start=1):
+        left, top = int(box.x * scale), int(box.y * scale)
+        right, bottom = int((box.x + box.width) * scale), int((box.y + box.height) * scale)
+        draw.rectangle((left, top, right, bottom), outline=OUTLINE_RGB, width=stroke)
+        label = str(number)
+        text_left, text_top, text_right, text_bottom = draw.textbbox((0, 0), label, font=font)
+        pad = max(2, font_size // 5)
+        tag_w, tag_h = text_right - text_left + 2 * pad, text_bottom - text_top + 2 * pad
+        tag_x, tag_y = left, max(top - tag_h, 0)
+        draw.rectangle((tag_x, tag_y, tag_x + tag_w, tag_y + tag_h), fill=OUTLINE_RGB)
+        draw.text((tag_x + pad - text_left, tag_y + pad - text_top), label, fill=(255, 255, 255), font=font)
+    return encode_jpeg(marked, quality=85)
 
 
 def render_context(image: Image.Image, box: Box, *, max_edge: int = 768) -> bytes:

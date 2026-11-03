@@ -10,11 +10,13 @@ interface MicButtonProps {
   disabled: boolean;
   onPress: () => void;
   accessibilityLabel: string;
+  /** Light button with a green glyph, for use on the green resident half. */
+  inverse?: boolean;
 }
 
-const SIZE = 72;
+const SIZE = 88;
 
-export function MicButton({ recording, processing, disabled, onPress, accessibilityLabel }: MicButtonProps) {
+export function MicButton({ recording, processing, disabled, onPress, accessibilityLabel, inverse = false }: MicButtonProps) {
   const [pulse] = useState(() => new Animated.Value(1));
 
   useEffect(() => {
@@ -33,6 +35,10 @@ export function MicButton({ recording, processing, disabled, onPress, accessibil
     return () => loop.stop();
   }, [pulse, recording]);
 
+  const idleFill = inverse ? SONGA_THEME.background : SONGA_THEME.primaryAccent;
+  const activeFill = inverse ? SONGA_THEME.surfaceNatural : SONGA_THEME.secondaryAccent;
+  const glyph = inverse ? SONGA_THEME.primaryAccent : SONGA_THEME.background;
+
   return (
     <Animated.View style={{ transform: [{ scale: pulse }] }}>
       <Pressable
@@ -41,16 +47,17 @@ export function MicButton({ recording, processing, disabled, onPress, accessibil
         accessibilityState={{ disabled, busy: processing, selected: recording }}
         disabled={disabled}
         onPress={onPress}
+        hitSlop={12}
         style={({ pressed }) => [
           styles.button,
-          { backgroundColor: recording || pressed ? SONGA_THEME.secondaryAccent : SONGA_THEME.primaryAccent },
+          { backgroundColor: recording || pressed ? activeFill : idleFill },
           disabled && !processing ? styles.disabled : null,
         ]}
       >
         {processing ? (
-          <ActivityIndicator color={SONGA_THEME.background} />
+          <ActivityIndicator color={glyph} size="large" />
         ) : (
-          <Ionicons name={recording ? 'stop' : 'mic'} size={30} color={SONGA_THEME.background} />
+          <Ionicons name={recording ? 'stop' : 'mic'} size={38} color={glyph} />
         )}
       </Pressable>
     </Animated.View>

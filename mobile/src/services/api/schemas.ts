@@ -60,6 +60,27 @@ export const IsolateResponseSchema = z.object({
 });
 export type IsolateResponse = z.infer<typeof IsolateResponseSchema>;
 
+export const VerdictSchema = z.enum(['safe', 'ask', 'avoid']);
+export type Verdict = z.infer<typeof VerdictSchema>;
+
+export const MenuDishSchema = z.object({
+  name: z.string(),
+  verdict: VerdictSchema,
+  reason: z.string(),
+  segment_id: z.string().nullable(),
+  bbox: BoundingBoxSchema.nullable(),
+});
+export type MenuDish = z.infer<typeof MenuDishSchema>;
+
+export const MenuCheckResponseSchema = z.object({
+  spoken_summary: z.string(),
+  staff_question: z.string().nullable(),
+  staff_question_meaning: z.string().nullable(),
+  dishes: z.array(MenuDishSchema),
+  ...timed,
+});
+export type MenuCheckResponse = z.infer<typeof MenuCheckResponseSchema>;
+
 export const ItineraryEventSchema = z.object({
   timestamp: z.string(),
   activity: z.string(),
@@ -75,6 +96,21 @@ export const ItineraryResponseSchema = z.object({
   ...timed,
 });
 export type ItineraryResponse = z.infer<typeof ItineraryResponseSchema>;
+
+export const TripBriefingResponseSchema = z.object({
+  destination: z.string(),
+  destination_locale: z.string(),
+  summary: z.string(),
+  days: z.array(z.object({ date: z.string(), title: z.string(), suggestions: z.array(z.string()) })),
+  phrases: z.array(z.object({ meaning: z.string(), phrase: z.string(), pronunciation: z.string().nullable().optional() })),
+  etiquette: z.array(z.string()),
+  safety: z.array(z.string()),
+  money: z.array(z.string()),
+  getting_around: z.array(z.string()),
+  emergency_numbers: z.array(z.object({ label: z.string(), number: z.string() })),
+  ...timed,
+});
+export type TripBriefing = z.infer<typeof TripBriefingResponseSchema>;
 
 export const ErrorEnvelopeSchema = z.object({
   error: z.object({

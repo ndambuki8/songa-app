@@ -6,7 +6,7 @@ import { RECORDER_FAILURE_MESSAGES, useVoiceRecorder } from '@/features/audio/us
 import { dispatchAudioPayloadToModalServerless } from '@/services/api/dialogue';
 import { usePreferences } from '@/storage/preferences';
 
-export type ApiLoadingState = 'idle' | 'recording' | 'processing' | 'speaking';
+export type ApiLoadingState = 'idle' | 'recording' | 'processing' | 'reviewing' | 'speaking';
 export type Speaker = 'traveler' | 'resident';
 
 export interface DialogueTurn {
@@ -17,6 +17,8 @@ export interface DialogueTurn {
   politenessNotes: string | null;
   spokenLocale: string;
   latencyMs: number;
+  /** Traveler turns wait for the traveler to approve them before they are spoken. */
+  confirmed: boolean;
 }
 
 export function useDialogueBridge() {
@@ -26,6 +28,7 @@ export function useDialogueBridge() {
   const [activeSpeaker, setActiveSpeaker] = useState<Speaker | null>(null);
   const [lastTurn, setLastTurn] = useState<DialogueTurn | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const confirmedTurn = useRef<DialogueTurn | null>(null);
   const mounted = useRef(true);
 
   useEffect(() => {
@@ -49,7 +52,7 @@ export function useDialogueBridge() {
       onError: () => {
         if (!mounted.current) return;
         setApiLoadingState('idle');
-        setError('The phone could not read the translation aloud. The text is shown on screen.');
+        setError('The phone could not read this aloud. Show the screen to the other person instead.');
       },
     });
   }, []);
@@ -105,9 +108,17 @@ export function useDialogueBridge() {
       politenessNotes: result.data.politenessNotes,
       spokenLocale: targetLocale,
       latencyMs: result.data.latencyMs,
+      confirmed: speaker === 'resident',
     };
     setLastTurn(turn);
-    speak(turn.processedIntentText, turn.spokenLocale);
+
+    if (turn.confirmed) {
+      confirmedTurn.current = turn;
+      speak(turn.processedIntentText, turn.spokenLocale);
+    } else {
+      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      setApiLoadingState('reviewing');
+    }
   }, [activeSpeaker, recorder, residentLocale, speak, travelerLocale]);
 
   const toggleRecording = useCallback(
@@ -121,10 +132,26 @@ export function useDialogueBridge() {
     [activeSpeaker, apiLoadingState, startRecording, stopAndTranslate],
   );
 
+  const confirmTurn = useCallback(() => {
+    if (!lastTurn || lastTurn.confirmed) return;
+    const turn = { ...lastTurn, confirmed: true };
+    confirmedTurn.current = turn;
+    setLastTurn(turn);
+    speak(turn.processedIntentText, turn.spokenLocale);
+  }, [lastTurn, speak]);
+
+  const retryTurn = useCallback(() => {
+    if (apiLoadingState !== 'reviewing') return;
+    setLastTurn(confirmedTurn.current);
+    setApiLoadingState('idle');
+    void startRecording('traveler');
+  }, [apiLoadingState, startRecording]);
+
   const replay = useCallback(() => {
-    if (!lastTurn || apiLoadingState === 'recording' || apiLoadingState === 'processing') return;
-    void Speech.stop().then(() => speak(lastTurn.processedIntentText, lastTurn.spokenLocale));
-  }, [apiLoadingState, lastTurn, speak]);
+    const turn = confirmedTurn.current;
+    if (!turn || apiLoadingState === 'recording' || apiLoadingState === 'processing') return;
+    void Speech.stop().then(() => speak(turn.processedIntentText, turn.spokenLocale));
+  }, [apiLoadingState, speak]);
 
   return {
     isRecording: recorder.isRecording,
@@ -132,6 +159,7 @@ export function useDialogueBridge() {
     apiLoadingState,
     activeSpeaker,
     lastTurn,
+    canReplay: lastTurn?.confirmed === true && apiLoadingState !== 'reviewing',
     transcriptText: lastTurn?.transcriptText ?? '',
     processedIntentText: lastTurn?.processedIntentText ?? '',
     error,
@@ -141,6 +169,8 @@ export function useDialogueBridge() {
     setTravelerLocale,
     setResidentLocale,
     toggleRecording,
+    confirmTurn,
+    retryTurn,
     replay,
   };
 }

@@ -109,7 +109,7 @@ export function useLogbook() {
             : e,
         ),
       );
-      if (!result.ok) setError(`Voice memo saved. Transcription failed: ${result.error.message}`);
+      if (!result.ok) setError(`Voice memo saved, but not written down yet. ${result.error.message}`);
     },
     [commit, travelerLocale],
   );

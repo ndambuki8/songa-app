@@ -103,6 +103,44 @@ class IsolateResponse(TimedResponse):
     segment_bbox: BoundingBox
 
 
+Verdict = Literal["safe", "ask", "avoid"]
+
+
+class MenuMark(StrictModel):
+    id: str = Field(min_length=1, max_length=64)
+    bbox: BoundingBox
+
+
+class MenuCheckRequest(StrictModel):
+    image_id: str | None = Field(default=None, max_length=64)
+    image_b64: str | None = None
+    marks: list[MenuMark] = Field(default_factory=list, max_length=40)
+    needs: str = Field(min_length=2, max_length=400)
+    traveler_locale: str = Field(default="en-US", pattern=LOCALE_PATTERN)
+    local_locale: str | None = Field(default=None, pattern=LOCALE_PATTERN)
+
+    @model_validator(mode="after")
+    def _one_image_source(self) -> MenuCheckRequest:
+        if bool(self.image_id) == bool(self.image_b64):
+            raise ValueError("Provide exactly one of image_id or image_b64.")
+        return self
+
+
+class MenuDish(BaseModel):
+    name: str
+    verdict: Verdict
+    reason: str
+    segment_id: str | None = None
+    bbox: BoundingBox | None = None
+
+
+class MenuCheckResponse(TimedResponse):
+    spoken_summary: str
+    staff_question: str | None
+    staff_question_meaning: str | None
+    dishes: list[MenuDish]
+
+
 # Logbook ------------------------------------------------------------------------------------------
 
 
@@ -142,6 +180,50 @@ class CompileItineraryResponse(TimedResponse):
     events: list[ItineraryEvent]
 
 
+# Trip ---------------------------------------------------------------------------------------------
+
+
+class TripBriefingRequest(StrictModel):
+    destination: str = Field(min_length=2, max_length=120)
+    start_date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
+    days: int = Field(ge=1, le=14)
+    stay: str | None = Field(default=None, max_length=160)
+    needs: str | None = Field(default=None, max_length=400)
+    traveler_locale: str = Field(default="en-US", pattern=LOCALE_PATTERN)
+    destination_locale: str = Field(pattern=LOCALE_PATTERN)
+    home_currency: str = Field(default="USD", pattern=r"^[A-Z]{3}$")
+
+
+class TripDay(BaseModel):
+    date: str
+    title: str
+    suggestions: list[str] = Field(default_factory=list)
+
+
+class TripPhrase(BaseModel):
+    meaning: str
+    phrase: str
+    pronunciation: str | None = None
+
+
+class EmergencyNumber(BaseModel):
+    label: str
+    number: str
+
+
+class TripBriefingResponse(TimedResponse):
+    destination: str
+    destination_locale: str
+    summary: str
+    days: list[TripDay]
+    phrases: list[TripPhrase]
+    etiquette: list[str]
+    safety: list[str]
+    money: list[str]
+    getting_around: list[str]
+    emergency_numbers: list[EmergencyNumber]
+
+
 # Model output contracts (what Muse Wonder must return) --------------------------------------------
 
 
@@ -158,6 +240,31 @@ class VisionModelOutput(BaseModel):
     safety_precautions: list[str] = Field(default_factory=list)
 
 
+class MenuDishModelOutput(BaseModel):
+    mark: int | None = None
+    name: str = Field(min_length=1)
+    verdict: Verdict
+    reason: str = Field(min_length=1)
+
+
+class MenuCheckModelOutput(BaseModel):
+    spoken_summary: str = Field(min_length=1)
+    staff_question: str | None = None
+    staff_question_meaning: str | None = None
+    dishes: list[MenuDishModelOutput] = Field(default_factory=list)
+
+
 class ItineraryModelOutput(BaseModel):
     summary: str
     events: list[ItineraryEvent]
+
+
+class TripBriefingModelOutput(BaseModel):
+    summary: str = Field(min_length=1)
+    days: list[TripDay] = Field(default_factory=list)
+    phrases: list[TripPhrase] = Field(default_factory=list)
+    etiquette: list[str] = Field(default_factory=list)
+    safety: list[str] = Field(default_factory=list)
+    money: list[str] = Field(default_factory=list)
+    getting_around: list[str] = Field(default_factory=list)
+    emergency_numbers: list[EmergencyNumber] = Field(default_factory=list)

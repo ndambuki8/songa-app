@@ -16,15 +16,31 @@ function kindForStatus(status: number): ApiErrorKind {
 
 const FALLBACK_MESSAGES: Record<ApiErrorKind, string> = {
   not_configured: 'Songa is not connected to its server yet. Set EXPO_PUBLIC_SONGA_API_URL.',
-  network: 'No connection to Songa. Check your data or Wi-Fi and try again.',
-  timeout: 'Songa took too long to answer. Try again in a moment.',
-  unauthorized: 'This app is not authorised to use the Songa server.',
-  bad_request: 'Songa could not understand that request.',
+  network: 'No internet connection. Speak, Look and Journal need data. Anchor still works offline.',
+  timeout: 'Songa is taking too long. Check your connection and try again.',
+  unauthorized: 'This copy of Songa cannot reach its server. Please update the app.',
+  bad_request: 'That did not work. Please try again.',
   expired: 'That photo session expired. Retrying with the full photo.',
-  upstream: 'The AI model is busy right now. Try again shortly.',
-  invalid_response: 'Songa returned an unexpected answer.',
-  server: 'Something went wrong on the Songa server.',
+  upstream: 'Songa is busy right now. Try again in a few seconds.',
+  invalid_response: 'Songa got an unexpected answer. Try again.',
+  server: 'Something went wrong on our side. Try again in a moment.',
 };
+
+const CODE_MESSAGES: Record<string, string> = {
+  no_speech: 'Songa did not catch any words. Hold the phone a little closer and try again.',
+  undecodable_audio: 'That recording did not come through. Please record again.',
+  unreadable_image: 'Songa could not read this photo. Move closer, hold steady and retake it.',
+  empty_mask: 'Nothing to explain right there. Tap directly on the item.',
+  upstream_rate_limited: 'Songa is very busy right now. Wait a few seconds and try again.',
+  invalid_model_output: 'Songa got a muddled answer. Try once more.',
+  payload_too_large: 'That was too large to send. Try a shorter recording or fewer photos.',
+};
+
+function messageFor(kind: ApiErrorKind, status: number, code: string | undefined, serverMessage: string | undefined) {
+  if (code && CODE_MESSAGES[code]) return CODE_MESSAGES[code];
+  if (serverMessage && (status === 422 || __DEV__)) return serverMessage;
+  return FALLBACK_MESSAGES[kind];
+}
 
 /**
  * POSTs JSON to the Songa gateway and validates the response at runtime.
@@ -60,11 +76,12 @@ export async function postJson<TSchema extends z.ZodType>(
     if (!response.ok) {
       const kind = kindForStatus(response.status);
       const envelope = ErrorEnvelopeSchema.safeParse(payload);
+      const code = envelope.success ? envelope.data.error.code : undefined;
       const error: ApiError = {
         kind,
         status: response.status,
-        code: envelope.success ? envelope.data.error.code : undefined,
-        message: envelope.success ? envelope.data.error.message : FALLBACK_MESSAGES[kind],
+        code,
+        message: messageFor(kind, response.status, code, envelope.success ? envelope.data.error.message : undefined),
       };
       return fail(error);
     }

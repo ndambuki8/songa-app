@@ -12,8 +12,10 @@ songa-app/
 
 | Tab | What it does | Pipeline |
 | --- | --- | --- |
+| Trip | Before travelling, enter the destination, dates, stay and any needs (diet, children, mobility). Songa returns a day-by-day plan, key phrases with audio, local manners, safety, money and transport tips, and emergency numbers. The plan is saved on the phone for offline use, and the stay becomes Anchor's suggested name. | `POST /api/trip/briefing` (Muse Wonder), then expo-speech for phrases |
 | Speak | Split screen. The resident half is rotated 180 degrees for the person across the table. Either side taps the mic, and the other side hears a culturally polite rendering of the intent. | expo-audio, then `POST /api/dialogue/intent-bridge` (Muse Voice Transcribe, then Muse Wonder), then expo-speech |
 | Look | Photograph a menu, sign or transit board. SAM 3.1 finds items by concept ("menu item", "price", "sign"). Tap one to get a translation, a price conversion and safety or allergen alerts. | `POST /api/vision/segment` (SAM 3.1 concept prompts), then `POST /api/vision/sam-isolate` (SAM 3.1 point prompt, crop, Muse Wonder vision) |
+| Food check | Save allergies or diet once under "My food needs". Every menu photo is then checked automatically: each dish is outlined as avoid, ask staff or looks fine, the summary is read aloud, and a question for staff is written and spoken in the local language. | SAM 3.1 dish boxes are drawn as numbered tags on the photo, then `POST /api/vision/menu-check` (Muse Wonder vision reads the tagged photo against the needs) |
 | Journal | Capture notes, voice memos and photos during the day. "Compile my day" turns them into a chronological timeline. | `POST /api/transcribe` (Muse Voice Transcribe) per memo, then `POST /api/logbook/compile-itinerary` (Muse Wonder) |
 | Anchor | Lock your lodging's GPS position. An arrow and the distance in meters guide you back with no network or map tiles. | expo-location (2 s polling plus heading), Haversine and bearing math in `mobile/src/lib/geo.ts`, AsyncStorage |
 
@@ -50,6 +52,15 @@ modal deploy modal_app.py                            # prints https://<workspace
 - Voice Transcribe supports 25 languages. For locales outside that list (for example Kiswahili), no language hint is sent and the model detects the language itself.
 - For a live demo, deploy with `SONGA_WARM=1 modal deploy modal_app.py` to keep one gateway container warm. Redeploy without it afterwards.
 
+To run the gateway on your own machine instead of Modal (needs ffmpeg and the same `.env`):
+
+```bash
+cd backend
+uvicorn local_app:app --host 0.0.0.0 --port 8000 --env-file .env --reload
+```
+
+Point the app at it with `EXPO_PUBLIC_SONGA_API_URL=http://<your-computer-LAN-IP>:8000` in `mobile/.env.local`. The phone and the computer must be on the same Wi-Fi.
+
 Run the tests (no API keys needed; HTTP calls are mocked):
 
 ```bash
@@ -57,6 +68,8 @@ cd backend && python -m pytest
 ```
 
 ## Mobile setup
+
+Expo SDK 58 requires Node.js 22.13 or newer.
 
 ```bash
 cd mobile

@@ -29,6 +29,7 @@ export default function TabsLayout() {
         sceneStyle: { backgroundColor: SONGA_THEME.background },
       }}
     >
+      <Tabs.Screen name="trip" options={{ title: 'Trip', tabBarIcon: tabIcon('airplane', 'airplane-outline') }} />
       <Tabs.Screen name="index" options={{ title: 'Speak', tabBarIcon: tabIcon('chatbubbles', 'chatbubbles-outline') }} />
       <Tabs.Screen name="look" options={{ title: 'Look', tabBarIcon: tabIcon('scan', 'scan-outline') }} />
       <Tabs.Screen name="journal" options={{ title: 'Journal', tabBarIcon: tabIcon('book', 'book-outline') }} />
