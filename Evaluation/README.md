@@ -7,7 +7,7 @@ Songa is a travel companion app for East Africa. It listens (Speak, Journal voic
 1. **Muse Voice Transcribe** (`muse-voice-transcribe-1.0`, Meta Model API), on Kenyan Swahili-English code-switched speech and on accented African English.
 2. **SAM**, comparing Songa's self-hosted SAM 3 on a Modal GPU with hosted SAM 3.1 on the Meta Model API, on a sample of COCO val2017.
 
-Every number below comes from the files in [`report/eval-2026-11-03/`](report/eval-2026-11-03/). The code that produced them is in [`backend/eval_app.py`](../backend/eval_app.py) and [`backend/evals/`](../backend/evals/).
+A PDF version is in [`songa-evaluation.pdf`](songa-evaluation.pdf). Every number below comes from the files in [`report/eval-2026-11-03/`](report/eval-2026-11-03/). The code that produced them is in [`backend/eval_app.py`](../backend/eval_app.py) and [`backend/evals/`](../backend/evals/).
 
 ---
 
@@ -431,7 +431,7 @@ To turn this report into a PDF (from the repository root; needs pandoc and Googl
 pandoc Evaluation/README.md -f gfm -s --self-contained --metadata title="Songa model evaluation" `
   --resource-path=Evaluation --css Evaluation/pdf.css -o "$env:TEMP\songa-evaluation.html"
 & "$env:ProgramFiles\Google\Chrome\Application\chrome.exe" --headless=new --no-pdf-header-footer `
-  --print-to-pdf="$PWD\songa-evaluation.pdf" "$env:TEMP\songa-evaluation.html"
+  --print-to-pdf="$PWD\Evaluation\songa-evaluation.pdf" "$env:TEMP\songa-evaluation.html"
 ```
 
 **Cost of this run:** 23.2 minutes of wall time, and $0.94 of Modal usage (CPU orchestration plus one GPU), which Modal's free credits covered. Meta Model API usage is billed separately by Meta and was not measured here.

@@ -102,7 +102,7 @@ Every response includes `latency_ms` and a per-stage `timings` breakdown. Errors
 
 ## Evaluation
 
-We measured the two models Songa's listening and looking features depend on, on Modal, in one 23-minute run (`eval-2026-11-03`). The full report is [`Evaluation/README.md`](Evaluation/README.md). It covers why we ran each test, where the data came from and how it was cleaned, every metric definition, figures, error analysis and limitations.
+We measured the two models Songa's listening and looking features depend on, on Modal, in one 23-minute run (`eval-2026-11-03`). The full report is [`Evaluation/README.md`](Evaluation/README.md) (also as a [PDF](Evaluation/songa-evaluation.pdf)). It covers why we ran each test, where the data came from and how it was cleaned, every metric definition, figures, error analysis and limitations.
 
 **Why.** Kenyan speakers mix Swahili and English within a sentence, and Kiswahili is not on Muse Voice Transcribe's supported-language list, so we needed to know whether Swahili words survive transcription. For Look, we needed to know whether running the open-weights SAM 3 on our own GPU is as accurate as hosted SAM 3.1, and whether it is faster.
 
