@@ -1,0 +1,16 @@
+{
+  "run_id": "eval-2026-11-03",
+  "started_utc": "2026-11-03 21:43:40",
+  "parts": [
+    "asr",
+    "seg"
+  ],
+  "images": 200,
+  "limit": 0,
+  "seed": 7,
+  "data": {
+    "primary_clips": 23,
+    "afrispeech_clips": 27,
+    "reference_policy": "human-verified only; clips with bootstrapped references were removed"
+  }
+}

@@ -1,0 +1,82 @@
+2026-11-03 21:43:40 INFO Run eval-2026-11-03 started: {"run_id": "eval-2026-11-03", "started_utc": "2026-11-03 21:43:40", "parts": ["asr", "seg"], "images": 200, "limit": 0, "seed": 7, "data": {"primary_clips": 23, "afrispeech_clips": 27, "reference_policy": "human-verified only; clips with bootstrapped references were removed"}}
+2026-11-03 21:43:43 INFO ASR: 50 clips with human-verified references (muse-voice-transcribe-1.0)
+2026-11-03 21:43:48 INFO ASR sample_sw_en_chest_discomfort.m4a                      5255 ms  WER 0.1613
+2026-11-03 21:43:48 INFO ASR sample_sw_en_adbominal_pain.m4a                        5498 ms  WER 0.2941
+2026-11-03 21:43:49 INFO ASR sample_sw_en_child_described.m4a                       6094 ms  WER 0.1111
+2026-11-03 21:43:51 INFO ASR sample_sw_en_dental_pain_swelling.m4a                  3412 ms  WER 0.2414
+2026-11-03 21:43:52 INFO ASR sample_sw_en_diabetes_missed_food.m4a                  3942 ms  WER 0.1667
+2026-11-03 21:43:53 INFO ASR sample_sw_en_diarrhoea_vomiting.m4a                    4380 ms  WER 0.1
+2026-11-03 21:43:55 INFO ASR sample_sw_en_difficulty_breathing.m4a                  4104 ms  WER 0.25
+2026-11-03 21:43:57 INFO ASR sample_sw_en_eye_exposure.m4a                          4002 ms  WER 0.0968
+2026-11-03 21:43:57 INFO ASR sample_sw_en_emotinal_distress.m4a                     5088 ms  WER 0.0769
+2026-11-03 21:43:59 INFO ASR sample_sw_en_fever_and_headache.m4a                    3932 ms  WER 0.0667
+2026-11-03 21:44:01 INFO ASR sample_sw_en_head_injury_uncertainity.m4a              3764 ms  WER 0.1786
+2026-11-03 21:44:01 INFO ASR sample_sw_en_injury_ongoning_bleeding.m4a              3899 ms  WER 0.1379
+2026-11-03 21:44:03 INFO ASR sample_sw_en_medication-refill.m4a                     3294 ms  WER 0.1935
+2026-11-03 21:44:04 INFO ASR sample_sw_en_mild_respiratory_symptoms.m4a             3330 ms  WER 0.2069
+2026-11-03 21:44:05 INFO ASR sample_sw_en_pain_urinating.m4a                        3866 ms  WER 0.1333
+2026-11-03 21:44:07 INFO ASR sample_sw_en_Persisent_cough.m4a                       3902 ms  WER 0.1724
+2026-11-03 21:44:08 INFO ASR sample_sw_en_pregancy_bleeding.m4a                     3521 ms  WER 0.1875
+2026-11-03 21:44:09 INFO ASR kelvin_sample_13.mp3                                   1307 ms  WER 0.0
+2026-11-03 21:44:10 INFO ASR sample_sw_en_sudden_change_relative.m4a                4719 ms  WER 0.1111
+2026-11-03 21:44:10 INFO ASR kelvin_sample_19.mp3                                   1444 ms  WER 0.1667
+2026-11-03 21:44:11 INFO ASR sample_sw_en_Symptoms_after_taking_meds.m4a            3905 ms  WER 0.2258
+2026-11-03 21:44:11 INFO ASR kelvin_sample_23.mp3                                   1561 ms  WER 0.0
+2026-11-03 21:44:12 INFO ASR kelvin_sample_30.mp3                                   1203 ms  WER 0.6667
+2026-11-03 21:44:12 INFO ASR afrispeech_sw_0.wav                                    1343 ms  WER 0.0
+2026-11-03 21:44:13 INFO ASR afrispeech_sw_1.wav                                    2280 ms  WER 0.2727
+2026-11-03 21:44:14 INFO ASR afrispeech_ha_0.wav                                    1968 ms  WER 0.0667
+2026-11-03 21:44:14 INFO ASR afrispeech_sw_2.wav                                    2528 ms  WER 0.3529
+2026-11-03 21:44:16 INFO ASR afrispeech_ha_2.wav                                    1724 ms  WER 0.5
+2026-11-03 21:44:16 INFO ASR afrispeech_yo_0.wav                                    1965 ms  WER 0.2143
+2026-11-03 21:44:17 INFO ASR afrispeech_ha_1.wav                                    3496 ms  WER 0.0968
+2026-11-03 21:44:17 INFO ASR afrispeech_yo_2.wav                                    1240 ms  WER 0.0
+2026-11-03 21:44:18 INFO ASR afrispeech_yo_1.wav                                    2670 ms  WER 0.1304
+2026-11-03 21:44:20 INFO ASR afrispeech_ig_0.wav                                    2801 ms  WER 0.04
+2026-11-03 21:44:20 INFO ASR afrispeech_ig_2.wav                                    2153 ms  WER 0.3913
+2026-11-03 21:44:21 INFO ASR afrispeech_ig_1.wav                                    3195 ms  WER 0.1724
+2026-11-03 21:44:21 INFO ASR afrispeech_zu_0.wav                                    1535 ms  WER 0.2727
+2026-11-03 21:44:22 INFO ASR afrispeech_zu_1.wav                                    1714 ms  WER 0.0
+2026-11-03 21:44:23 INFO ASR afrispeech_zu_2.wav                                    2015 ms  WER 0.5
+2026-11-03 21:44:23 INFO ASR afrispeech_af_0.wav                                    1688 ms  WER 0.25
+2026-11-03 21:44:25 INFO ASR afrispeech_af_1.wav                                    2506 ms  WER 0.1429
+2026-11-03 21:44:26 INFO ASR afrispeech_lg_0.wav                                    2903 ms  WER 0.069
+2026-11-03 21:44:26 INFO ASR afrispeech_lg_1.wav                                    1619 ms  WER 0.3333
+2026-11-03 21:44:26 INFO ASR afrispeech_af_2.wav                                    3813 ms  WER 0.1515
+2026-11-03 21:44:27 INFO ASR afrispeech_lg_2.wav                                    1551 ms  WER 0.2222
+2026-11-03 21:44:28 INFO ASR afrispeech_rw_1.wav                                    1938 ms  WER 0.25
+2026-11-03 21:44:29 INFO ASR afrispeech_rw_0.wav                                    2247 ms  WER 0.3889
+2026-11-03 21:44:30 INFO ASR afrispeech_rw_2.wav                                    2248 ms  WER 0.3571
+2026-11-03 21:44:30 INFO ASR afrispeech_pcm_0.wav                                   1937 ms  WER 0.0
+2026-11-03 21:44:31 INFO ASR afrispeech_pcm_1.wav                                   1969 ms  WER 0.1818
+2026-11-03 21:44:32 INFO ASR afrispeech_pcm_2.wav                                   2108 ms  WER 0.0
+2026-11-03 21:44:32 INFO ASR done: {"clips": 23, "reference_words": 616, "wer": 0.1623, "cer": 0.0694, "swahili_words": 505, "swahili_recall_strict": 0.8812, "swahili_recall_lenient": 0.9307, "swahili_to_english_rate": 0.0059, "english_words": 111, "english_recall_strict": 0.8739, "english_recall_lenient": 0.9009, "switch_window_words": 279, "switch_window_error_rate": 0.1434, "latency_p50_ms": 3902.2, "latency_p95_ms": 5473.8, "ci95": {"wer": [0.1353, 0.1943], "cer": [0.0536, 0.0875], "swahili_recall_strict": [0.8497, 0.91], "swahili_recall_lenient": [0.9034, 0.9548], "english_recall_strict": [0.7685, 0.944]}}
+2026-11-03 21:44:41 INFO SEG: 200 images, 1003 prompts (400 absent), 358 taps
+2026-11-03 21:44:44 INFO SEG: warming up the GPU (cold start is not timed)
+2026-11-03 21:47:19 INFO SEG backend modal_gpu_sam3: starting
+2026-11-03 21:47:52 INFO SEG modal_gpu_sam3: 20/200 images
+2026-11-03 21:48:27 INFO SEG modal_gpu_sam3: 40/200 images
+2026-11-03 21:49:03 INFO SEG modal_gpu_sam3: 60/200 images
+2026-11-03 21:49:34 INFO SEG modal_gpu_sam3: 80/200 images
+2026-11-03 21:50:11 INFO SEG modal_gpu_sam3: 100/200 images
+2026-11-03 21:50:40 INFO SEG modal_gpu_sam3: 120/200 images
+2026-11-03 21:51:14 INFO SEG modal_gpu_sam3: 140/200 images
+2026-11-03 21:51:50 INFO SEG modal_gpu_sam3: 160/200 images
+2026-11-03 21:52:23 INFO SEG modal_gpu_sam3: 180/200 images
+2026-11-03 21:52:57 INFO SEG modal_gpu_sam3: 200/200 images
+2026-11-03 21:54:14 INFO SEG modal_gpu_sam3: 358 taps done
+2026-11-03 21:54:17 INFO SEG modal_gpu_sam3: {"model": "facebook/sam3 (transformers)", "presence": {"prompts": 1003, "failed_prompts": 0, "precision": 0.9896, "recall": 0.9453, "accuracy": 0.9611, "false_positive_rate_on_absent_objects": 0.015, "mean_count_error_present": 1.823}, "box_ap": {"AP": 0.6339, "AP50": 0.8219, "AP75": 0.6816, "AR100": 0.7367}, "mask_ap": {"AP": 0.5463, "AP50": 0.809, "AP75": 0.597, "AR100": 0.6377}, "tap_to_isolate": {"taps": 358, "failed_taps": 0, "mean_iou": 0.7345, "median_iou": 0.8462, "share_iou_at_least_0.5": 0.8436, "share_iou_at_least_0.75": 0.6788}, "latency_per_photo": {"p50_ms": 1385.7, "p95_ms": 2482.9, "mean_ms": 1542.7}, "latency_per_tap": {"p50_ms": 764.6, "p95_ms": 1111.6, "mean_ms": 829.9}}
+2026-11-03 21:54:23 INFO SEG backend meta_api_sam3.1: starting
+2026-11-03 21:55:15 INFO SEG meta_api_sam3.1: 20/200 images
+2026-11-03 21:56:01 INFO SEG meta_api_sam3.1: 40/200 images
+2026-11-03 21:56:51 INFO SEG meta_api_sam3.1: 60/200 images
+2026-11-03 21:57:38 INFO SEG meta_api_sam3.1: 80/200 images
+2026-11-03 21:58:32 INFO SEG meta_api_sam3.1: 100/200 images
+2026-11-03 21:59:19 INFO SEG meta_api_sam3.1: 120/200 images
+2026-11-03 22:00:14 INFO SEG meta_api_sam3.1: 140/200 images
+2026-11-03 22:01:02 INFO SEG meta_api_sam3.1: 160/200 images
+2026-11-03 22:01:57 INFO SEG meta_api_sam3.1: 180/200 images
+2026-11-03 22:02:52 INFO SEG meta_api_sam3.1: 200/200 images
+2026-11-03 22:06:49 INFO SEG meta_api_sam3.1: 358 taps done
+2026-11-03 22:06:50 INFO SEG meta_api_sam3.1: {"model": "sam-3.1", "presence": {"prompts": 1003, "failed_prompts": 0, "precision": 0.9907, "recall": 0.8856, "accuracy": 0.9262, "false_positive_rate_on_absent_objects": 0.0125, "mean_count_error_present": 0.856}, "box_ap": {"AP": 0.5801, "AP50": 0.7386, "AP75": 0.6308, "AR100": 0.6183}, "mask_ap": {"AP": 0.5085, "AP50": 0.7334, "AP75": 0.5694, "AR100": 0.5503}, "tap_to_isolate": {"taps": 358, "failed_taps": 0, "mean_iou": 0.7619, "median_iou": 0.8552, "share_iou_at_least_0.5": 0.8743, "share_iou_at_least_0.75": 0.7207}, "latency_per_photo": {"p50_ms": 2064.7, "p95_ms": 4472.1, "mean_ms": 2383.5}, "latency_per_tap": {"p50_ms": 2100.9, "p95_ms": 6274.9, "mean_ms": 2572.3}}
+2026-11-03 22:06:56 INFO Run eval-2026-11-03 finished in 23.2 min

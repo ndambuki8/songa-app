@@ -1,0 +1,716 @@
+{"backend": "modal_gpu_sam3", "image_id": 285, "category": "bear", "x": 284, "y": 380, "iou": 0.9342, "error": null, "latency_ms": 1038.8}
+{"backend": "modal_gpu_sam3", "image_id": 2685, "category": "bottle", "x": 149, "y": 306, "iou": 0.5201, "error": null, "latency_ms": 1396.6}
+{"backend": "modal_gpu_sam3", "image_id": 2685, "category": "person", "x": 404, "y": 160, "iou": 0.8281, "error": null, "latency_ms": 1421.6}
+{"backend": "modal_gpu_sam3", "image_id": 9772, "category": "tv", "x": 471, "y": 141, "iou": 0.9578, "error": null, "latency_ms": 1783.1}
+{"backend": "modal_gpu_sam3", "image_id": 9772, "category": "sink", "x": 364, "y": 387, "iou": 0.6546, "error": null, "latency_ms": 764.1}
+{"backend": "modal_gpu_sam3", "image_id": 18575, "category": "sandwich", "x": 76, "y": 266, "iou": 0.5041, "error": null, "latency_ms": 773.2}
+{"backend": "modal_gpu_sam3", "image_id": 18575, "category": "bottle", "x": 576, "y": 82, "iou": 0.8808, "error": null, "latency_ms": 769.8}
+{"backend": "modal_gpu_sam3", "image_id": 21839, "category": "person", "x": 442, "y": 485, "iou": 0.8191, "error": null, "latency_ms": 764.5}
+{"backend": "modal_gpu_sam3", "image_id": 21839, "category": "person", "x": 252, "y": 442, "iou": 0.8785, "error": null, "latency_ms": 764.1}
+{"backend": "modal_gpu_sam3", "image_id": 34257, "category": "broccoli", "x": 300, "y": 35, "iou": 0.1448, "error": null, "latency_ms": 756.7}
+{"backend": "modal_gpu_sam3", "image_id": 34257, "category": "carrot", "x": 199, "y": 227, "iou": 0.0292, "error": null, "latency_ms": 755.3}
+{"backend": "modal_gpu_sam3", "image_id": 42628, "category": "person", "x": 548, "y": 44, "iou": 0.1171, "error": null, "latency_ms": 755.1}
+{"backend": "modal_gpu_sam3", "image_id": 42628, "category": "person", "x": 244, "y": 22, "iou": 0.9281, "error": null, "latency_ms": 753.3}
+{"backend": "modal_gpu_sam3", "image_id": 44877, "category": "person", "x": 16, "y": 367, "iou": 0.8629, "error": null, "latency_ms": 760.3}
+{"backend": "modal_gpu_sam3", "image_id": 44877, "category": "person", "x": 395, "y": 203, "iou": 0.6404, "error": null, "latency_ms": 765.2}
+{"backend": "modal_gpu_sam3", "image_id": 46378, "category": "bird", "x": 335, "y": 270, "iou": 0.8025, "error": null, "latency_ms": 759.6}
+{"backend": "modal_gpu_sam3", "image_id": 46378, "category": "cat", "x": 192, "y": 108, "iou": 0.8158, "error": null, "latency_ms": 759.8}
+{"backend": "modal_gpu_sam3", "image_id": 49759, "category": "person", "x": 472, "y": 195, "iou": 0.831, "error": null, "latency_ms": 757.6}
+{"backend": "modal_gpu_sam3", "image_id": 49759, "category": "person", "x": 350, "y": 191, "iou": 0.845, "error": null, "latency_ms": 755.1}
+{"backend": "modal_gpu_sam3", "image_id": 50811, "category": "bowl", "x": 263, "y": 491, "iou": 0.9472, "error": null, "latency_ms": 761.8}
+{"backend": "modal_gpu_sam3", "image_id": 50811, "category": "bottle", "x": 456, "y": 412, "iou": 0.6475, "error": null, "latency_ms": 767.7}
+{"backend": "modal_gpu_sam3", "image_id": 54164, "category": "person", "x": 234, "y": 238, "iou": 0.8893, "error": null, "latency_ms": 766.8}
+{"backend": "modal_gpu_sam3", "image_id": 54164, "category": "surfboard", "x": 149, "y": 327, "iou": 0.8152, "error": null, "latency_ms": 769.5}
+{"backend": "modal_gpu_sam3", "image_id": 54967, "category": "person", "x": 423, "y": 477, "iou": 0.9124, "error": null, "latency_ms": 767.3}
+{"backend": "modal_gpu_sam3", "image_id": 54967, "category": "car", "x": 126, "y": 443, "iou": 0.8181, "error": null, "latency_ms": 763.2}
+{"backend": "modal_gpu_sam3", "image_id": 55022, "category": "bicycle", "x": 352, "y": 187, "iou": 0.4325, "error": null, "latency_ms": 766.2}
+{"backend": "modal_gpu_sam3", "image_id": 55022, "category": "bicycle", "x": 296, "y": 268, "iou": 0.5414, "error": null, "latency_ms": 766.2}
+{"backend": "modal_gpu_sam3", "image_id": 55299, "category": "bird", "x": 453, "y": 287, "iou": 0.863, "error": null, "latency_ms": 767.8}
+{"backend": "modal_gpu_sam3", "image_id": 55299, "category": "umbrella", "x": 56, "y": 238, "iou": 0.8072, "error": null, "latency_ms": 766.7}
+{"backend": "modal_gpu_sam3", "image_id": 57149, "category": "car", "x": 353, "y": 338, "iou": 0.9321, "error": null, "latency_ms": 764.8}
+{"backend": "modal_gpu_sam3", "image_id": 57149, "category": "train", "x": 200, "y": 258, "iou": 0.7528, "error": null, "latency_ms": 765.2}
+{"backend": "modal_gpu_sam3", "image_id": 58029, "category": "sink", "x": 376, "y": 477, "iou": 0.8782, "error": null, "latency_ms": 761.3}
+{"backend": "modal_gpu_sam3", "image_id": 58029, "category": "toilet", "x": 190, "y": 461, "iou": 0.9417, "error": null, "latency_ms": 764.2}
+{"backend": "modal_gpu_sam3", "image_id": 58384, "category": "elephant", "x": 357, "y": 211, "iou": 0.91, "error": null, "latency_ms": 763.6}
+{"backend": "modal_gpu_sam3", "image_id": 58384, "category": "train", "x": 127, "y": 198, "iou": 0.8954, "error": null, "latency_ms": 761.7}
+{"backend": "modal_gpu_sam3", "image_id": 59044, "category": "person", "x": 281, "y": 182, "iou": 0.602, "error": null, "latency_ms": 764.5}
+{"backend": "modal_gpu_sam3", "image_id": 59044, "category": "person", "x": 509, "y": 181, "iou": 0.6105, "error": null, "latency_ms": 758.9}
+{"backend": "modal_gpu_sam3", "image_id": 60932, "category": "person", "x": 403, "y": 190, "iou": 0.5037, "error": null, "latency_ms": 762.0}
+{"backend": "modal_gpu_sam3", "image_id": 60932, "category": "dining table", "x": 0, "y": 257, "iou": 0.5972, "error": null, "latency_ms": 760.2}
+{"backend": "modal_gpu_sam3", "image_id": 63552, "category": "cat", "x": 405, "y": 336, "iou": 0.8506, "error": null, "latency_ms": 763.6}
+{"backend": "modal_gpu_sam3", "image_id": 63552, "category": "cat", "x": 0, "y": 585, "iou": 0.454, "error": null, "latency_ms": 771.1}
+{"backend": "modal_gpu_sam3", "image_id": 64898, "category": "person", "x": 499, "y": 273, "iou": 0.4542, "error": null, "latency_ms": 763.5}
+{"backend": "modal_gpu_sam3", "image_id": 64898, "category": "surfboard", "x": 315, "y": 244, "iou": 0.8765, "error": null, "latency_ms": 766.4}
+{"backend": "modal_gpu_sam3", "image_id": 66135, "category": "train", "x": 188, "y": 190, "iou": 0.9357, "error": null, "latency_ms": 759.5}
+{"backend": "modal_gpu_sam3", "image_id": 66635, "category": "mouse", "x": 540, "y": 358, "iou": 0.9445, "error": null, "latency_ms": 1095.7}
+{"backend": "modal_gpu_sam3", "image_id": 66635, "category": "tv", "x": 228, "y": 165, "iou": 0.9506, "error": null, "latency_ms": 763.6}
+{"backend": "modal_gpu_sam3", "image_id": 68286, "category": "bed", "x": 261, "y": 200, "iou": 0.1182, "error": null, "latency_ms": 1101.6}
+{"backend": "modal_gpu_sam3", "image_id": 68933, "category": "zebra", "x": 204, "y": 181, "iou": 0.9443, "error": null, "latency_ms": 1102.8}
+{"backend": "modal_gpu_sam3", "image_id": 68933, "category": "zebra", "x": 81, "y": 128, "iou": 0.9179, "error": null, "latency_ms": 759.6}
+{"backend": "modal_gpu_sam3", "image_id": 74733, "category": "dining table", "x": 401, "y": 50, "iou": 0.7925, "error": null, "latency_ms": 1101.4}
+{"backend": "modal_gpu_sam3", "image_id": 74733, "category": "chair", "x": 436, "y": 108, "iou": 0.9217, "error": null, "latency_ms": 767.2}
+{"backend": "modal_gpu_sam3", "image_id": 78843, "category": "person", "x": 234, "y": 331, "iou": 0.9296, "error": null, "latency_ms": 769.7}
+{"backend": "modal_gpu_sam3", "image_id": 78843, "category": "person", "x": 394, "y": 119, "iou": 0.8282, "error": null, "latency_ms": 782.4}
+{"backend": "modal_gpu_sam3", "image_id": 79565, "category": "giraffe", "x": 287, "y": 201, "iou": 0.8459, "error": null, "latency_ms": 764.2}
+{"backend": "modal_gpu_sam3", "image_id": 79565, "category": "giraffe", "x": 163, "y": 222, "iou": 0.8309, "error": null, "latency_ms": 755.9}
+{"backend": "modal_gpu_sam3", "image_id": 80274, "category": "elephant", "x": 405, "y": 262, "iou": 0.9232, "error": null, "latency_ms": 758.7}
+{"backend": "modal_gpu_sam3", "image_id": 80274, "category": "elephant", "x": 265, "y": 173, "iou": 0.8615, "error": null, "latency_ms": 750.3}
+{"backend": "modal_gpu_sam3", "image_id": 82986, "category": "person", "x": 505, "y": 146, "iou": 0.6746, "error": null, "latency_ms": 761.9}
+{"backend": "modal_gpu_sam3", "image_id": 82986, "category": "handbag", "x": 181, "y": 159, "iou": 0.3783, "error": null, "latency_ms": 767.1}
+{"backend": "modal_gpu_sam3", "image_id": 83113, "category": "elephant", "x": 520, "y": 194, "iou": 0.8931, "error": null, "latency_ms": 763.4}
+{"backend": "modal_gpu_sam3", "image_id": 83113, "category": "elephant", "x": 344, "y": 232, "iou": 0.912, "error": null, "latency_ms": 757.1}
+{"backend": "modal_gpu_sam3", "image_id": 87875, "category": "fire hydrant", "x": 229, "y": 332, "iou": 0.8731, "error": null, "latency_ms": 763.4}
+{"backend": "modal_gpu_sam3", "image_id": 90003, "category": "dog", "x": 315, "y": 284, "iou": 0.9062, "error": null, "latency_ms": 1106.1}
+{"backend": "modal_gpu_sam3", "image_id": 90003, "category": "dog", "x": 191, "y": 254, "iou": 0.7126, "error": null, "latency_ms": 767.6}
+{"backend": "modal_gpu_sam3", "image_id": 90284, "category": "person", "x": 453, "y": 255, "iou": 0.0927, "error": null, "latency_ms": 1115.0}
+{"backend": "modal_gpu_sam3", "image_id": 90284, "category": "tennis racket", "x": 487, "y": 405, "iou": 0.8998, "error": null, "latency_ms": 775.1}
+{"backend": "modal_gpu_sam3", "image_id": 94185, "category": "teddy bear", "x": 309, "y": 367, "iou": 0.0426, "error": null, "latency_ms": 767.0}
+{"backend": "modal_gpu_sam3", "image_id": 94185, "category": "person", "x": 0, "y": 303, "iou": 0.9294, "error": null, "latency_ms": 765.7}
+{"backend": "modal_gpu_sam3", "image_id": 98392, "category": "car", "x": 414, "y": 638, "iou": 0.0069, "error": null, "latency_ms": 758.4}
+{"backend": "modal_gpu_sam3", "image_id": 98392, "category": "car", "x": 479, "y": 557, "iou": 0.8635, "error": null, "latency_ms": 755.4}
+{"backend": "modal_gpu_sam3", "image_id": 99024, "category": "scissors", "x": 624, "y": 431, "iou": 0.6855, "error": null, "latency_ms": 761.2}
+{"backend": "modal_gpu_sam3", "image_id": 99024, "category": "kite", "x": 329, "y": 254, "iou": 0.9109, "error": null, "latency_ms": 764.7}
+{"backend": "modal_gpu_sam3", "image_id": 99039, "category": "bowl", "x": 544, "y": 363, "iou": 0.8388, "error": null, "latency_ms": 767.8}
+{"backend": "modal_gpu_sam3", "image_id": 99039, "category": "bowl", "x": 337, "y": 359, "iou": 0.8987, "error": null, "latency_ms": 763.4}
+{"backend": "modal_gpu_sam3", "image_id": 99428, "category": "cell phone", "x": 117, "y": 303, "iou": 0.9453, "error": null, "latency_ms": 764.2}
+{"backend": "modal_gpu_sam3", "image_id": 99428, "category": "laptop", "x": 126, "y": 0, "iou": 0.5258, "error": null, "latency_ms": 763.9}
+{"backend": "modal_gpu_sam3", "image_id": 100283, "category": "car", "x": 241, "y": 418, "iou": 0.9268, "error": null, "latency_ms": 762.0}
+{"backend": "modal_gpu_sam3", "image_id": 100283, "category": "car", "x": 365, "y": 414, "iou": 0.1494, "error": null, "latency_ms": 767.8}
+{"backend": "modal_gpu_sam3", "image_id": 107087, "category": "chair", "x": 341, "y": 235, "iou": 0.3187, "error": null, "latency_ms": 765.9}
+{"backend": "modal_gpu_sam3", "image_id": 107087, "category": "cat", "x": 159, "y": 225, "iou": 0.9051, "error": null, "latency_ms": 766.6}
+{"backend": "modal_gpu_sam3", "image_id": 112634, "category": "giraffe", "x": 219, "y": 148, "iou": 0.9293, "error": null, "latency_ms": 766.7}
+{"backend": "modal_gpu_sam3", "image_id": 112634, "category": "giraffe", "x": 626, "y": 242, "iou": 0.9, "error": null, "latency_ms": 764.2}
+{"backend": "modal_gpu_sam3", "image_id": 115118, "category": "train", "x": 431, "y": 261, "iou": 0.7241, "error": null, "latency_ms": 762.1}
+{"backend": "modal_gpu_sam3", "image_id": 115946, "category": "traffic light", "x": 192, "y": 141, "iou": 0.6537, "error": null, "latency_ms": 1103.0}
+{"backend": "modal_gpu_sam3", "image_id": 115946, "category": "car", "x": 144, "y": 521, "iou": 0.9231, "error": null, "latency_ms": 765.4}
+{"backend": "modal_gpu_sam3", "image_id": 116208, "category": "cup", "x": 570, "y": 412, "iou": 0.9057, "error": null, "latency_ms": 1107.2}
+{"backend": "modal_gpu_sam3", "image_id": 116208, "category": "pizza", "x": 600, "y": 338, "iou": 0.5875, "error": null, "latency_ms": 769.3}
+{"backend": "modal_gpu_sam3", "image_id": 121031, "category": "person", "x": 409, "y": 191, "iou": 0.7064, "error": null, "latency_ms": 761.6}
+{"backend": "modal_gpu_sam3", "image_id": 121031, "category": "person", "x": 170, "y": 166, "iou": 0.6932, "error": null, "latency_ms": 760.3}
+{"backend": "modal_gpu_sam3", "image_id": 121744, "category": "person", "x": 483, "y": 58, "iou": 0.1035, "error": null, "latency_ms": 756.7}
+{"backend": "modal_gpu_sam3", "image_id": 121744, "category": "person", "x": 145, "y": 104, "iou": 0.8328, "error": null, "latency_ms": 753.7}
+{"backend": "modal_gpu_sam3", "image_id": 123585, "category": "bird", "x": 410, "y": 503, "iou": 0.9176, "error": null, "latency_ms": 757.6}
+{"backend": "modal_gpu_sam3", "image_id": 123585, "category": "bird", "x": 260, "y": 323, "iou": 0.9086, "error": null, "latency_ms": 758.5}
+{"backend": "modal_gpu_sam3", "image_id": 127270, "category": "bench", "x": 151, "y": 34, "iou": 0.2158, "error": null, "latency_ms": 755.5}
+{"backend": "modal_gpu_sam3", "image_id": 127270, "category": "person", "x": 149, "y": 285, "iou": 0.9657, "error": null, "latency_ms": 758.4}
+{"backend": "modal_gpu_sam3", "image_id": 130386, "category": "car", "x": 191, "y": 452, "iou": 0.8641, "error": null, "latency_ms": 751.7}
+{"backend": "modal_gpu_sam3", "image_id": 133244, "category": "person", "x": 436, "y": 68, "iou": 0.9356, "error": null, "latency_ms": 1093.0}
+{"backend": "modal_gpu_sam3", "image_id": 133244, "category": "chair", "x": 245, "y": 101, "iou": 0.4995, "error": null, "latency_ms": 760.3}
+{"backend": "modal_gpu_sam3", "image_id": 140270, "category": "horse", "x": 406, "y": 189, "iou": 0.8138, "error": null, "latency_ms": 1095.3}
+{"backend": "modal_gpu_sam3", "image_id": 140270, "category": "person", "x": 333, "y": 130, "iou": 0.9123, "error": null, "latency_ms": 760.0}
+{"backend": "modal_gpu_sam3", "image_id": 140286, "category": "horse", "x": 232, "y": 302, "iou": 0.8735, "error": null, "latency_ms": 756.3}
+{"backend": "modal_gpu_sam3", "image_id": 140286, "category": "person", "x": 487, "y": 261, "iou": 0.8457, "error": null, "latency_ms": 759.8}
+{"backend": "modal_gpu_sam3", "image_id": 141671, "category": "motorcycle", "x": 333, "y": 308, "iou": 0.6553, "error": null, "latency_ms": 756.3}
+{"backend": "modal_gpu_sam3", "image_id": 141671, "category": "horse", "x": 414, "y": 228, "iou": 0.5888, "error": null, "latency_ms": 755.3}
+{"backend": "modal_gpu_sam3", "image_id": 144932, "category": "boat", "x": 532, "y": 221, "iou": 0.8081, "error": null, "latency_ms": 753.1}
+{"backend": "modal_gpu_sam3", "image_id": 147338, "category": "car", "x": 21, "y": 162, "iou": 0.1698, "error": null, "latency_ms": 1100.3}
+{"backend": "modal_gpu_sam3", "image_id": 147338, "category": "truck", "x": 479, "y": 50, "iou": 0.8362, "error": null, "latency_ms": 760.6}
+{"backend": "modal_gpu_sam3", "image_id": 147415, "category": "keyboard", "x": 187, "y": 399, "iou": 0.0348, "error": null, "latency_ms": 1103.9}
+{"backend": "modal_gpu_sam3", "image_id": 147415, "category": "chair", "x": 183, "y": 191, "iou": 0.8717, "error": null, "latency_ms": 770.6}
+{"backend": "modal_gpu_sam3", "image_id": 147725, "category": "car", "x": 482, "y": 211, "iou": 0.8323, "error": null, "latency_ms": 754.8}
+{"backend": "modal_gpu_sam3", "image_id": 147725, "category": "bus", "x": 265, "y": 183, "iou": 0.959, "error": null, "latency_ms": 759.2}
+{"backend": "modal_gpu_sam3", "image_id": 148662, "category": "person", "x": 299, "y": 0, "iou": 0.8018, "error": null, "latency_ms": 757.8}
+{"backend": "modal_gpu_sam3", "image_id": 148662, "category": "hot dog", "x": 143, "y": 378, "iou": 0.3919, "error": null, "latency_ms": 753.5}
+{"backend": "modal_gpu_sam3", "image_id": 157213, "category": "elephant", "x": 338, "y": 122, "iou": 0.9324, "error": null, "latency_ms": 756.7}
+{"backend": "modal_gpu_sam3", "image_id": 159791, "category": "microwave", "x": 15, "y": 221, "iou": 0.855, "error": null, "latency_ms": 1098.2}
+{"backend": "modal_gpu_sam3", "image_id": 159791, "category": "refrigerator", "x": 261, "y": 190, "iou": 0.9066, "error": null, "latency_ms": 760.5}
+{"backend": "modal_gpu_sam3", "image_id": 161128, "category": "car", "x": 28, "y": 411, "iou": 0.9362, "error": null, "latency_ms": 1094.7}
+{"backend": "modal_gpu_sam3", "image_id": 161128, "category": "car", "x": 61, "y": 397, "iou": 0.7964, "error": null, "latency_ms": 751.7}
+{"backend": "modal_gpu_sam3", "image_id": 162130, "category": "bench", "x": 192, "y": 363, "iou": 0.8918, "error": null, "latency_ms": 753.7}
+{"backend": "modal_gpu_sam3", "image_id": 168593, "category": "refrigerator", "x": 131, "y": 321, "iou": 0.9913, "error": null, "latency_ms": 1093.5}
+{"backend": "modal_gpu_sam3", "image_id": 168593, "category": "chair", "x": 577, "y": 349, "iou": 0.6644, "error": null, "latency_ms": 761.9}
+{"backend": "modal_gpu_sam3", "image_id": 172330, "category": "car", "x": 383, "y": 124, "iou": 0.9606, "error": null, "latency_ms": 1104.1}
+{"backend": "modal_gpu_sam3", "image_id": 172330, "category": "car", "x": 52, "y": 54, "iou": 0.8958, "error": null, "latency_ms": 765.9}
+{"backend": "modal_gpu_sam3", "image_id": 172856, "category": "stop sign", "x": 205, "y": 296, "iou": 0.9249, "error": null, "latency_ms": 759.8}
+{"backend": "modal_gpu_sam3", "image_id": 173383, "category": "cake", "x": 260, "y": 202, "iou": 0.1265, "error": null, "latency_ms": 1102.4}
+{"backend": "modal_gpu_sam3", "image_id": 173383, "category": "dining table", "x": 46, "y": 424, "iou": 0.5155, "error": null, "latency_ms": 763.8}
+{"backend": "modal_gpu_sam3", "image_id": 179265, "category": "car", "x": 243, "y": 174, "iou": 0.8632, "error": null, "latency_ms": 1097.6}
+{"backend": "modal_gpu_sam3", "image_id": 179265, "category": "bus", "x": 370, "y": 208, "iou": 0.9542, "error": null, "latency_ms": 766.8}
+{"backend": "modal_gpu_sam3", "image_id": 181499, "category": "keyboard", "x": 436, "y": 339, "iou": 0.0102, "error": null, "latency_ms": 756.6}
+{"backend": "modal_gpu_sam3", "image_id": 181499, "category": "person", "x": 206, "y": 476, "iou": 0.8072, "error": null, "latency_ms": 758.7}
+{"backend": "modal_gpu_sam3", "image_id": 193494, "category": "bed", "x": 208, "y": 483, "iou": 0.1852, "error": null, "latency_ms": 761.9}
+{"backend": "modal_gpu_sam3", "image_id": 195165, "category": "toilet", "x": 29, "y": 387, "iou": 0.9385, "error": null, "latency_ms": 1097.3}
+{"backend": "modal_gpu_sam3", "image_id": 195165, "category": "sink", "x": 402, "y": 308, "iou": 0.924, "error": null, "latency_ms": 764.2}
+{"backend": "modal_gpu_sam3", "image_id": 196442, "category": "skis", "x": 183, "y": 231, "iou": 0.3264, "error": null, "latency_ms": 1103.8}
+{"backend": "modal_gpu_sam3", "image_id": 196442, "category": "person", "x": 170, "y": 177, "iou": 0.5961, "error": null, "latency_ms": 764.6}
+{"backend": "modal_gpu_sam3", "image_id": 203389, "category": "backpack", "x": 511, "y": 243, "iou": 0.0822, "error": null, "latency_ms": 762.0}
+{"backend": "modal_gpu_sam3", "image_id": 203389, "category": "person", "x": 202, "y": 263, "iou": 0.6499, "error": null, "latency_ms": 761.8}
+{"backend": "modal_gpu_sam3", "image_id": 206579, "category": "person", "x": 569, "y": 39, "iou": 0.8933, "error": null, "latency_ms": 756.7}
+{"backend": "modal_gpu_sam3", "image_id": 206579, "category": "dining table", "x": 633, "y": 345, "iou": 0.0099, "error": null, "latency_ms": 759.3}
+{"backend": "modal_gpu_sam3", "image_id": 210099, "category": "cat", "x": 232, "y": 235, "iou": 0.9243, "error": null, "latency_ms": 759.8}
+{"backend": "modal_gpu_sam3", "image_id": 210099, "category": "chair", "x": 244, "y": 292, "iou": 0.1873, "error": null, "latency_ms": 761.2}
+{"backend": "modal_gpu_sam3", "image_id": 212072, "category": "stop sign", "x": 386, "y": 103, "iou": 0.9615, "error": null, "latency_ms": 759.2}
+{"backend": "modal_gpu_sam3", "image_id": 219283, "category": "banana", "x": 151, "y": 311, "iou": 0.7138, "error": null, "latency_ms": 1100.8}
+{"backend": "modal_gpu_sam3", "image_id": 219283, "category": "bowl", "x": 94, "y": 354, "iou": 0.9397, "error": null, "latency_ms": 759.9}
+{"backend": "modal_gpu_sam3", "image_id": 221155, "category": "cow", "x": 165, "y": 379, "iou": 0.8791, "error": null, "latency_ms": 1100.1}
+{"backend": "modal_gpu_sam3", "image_id": 221155, "category": "cow", "x": 426, "y": 382, "iou": 0.72, "error": null, "latency_ms": 764.1}
+{"backend": "modal_gpu_sam3", "image_id": 222235, "category": "cat", "x": 338, "y": 222, "iou": 0.7679, "error": null, "latency_ms": 757.6}
+{"backend": "modal_gpu_sam3", "image_id": 222235, "category": "bird", "x": 307, "y": 116, "iou": 0.7837, "error": null, "latency_ms": 757.0}
+{"backend": "modal_gpu_sam3", "image_id": 228214, "category": "cell phone", "x": 218, "y": 347, "iou": 0.8935, "error": null, "latency_ms": 754.7}
+{"backend": "modal_gpu_sam3", "image_id": 228214, "category": "umbrella", "x": 393, "y": 355, "iou": 0.3682, "error": null, "latency_ms": 757.6}
+{"backend": "modal_gpu_sam3", "image_id": 231169, "category": "train", "x": 337, "y": 317, "iou": 0.0021, "error": null, "latency_ms": 759.0}
+{"backend": "modal_gpu_sam3", "image_id": 234366, "category": "clock", "x": 246, "y": 251, "iou": 0.938, "error": null, "latency_ms": 1104.1}
+{"backend": "modal_gpu_sam3", "image_id": 234807, "category": "horse", "x": 172, "y": 290, "iou": 0.9305, "error": null, "latency_ms": 1108.2}
+{"backend": "modal_gpu_sam3", "image_id": 234807, "category": "horse", "x": 588, "y": 300, "iou": 0.9664, "error": null, "latency_ms": 1110.5}
+{"backend": "modal_gpu_sam3", "image_id": 238410, "category": "potted plant", "x": 281, "y": 144, "iou": 0.8007, "error": null, "latency_ms": 1109.1}
+{"backend": "modal_gpu_sam3", "image_id": 238410, "category": "person", "x": 523, "y": 285, "iou": 0.7146, "error": null, "latency_ms": 767.3}
+{"backend": "modal_gpu_sam3", "image_id": 249643, "category": "train", "x": 327, "y": 239, "iou": 0.9271, "error": null, "latency_ms": 762.7}
+{"backend": "modal_gpu_sam3", "image_id": 249643, "category": "train", "x": 618, "y": 246, "iou": 0.626, "error": null, "latency_ms": 756.0}
+{"backend": "modal_gpu_sam3", "image_id": 257370, "category": "tv", "x": 434, "y": 252, "iou": 0.7871, "error": null, "latency_ms": 759.3}
+{"backend": "modal_gpu_sam3", "image_id": 257370, "category": "person", "x": 97, "y": 213, "iou": 0.1078, "error": null, "latency_ms": 757.7}
+{"backend": "modal_gpu_sam3", "image_id": 265518, "category": "cup", "x": 143, "y": 118, "iou": 0.5415, "error": null, "latency_ms": 759.6}
+{"backend": "modal_gpu_sam3", "image_id": 265518, "category": "fork", "x": 182, "y": 455, "iou": 0.7823, "error": null, "latency_ms": 768.8}
+{"backend": "modal_gpu_sam3", "image_id": 269932, "category": "horse", "x": 296, "y": 137, "iou": 0.8691, "error": null, "latency_ms": 761.6}
+{"backend": "modal_gpu_sam3", "image_id": 269932, "category": "chair", "x": 147, "y": 233, "iou": 0.8298, "error": null, "latency_ms": 762.8}
+{"backend": "modal_gpu_sam3", "image_id": 272364, "category": "giraffe", "x": 122, "y": 589, "iou": 0.7885, "error": null, "latency_ms": 757.3}
+{"backend": "modal_gpu_sam3", "image_id": 272364, "category": "giraffe", "x": 199, "y": 290, "iou": 0.9103, "error": null, "latency_ms": 754.2}
+{"backend": "modal_gpu_sam3", "image_id": 275198, "category": "bowl", "x": 306, "y": 335, "iou": 0.5483, "error": null, "latency_ms": 761.2}
+{"backend": "modal_gpu_sam3", "image_id": 275198, "category": "person", "x": 373, "y": 191, "iou": 0.894, "error": null, "latency_ms": 763.2}
+{"backend": "modal_gpu_sam3", "image_id": 275791, "category": "boat", "x": 311, "y": 360, "iou": 0.9077, "error": null, "latency_ms": 762.0}
+{"backend": "modal_gpu_sam3", "image_id": 275791, "category": "boat", "x": 502, "y": 260, "iou": 0.6488, "error": null, "latency_ms": 759.4}
+{"backend": "modal_gpu_sam3", "image_id": 277197, "category": "couch", "x": 535, "y": 324, "iou": 0.9086, "error": null, "latency_ms": 753.9}
+{"backend": "modal_gpu_sam3", "image_id": 277197, "category": "vase", "x": 267, "y": 335, "iou": 0.83, "error": null, "latency_ms": 772.6}
+{"backend": "modal_gpu_sam3", "image_id": 287667, "category": "book", "x": 37, "y": 419, "iou": 0.9265, "error": null, "latency_ms": 754.2}
+{"backend": "modal_gpu_sam3", "image_id": 287667, "category": "knife", "x": 274, "y": 67, "iou": 0.7711, "error": null, "latency_ms": 757.2}
+{"backend": "modal_gpu_sam3", "image_id": 288042, "category": "person", "x": 571, "y": 235, "iou": 0.8854, "error": null, "latency_ms": 762.5}
+{"backend": "modal_gpu_sam3", "image_id": 288042, "category": "umbrella", "x": 576, "y": 180, "iou": 0.9103, "error": null, "latency_ms": 742.7}
+{"backend": "modal_gpu_sam3", "image_id": 293858, "category": "carrot", "x": 180, "y": 190, "iou": 0.8424, "error": null, "latency_ms": 758.1}
+{"backend": "modal_gpu_sam3", "image_id": 293858, "category": "hot dog", "x": 329, "y": 299, "iou": 0.9449, "error": null, "latency_ms": 757.9}
+{"backend": "modal_gpu_sam3", "image_id": 295231, "category": "sheep", "x": 194, "y": 340, "iou": 0.8909, "error": null, "latency_ms": 757.9}
+{"backend": "modal_gpu_sam3", "image_id": 295231, "category": "sheep", "x": 72, "y": 167, "iou": 0.898, "error": null, "latency_ms": 756.2}
+{"backend": "modal_gpu_sam3", "image_id": 297085, "category": "tv", "x": 287, "y": 66, "iou": 0.726, "error": null, "latency_ms": 759.4}
+{"backend": "modal_gpu_sam3", "image_id": 297085, "category": "teddy bear", "x": 187, "y": 155, "iou": 0.8974, "error": null, "latency_ms": 757.1}
+{"backend": "modal_gpu_sam3", "image_id": 298904, "category": "vase", "x": 227, "y": 360, "iou": 0.0051, "error": null, "latency_ms": 755.5}
+{"backend": "modal_gpu_sam3", "image_id": 299553, "category": "person", "x": 313, "y": 399, "iou": 0.7561, "error": null, "latency_ms": 1096.2}
+{"backend": "modal_gpu_sam3", "image_id": 299553, "category": "person", "x": 358, "y": 385, "iou": 0.8466, "error": null, "latency_ms": 758.0}
+{"backend": "modal_gpu_sam3", "image_id": 304180, "category": "skateboard", "x": 317, "y": 372, "iou": 0.7777, "error": null, "latency_ms": 1100.4}
+{"backend": "modal_gpu_sam3", "image_id": 304180, "category": "person", "x": 54, "y": 97, "iou": 0.9049, "error": null, "latency_ms": 760.0}
+{"backend": "modal_gpu_sam3", "image_id": 309391, "category": "person", "x": 616, "y": 311, "iou": 0.8513, "error": null, "latency_ms": 759.6}
+{"backend": "modal_gpu_sam3", "image_id": 309391, "category": "car", "x": 349, "y": 226, "iou": 0.9131, "error": null, "latency_ms": 757.9}
+{"backend": "modal_gpu_sam3", "image_id": 325483, "category": "person", "x": 420, "y": 243, "iou": 0.9003, "error": null, "latency_ms": 758.9}
+{"backend": "modal_gpu_sam3", "image_id": 325483, "category": "laptop", "x": 140, "y": 394, "iou": 0.9013, "error": null, "latency_ms": 758.1}
+{"backend": "modal_gpu_sam3", "image_id": 325527, "category": "teddy bear", "x": 280, "y": 237, "iou": 0.9553, "error": null, "latency_ms": 758.8}
+{"backend": "modal_gpu_sam3", "image_id": 327617, "category": "person", "x": 160, "y": 448, "iou": 0.1181, "error": null, "latency_ms": 1103.9}
+{"backend": "modal_gpu_sam3", "image_id": 327617, "category": "tennis racket", "x": 198, "y": 450, "iou": 0.9362, "error": null, "latency_ms": 761.5}
+{"backend": "modal_gpu_sam3", "image_id": 328601, "category": "sports ball", "x": 350, "y": 277, "iou": 0.9224, "error": null, "latency_ms": 1102.5}
+{"backend": "modal_gpu_sam3", "image_id": 328601, "category": "tennis racket", "x": 98, "y": 149, "iou": 0.9535, "error": null, "latency_ms": 765.1}
+{"backend": "modal_gpu_sam3", "image_id": 332570, "category": "cell phone", "x": 209, "y": 210, "iou": 0.9545, "error": null, "latency_ms": 762.9}
+{"backend": "modal_gpu_sam3", "image_id": 332570, "category": "person", "x": 0, "y": 499, "iou": 0.951, "error": null, "latency_ms": 761.7}
+{"backend": "modal_gpu_sam3", "image_id": 333069, "category": "giraffe", "x": 296, "y": 318, "iou": 0.7945, "error": null, "latency_ms": 758.8}
+{"backend": "modal_gpu_sam3", "image_id": 333069, "category": "giraffe", "x": 175, "y": 445, "iou": 0.9124, "error": null, "latency_ms": 759.9}
+{"backend": "modal_gpu_sam3", "image_id": 335450, "category": "horse", "x": 306, "y": 236, "iou": 0.767, "error": null, "latency_ms": 758.3}
+{"backend": "modal_gpu_sam3", "image_id": 335450, "category": "horse", "x": 422, "y": 232, "iou": 0.899, "error": null, "latency_ms": 764.7}
+{"backend": "modal_gpu_sam3", "image_id": 341469, "category": "suitcase", "x": 175, "y": 511, "iou": 0.9533, "error": null, "latency_ms": 763.4}
+{"backend": "modal_gpu_sam3", "image_id": 341469, "category": "handbag", "x": 173, "y": 178, "iou": 0.0424, "error": null, "latency_ms": 764.9}
+{"backend": "modal_gpu_sam3", "image_id": 344059, "category": "giraffe", "x": 103, "y": 254, "iou": 0.8791, "error": null, "latency_ms": 764.7}
+{"backend": "modal_gpu_sam3", "image_id": 344059, "category": "giraffe", "x": 378, "y": 239, "iou": 0.8725, "error": null, "latency_ms": 763.9}
+{"backend": "modal_gpu_sam3", "image_id": 346905, "category": "elephant", "x": 183, "y": 164, "iou": 0.8472, "error": null, "latency_ms": 765.7}
+{"backend": "modal_gpu_sam3", "image_id": 346905, "category": "elephant", "x": 353, "y": 305, "iou": 0.9113, "error": null, "latency_ms": 761.2}
+{"backend": "modal_gpu_sam3", "image_id": 348243, "category": "horse", "x": 171, "y": 309, "iou": 0.9613, "error": null, "latency_ms": 763.7}
+{"backend": "modal_gpu_sam3", "image_id": 348243, "category": "horse", "x": 184, "y": 418, "iou": 0.5491, "error": null, "latency_ms": 758.6}
+{"backend": "modal_gpu_sam3", "image_id": 349152, "category": "donut", "x": 265, "y": 231, "iou": 0.9042, "error": null, "latency_ms": 760.2}
+{"backend": "modal_gpu_sam3", "image_id": 349152, "category": "donut", "x": 301, "y": 237, "iou": 0.9164, "error": null, "latency_ms": 765.2}
+{"backend": "modal_gpu_sam3", "image_id": 350054, "category": "cat", "x": 262, "y": 170, "iou": 0.8167, "error": null, "latency_ms": 767.1}
+{"backend": "modal_gpu_sam3", "image_id": 350054, "category": "tv", "x": 312, "y": 86, "iou": 0.9073, "error": null, "latency_ms": 763.5}
+{"backend": "modal_gpu_sam3", "image_id": 353518, "category": "boat", "x": 369, "y": 169, "iou": 0.551, "error": null, "latency_ms": 762.9}
+{"backend": "modal_gpu_sam3", "image_id": 353518, "category": "boat", "x": 528, "y": 172, "iou": 0.8853, "error": null, "latency_ms": 759.5}
+{"backend": "modal_gpu_sam3", "image_id": 356498, "category": "broccoli", "x": 296, "y": 75, "iou": 0.8986, "error": null, "latency_ms": 751.8}
+{"backend": "modal_gpu_sam3", "image_id": 356498, "category": "broccoli", "x": 145, "y": 93, "iou": 0.5109, "error": null, "latency_ms": 759.9}
+{"backend": "modal_gpu_sam3", "image_id": 360097, "category": "suitcase", "x": 274, "y": 52, "iou": 0.8934, "error": null, "latency_ms": 751.0}
+{"backend": "modal_gpu_sam3", "image_id": 360097, "category": "suitcase", "x": 318, "y": 81, "iou": 0.943, "error": null, "latency_ms": 749.7}
+{"backend": "modal_gpu_sam3", "image_id": 364102, "category": "person", "x": 288, "y": 271, "iou": 0.9244, "error": null, "latency_ms": 752.9}
+{"backend": "modal_gpu_sam3", "image_id": 368940, "category": "sink", "x": 55, "y": 196, "iou": 0.4281, "error": null, "latency_ms": 1095.3}
+{"backend": "modal_gpu_sam3", "image_id": 372819, "category": "dog", "x": 247, "y": 170, "iou": 0.937, "error": null, "latency_ms": 1109.8}
+{"backend": "modal_gpu_sam3", "image_id": 372819, "category": "dog", "x": 448, "y": 242, "iou": 0.8311, "error": null, "latency_ms": 1112.5}
+{"backend": "modal_gpu_sam3", "image_id": 375078, "category": "bottle", "x": 248, "y": 561, "iou": 0.6392, "error": null, "latency_ms": 1114.4}
+{"backend": "modal_gpu_sam3", "image_id": 375078, "category": "vase", "x": 249, "y": 479, "iou": 0.6094, "error": null, "latency_ms": 772.6}
+{"backend": "modal_gpu_sam3", "image_id": 376322, "category": "fork", "x": 224, "y": 596, "iou": 0.8749, "error": null, "latency_ms": 769.8}
+{"backend": "modal_gpu_sam3", "image_id": 376322, "category": "wine glass", "x": 477, "y": 498, "iou": 0.891, "error": null, "latency_ms": 768.9}
+{"backend": "modal_gpu_sam3", "image_id": 376900, "category": "person", "x": 259, "y": 357, "iou": 0.5564, "error": null, "latency_ms": 768.3}
+{"backend": "modal_gpu_sam3", "image_id": 376900, "category": "person", "x": 352, "y": 343, "iou": 0.9067, "error": null, "latency_ms": 767.3}
+{"backend": "modal_gpu_sam3", "image_id": 377946, "category": "bus", "x": 22, "y": 166, "iou": 0.9257, "error": null, "latency_ms": 764.1}
+{"backend": "modal_gpu_sam3", "image_id": 377946, "category": "truck", "x": 308, "y": 208, "iou": 0.7735, "error": null, "latency_ms": 765.4}
+{"backend": "modal_gpu_sam3", "image_id": 378673, "category": "skateboard", "x": 386, "y": 280, "iou": 0.8759, "error": null, "latency_ms": 764.2}
+{"backend": "modal_gpu_sam3", "image_id": 378673, "category": "person", "x": 362, "y": 143, "iou": 0.9188, "error": null, "latency_ms": 763.2}
+{"backend": "modal_gpu_sam3", "image_id": 378873, "category": "person", "x": 521, "y": 47, "iou": 0.7032, "error": null, "latency_ms": 764.4}
+{"backend": "modal_gpu_sam3", "image_id": 378873, "category": "truck", "x": 492, "y": 23, "iou": 0.4365, "error": null, "latency_ms": 760.7}
+{"backend": "modal_gpu_sam3", "image_id": 380203, "category": "horse", "x": 263, "y": 214, "iou": 0.9338, "error": null, "latency_ms": 763.9}
+{"backend": "modal_gpu_sam3", "image_id": 383606, "category": "person", "x": 327, "y": 183, "iou": 0.9307, "error": null, "latency_ms": 1105.7}
+{"backend": "modal_gpu_sam3", "image_id": 383606, "category": "sink", "x": 210, "y": 340, "iou": 0.1412, "error": null, "latency_ms": 763.1}
+{"backend": "modal_gpu_sam3", "image_id": 397354, "category": "oven", "x": 139, "y": 326, "iou": 0.2063, "error": null, "latency_ms": 1106.2}
+{"backend": "modal_gpu_sam3", "image_id": 397354, "category": "person", "x": 576, "y": 348, "iou": 0.5303, "error": null, "latency_ms": 763.9}
+{"backend": "modal_gpu_sam3", "image_id": 400794, "category": "fork", "x": 154, "y": 623, "iou": 0.7032, "error": null, "latency_ms": 765.6}
+{"backend": "modal_gpu_sam3", "image_id": 400794, "category": "pizza", "x": 215, "y": 573, "iou": 0.8404, "error": null, "latency_ms": 763.5}
+{"backend": "modal_gpu_sam3", "image_id": 401862, "category": "person", "x": 554, "y": 300, "iou": 0.9035, "error": null, "latency_ms": 766.4}
+{"backend": "modal_gpu_sam3", "image_id": 401862, "category": "person", "x": 423, "y": 312, "iou": 0.8539, "error": null, "latency_ms": 767.1}
+{"backend": "modal_gpu_sam3", "image_id": 401991, "category": "dog", "x": 111, "y": 92, "iou": 0.9801, "error": null, "latency_ms": 761.0}
+{"backend": "modal_gpu_sam3", "image_id": 401991, "category": "dog", "x": 344, "y": 244, "iou": 0.6795, "error": null, "latency_ms": 761.7}
+{"backend": "modal_gpu_sam3", "image_id": 404249, "category": "person", "x": 161, "y": 236, "iou": 0.874, "error": null, "latency_ms": 758.7}
+{"backend": "modal_gpu_sam3", "image_id": 404249, "category": "skateboard", "x": 147, "y": 510, "iou": 0.8506, "error": null, "latency_ms": 758.2}
+{"backend": "modal_gpu_sam3", "image_id": 406997, "category": "person", "x": 500, "y": 45, "iou": 0.8435, "error": null, "latency_ms": 767.3}
+{"backend": "modal_gpu_sam3", "image_id": 406997, "category": "person", "x": 287, "y": 64, "iou": 0.762, "error": null, "latency_ms": 763.9}
+{"backend": "modal_gpu_sam3", "image_id": 409475, "category": "person", "x": 486, "y": 272, "iou": 0.9566, "error": null, "latency_ms": 765.4}
+{"backend": "modal_gpu_sam3", "image_id": 409475, "category": "person", "x": 193, "y": 249, "iou": 0.8812, "error": null, "latency_ms": 767.5}
+{"backend": "modal_gpu_sam3", "image_id": 412240, "category": "dog", "x": 200, "y": 118, "iou": 0.9136, "error": null, "latency_ms": 759.3}
+{"backend": "modal_gpu_sam3", "image_id": 415727, "category": "baseball bat", "x": 459, "y": 184, "iou": 0.5127, "error": null, "latency_ms": 1107.7}
+{"backend": "modal_gpu_sam3", "image_id": 415727, "category": "baseball bat", "x": 510, "y": 163, "iou": 0.1113, "error": null, "latency_ms": 766.1}
+{"backend": "modal_gpu_sam3", "image_id": 422886, "category": "couch", "x": 0, "y": 579, "iou": 0.0659, "error": null, "latency_ms": 1110.1}
+{"backend": "modal_gpu_sam3", "image_id": 422886, "category": "hot dog", "x": 333, "y": 371, "iou": 0.0625, "error": null, "latency_ms": 775.6}
+{"backend": "modal_gpu_sam3", "image_id": 427055, "category": "clock", "x": 451, "y": 104, "iou": 0.8656, "error": null, "latency_ms": 773.2}
+{"backend": "modal_gpu_sam3", "image_id": 430073, "category": "person", "x": 539, "y": 239, "iou": 0.7923, "error": null, "latency_ms": 1116.3}
+{"backend": "modal_gpu_sam3", "image_id": 430073, "category": "chair", "x": 601, "y": 271, "iou": 0.1505, "error": null, "latency_ms": 771.3}
+{"backend": "modal_gpu_sam3", "image_id": 430871, "category": "parking meter", "x": 115, "y": 118, "iou": 0.9421, "error": null, "latency_ms": 1109.6}
+{"backend": "modal_gpu_sam3", "image_id": 434996, "category": "teddy bear", "x": 359, "y": 158, "iou": 0.8894, "error": null, "latency_ms": 1108.0}
+{"backend": "modal_gpu_sam3", "image_id": 434996, "category": "cat", "x": 262, "y": 189, "iou": 0.9292, "error": null, "latency_ms": 762.6}
+{"backend": "modal_gpu_sam3", "image_id": 438774, "category": "person", "x": 245, "y": 129, "iou": 0.7596, "error": null, "latency_ms": 1103.2}
+{"backend": "modal_gpu_sam3", "image_id": 438774, "category": "person", "x": 463, "y": 102, "iou": 0.1638, "error": null, "latency_ms": 763.4}
+{"backend": "modal_gpu_sam3", "image_id": 438907, "category": "person", "x": 91, "y": 285, "iou": 0.8489, "error": null, "latency_ms": 769.6}
+{"backend": "modal_gpu_sam3", "image_id": 438907, "category": "skateboard", "x": 53, "y": 366, "iou": 0.499, "error": null, "latency_ms": 773.2}
+{"backend": "modal_gpu_sam3", "image_id": 443498, "category": "bus", "x": 328, "y": 237, "iou": 0.951, "error": null, "latency_ms": 772.0}
+{"backend": "modal_gpu_sam3", "image_id": 447465, "category": "skis", "x": 362, "y": 403, "iou": 0.4337, "error": null, "latency_ms": 1116.0}
+{"backend": "modal_gpu_sam3", "image_id": 447465, "category": "person", "x": 133, "y": 167, "iou": 0.872, "error": null, "latency_ms": 773.9}
+{"backend": "modal_gpu_sam3", "image_id": 447917, "category": "person", "x": 170, "y": 130, "iou": 0.951, "error": null, "latency_ms": 1112.6}
+{"backend": "modal_gpu_sam3", "image_id": 447917, "category": "sports ball", "x": 485, "y": 271, "iou": 0.9337, "error": null, "latency_ms": 770.1}
+{"backend": "modal_gpu_sam3", "image_id": 455157, "category": "dining table", "x": 489, "y": 341, "iou": 0.8388, "error": null, "latency_ms": 772.5}
+{"backend": "modal_gpu_sam3", "image_id": 455157, "category": "bench", "x": 590, "y": 340, "iou": 0.6294, "error": null, "latency_ms": 771.6}
+{"backend": "modal_gpu_sam3", "image_id": 455219, "category": "person", "x": 512, "y": 251, "iou": 0.9288, "error": null, "latency_ms": 771.3}
+{"backend": "modal_gpu_sam3", "image_id": 455219, "category": "cow", "x": 364, "y": 276, "iou": 0.845, "error": null, "latency_ms": 771.2}
+{"backend": "modal_gpu_sam3", "image_id": 460147, "category": "car", "x": 504, "y": 212, "iou": 0.9102, "error": null, "latency_ms": 763.5}
+{"backend": "modal_gpu_sam3", "image_id": 460147, "category": "car", "x": 573, "y": 247, "iou": 0.9459, "error": null, "latency_ms": 763.2}
+{"backend": "modal_gpu_sam3", "image_id": 460841, "category": "toilet", "x": 325, "y": 355, "iou": 0.4602, "error": null, "latency_ms": 762.2}
+{"backend": "modal_gpu_sam3", "image_id": 460841, "category": "bottle", "x": 107, "y": 270, "iou": 0.9413, "error": null, "latency_ms": 763.7}
+{"backend": "modal_gpu_sam3", "image_id": 463174, "category": "person", "x": 302, "y": 155, "iou": 0.2391, "error": null, "latency_ms": 760.2}
+{"backend": "modal_gpu_sam3", "image_id": 463174, "category": "tennis racket", "x": 68, "y": 285, "iou": 0.8118, "error": null, "latency_ms": 763.3}
+{"backend": "modal_gpu_sam3", "image_id": 463730, "category": "car", "x": 601, "y": 246, "iou": 0.9618, "error": null, "latency_ms": 761.3}
+{"backend": "modal_gpu_sam3", "image_id": 463730, "category": "person", "x": 59, "y": 220, "iou": 0.9104, "error": null, "latency_ms": 761.8}
+{"backend": "modal_gpu_sam3", "image_id": 466085, "category": "sink", "x": 351, "y": 480, "iou": 0.9727, "error": null, "latency_ms": 764.4}
+{"backend": "modal_gpu_sam3", "image_id": 466602, "category": "skis", "x": 206, "y": 525, "iou": 0.0092, "error": null, "latency_ms": 1108.4}
+{"backend": "modal_gpu_sam3", "image_id": 466602, "category": "skis", "x": 250, "y": 639, "iou": 0.7156, "error": null, "latency_ms": 771.4}
+{"backend": "modal_gpu_sam3", "image_id": 473237, "category": "chair", "x": 539, "y": 257, "iou": 0.6862, "error": null, "latency_ms": 1112.9}
+{"backend": "modal_gpu_sam3", "image_id": 473237, "category": "pizza", "x": 254, "y": 311, "iou": 0.9067, "error": null, "latency_ms": 771.3}
+{"backend": "modal_gpu_sam3", "image_id": 474167, "category": "person", "x": 252, "y": 59, "iou": 0.8308, "error": null, "latency_ms": 767.7}
+{"backend": "modal_gpu_sam3", "image_id": 474167, "category": "dining table", "x": 52, "y": 216, "iou": 0.5325, "error": null, "latency_ms": 767.7}
+{"backend": "modal_gpu_sam3", "image_id": 474170, "category": "elephant", "x": 356, "y": 233, "iou": 0.8433, "error": null, "latency_ms": 765.7}
+{"backend": "modal_gpu_sam3", "image_id": 474170, "category": "elephant", "x": 275, "y": 213, "iou": 0.7864, "error": null, "latency_ms": 767.4}
+{"backend": "modal_gpu_sam3", "image_id": 474293, "category": "handbag", "x": 591, "y": 351, "iou": 0.8544, "error": null, "latency_ms": 771.5}
+{"backend": "modal_gpu_sam3", "image_id": 474293, "category": "person", "x": 595, "y": 297, "iou": 0.8267, "error": null, "latency_ms": 769.1}
+{"backend": "modal_gpu_sam3", "image_id": 484415, "category": "person", "x": 43, "y": 158, "iou": 0.9557, "error": null, "latency_ms": 764.6}
+{"backend": "modal_gpu_sam3", "image_id": 484415, "category": "toilet", "x": 174, "y": 183, "iou": 0.235, "error": null, "latency_ms": 763.6}
+{"backend": "modal_gpu_sam3", "image_id": 489611, "category": "person", "x": 201, "y": 477, "iou": 0.9136, "error": null, "latency_ms": 762.4}
+{"backend": "modal_gpu_sam3", "image_id": 489611, "category": "remote", "x": 514, "y": 366, "iou": 0.6554, "error": null, "latency_ms": 768.2}
+{"backend": "modal_gpu_sam3", "image_id": 492362, "category": "backpack", "x": 173, "y": 253, "iou": 0.7126, "error": null, "latency_ms": 776.0}
+{"backend": "modal_gpu_sam3", "image_id": 492362, "category": "skateboard", "x": 112, "y": 567, "iou": 0.5619, "error": null, "latency_ms": 775.6}
+{"backend": "modal_gpu_sam3", "image_id": 502732, "category": "refrigerator", "x": 234, "y": 247, "iou": 0.9227, "error": null, "latency_ms": 770.2}
+{"backend": "modal_gpu_sam3", "image_id": 509131, "category": "orange", "x": 209, "y": 385, "iou": 0.2675, "error": null, "latency_ms": 1115.4}
+{"backend": "modal_gpu_sam3", "image_id": 509131, "category": "banana", "x": 458, "y": 207, "iou": 0.719, "error": null, "latency_ms": 774.1}
+{"backend": "modal_gpu_sam3", "image_id": 512403, "category": "potted plant", "x": 528, "y": 261, "iou": 0.0498, "error": null, "latency_ms": 1119.9}
+{"backend": "modal_gpu_sam3", "image_id": 512403, "category": "vase", "x": 440, "y": 507, "iou": 0.9434, "error": null, "latency_ms": 779.4}
+{"backend": "modal_gpu_sam3", "image_id": 513181, "category": "boat", "x": 195, "y": 266, "iou": 0.8134, "error": null, "latency_ms": 769.3}
+{"backend": "modal_gpu_sam3", "image_id": 513688, "category": "chair", "x": 235, "y": 180, "iou": 0.3988, "error": null, "latency_ms": 1116.6}
+{"backend": "modal_gpu_sam3", "image_id": 513688, "category": "laptop", "x": 429, "y": 212, "iou": 0.9473, "error": null, "latency_ms": 771.2}
+{"backend": "modal_gpu_sam3", "image_id": 518770, "category": "person", "x": 263, "y": 177, "iou": 0.8345, "error": null, "latency_ms": 1109.8}
+{"backend": "modal_gpu_sam3", "image_id": 518770, "category": "person", "x": 300, "y": 110, "iou": 0.8702, "error": null, "latency_ms": 770.9}
+{"backend": "modal_gpu_sam3", "image_id": 525155, "category": "person", "x": 432, "y": 305, "iou": 0.8934, "error": null, "latency_ms": 767.2}
+{"backend": "modal_gpu_sam3", "image_id": 525155, "category": "sheep", "x": 495, "y": 86, "iou": 0.8837, "error": null, "latency_ms": 764.3}
+{"backend": "modal_gpu_sam3", "image_id": 527220, "category": "motorcycle", "x": 370, "y": 129, "iou": 0.7111, "error": null, "latency_ms": 759.3}
+{"backend": "modal_gpu_sam3", "image_id": 527220, "category": "car", "x": 80, "y": 81, "iou": 0.9487, "error": null, "latency_ms": 760.4}
+{"backend": "modal_gpu_sam3", "image_id": 527784, "category": "bottle", "x": 354, "y": 148, "iou": 0.9726, "error": null, "latency_ms": 758.0}
+{"backend": "modal_gpu_sam3", "image_id": 527784, "category": "sandwich", "x": 206, "y": 267, "iou": 0.9191, "error": null, "latency_ms": 763.7}
+{"backend": "modal_gpu_sam3", "image_id": 528862, "category": "giraffe", "x": 204, "y": 120, "iou": 0.8594, "error": null, "latency_ms": 767.6}
+{"backend": "modal_gpu_sam3", "image_id": 528862, "category": "giraffe", "x": 187, "y": 210, "iou": 0.7991, "error": null, "latency_ms": 769.6}
+{"backend": "modal_gpu_sam3", "image_id": 533958, "category": "fork", "x": 15, "y": 236, "iou": 0.7295, "error": null, "latency_ms": 770.2}
+{"backend": "modal_gpu_sam3", "image_id": 535156, "category": "elephant", "x": 328, "y": 187, "iou": 0.9642, "error": null, "latency_ms": 1112.6}
+{"backend": "modal_gpu_sam3", "image_id": 535156, "category": "elephant", "x": 95, "y": 157, "iou": 0.8137, "error": null, "latency_ms": 773.4}
+{"backend": "modal_gpu_sam3", "image_id": 537053, "category": "giraffe", "x": 242, "y": 359, "iou": 0.894, "error": null, "latency_ms": 1115.8}
+{"backend": "modal_gpu_sam3", "image_id": 537812, "category": "toilet", "x": 139, "y": 162, "iou": 0.9544, "error": null, "latency_ms": 1113.4}
+{"backend": "modal_gpu_sam3", "image_id": 537812, "category": "chair", "x": 399, "y": 299, "iou": 0.9145, "error": null, "latency_ms": 768.7}
+{"backend": "modal_gpu_sam3", "image_id": 543300, "category": "boat", "x": 178, "y": 328, "iou": 0.8836, "error": null, "latency_ms": 1113.0}
+{"backend": "modal_gpu_sam3", "image_id": 544811, "category": "bird", "x": 363, "y": 270, "iou": 0.8822, "error": null, "latency_ms": 1109.1}
+{"backend": "modal_gpu_sam3", "image_id": 544811, "category": "bird", "x": 524, "y": 255, "iou": 0.681, "error": null, "latency_ms": 768.5}
+{"backend": "modal_gpu_sam3", "image_id": 545730, "category": "zebra", "x": 426, "y": 315, "iou": 0.8624, "error": null, "latency_ms": 1110.7}
+{"backend": "modal_gpu_sam3", "image_id": 545730, "category": "zebra", "x": 99, "y": 360, "iou": 0.8609, "error": null, "latency_ms": 768.0}
+{"backend": "modal_gpu_sam3", "image_id": 546219, "category": "person", "x": 45, "y": 286, "iou": 0.1549, "error": null, "latency_ms": 768.7}
+{"backend": "modal_gpu_sam3", "image_id": 546219, "category": "chair", "x": 59, "y": 404, "iou": 0.8177, "error": null, "latency_ms": 768.8}
+{"backend": "modal_gpu_sam3", "image_id": 549738, "category": "kite", "x": 230, "y": 229, "iou": 0.8765, "error": null, "latency_ms": 762.8}
+{"backend": "modal_gpu_sam3", "image_id": 550322, "category": "spoon", "x": 313, "y": 276, "iou": 0.9177, "error": null, "latency_ms": 1107.2}
+{"backend": "modal_gpu_sam3", "image_id": 550322, "category": "spoon", "x": 393, "y": 325, "iou": 0.7667, "error": null, "latency_ms": 765.2}
+{"backend": "modal_gpu_sam3", "image_id": 551815, "category": "bed", "x": 58, "y": 479, "iou": 0.0275, "error": null, "latency_ms": 1105.7}
+{"backend": "modal_gpu_sam3", "image_id": 551815, "category": "cat", "x": 206, "y": 381, "iou": 0.9522, "error": null, "latency_ms": 773.2}
+{"backend": "modal_gpu_sam3", "image_id": 555597, "category": "car", "x": 554, "y": 453, "iou": 0.9299, "error": null, "latency_ms": 767.5}
+{"backend": "modal_gpu_sam3", "image_id": 555597, "category": "truck", "x": 231, "y": 393, "iou": 0.0426, "error": null, "latency_ms": 767.3}
+{"backend": "modal_gpu_sam3", "image_id": 556873, "category": "cake", "x": 177, "y": 431, "iou": 0.0252, "error": null, "latency_ms": 768.9}
+{"backend": "modal_gpu_sam3", "image_id": 559513, "category": "bottle", "x": 237, "y": 64, "iou": 0.9327, "error": null, "latency_ms": 1108.2}
+{"backend": "modal_gpu_sam3", "image_id": 559513, "category": "fork", "x": 625, "y": 132, "iou": 0.8293, "error": null, "latency_ms": 771.0}
+{"backend": "modal_gpu_sam3", "image_id": 560911, "category": "suitcase", "x": 10, "y": 309, "iou": 0.297, "error": null, "latency_ms": 1113.0}
+{"backend": "modal_gpu_sam3", "image_id": 560911, "category": "person", "x": 214, "y": 357, "iou": 0.8832, "error": null, "latency_ms": 771.2}
+{"backend": "modal_gpu_sam3", "image_id": 562059, "category": "dining table", "x": 197, "y": 51, "iou": 0.5091, "error": null, "latency_ms": 769.8}
+{"backend": "modal_gpu_sam3", "image_id": 562059, "category": "apple", "x": 69, "y": 366, "iou": 0.9468, "error": null, "latency_ms": 768.8}
+{"backend": "modal_gpu_sam3", "image_id": 562121, "category": "zebra", "x": 362, "y": 306, "iou": 0.6409, "error": null, "latency_ms": 768.4}
+{"backend": "modal_gpu_sam3", "image_id": 562121, "category": "zebra", "x": 417, "y": 290, "iou": 0.8619, "error": null, "latency_ms": 765.5}
+{"backend": "modal_gpu_sam3", "image_id": 563882, "category": "cell phone", "x": 404, "y": 254, "iou": 0.8459, "error": null, "latency_ms": 765.1}
+{"backend": "modal_gpu_sam3", "image_id": 563882, "category": "person", "x": 248, "y": 155, "iou": 0.1839, "error": null, "latency_ms": 766.0}
+{"backend": "modal_gpu_sam3", "image_id": 567432, "category": "airplane", "x": 274, "y": 336, "iou": 0.8113, "error": null, "latency_ms": 767.6}
+{"backend": "modal_gpu_sam3", "image_id": 571893, "category": "book", "x": 312, "y": 148, "iou": 0.7276, "error": null, "latency_ms": 1111.4}
+{"backend": "modal_gpu_sam3", "image_id": 571893, "category": "book", "x": 319, "y": 171, "iou": 0.8585, "error": null, "latency_ms": 771.9}
+{"backend": "modal_gpu_sam3", "image_id": 578500, "category": "potted plant", "x": 303, "y": 169, "iou": 0.8062, "error": null, "latency_ms": 1110.0}
+{"backend": "modal_gpu_sam3", "image_id": 578500, "category": "couch", "x": 418, "y": 192, "iou": 0.8875, "error": null, "latency_ms": 766.6}
+{"backend": "modal_gpu_sam3", "image_id": 579655, "category": "cup", "x": 137, "y": 278, "iou": 0.7747, "error": null, "latency_ms": 764.4}
+{"backend": "modal_gpu_sam3", "image_id": 579655, "category": "cup", "x": 36, "y": 289, "iou": 0.6653, "error": null, "latency_ms": 763.1}
+{"backend": "meta_api_sam3.1", "image_id": 2685, "category": "bottle", "x": 149, "y": 306, "iou": 0.4922, "error": null, "latency_ms": 857.5}
+{"backend": "meta_api_sam3.1", "image_id": 2685, "category": "person", "x": 404, "y": 160, "iou": 0.8183, "error": null, "latency_ms": 3965.0}
+{"backend": "meta_api_sam3.1", "image_id": 9772, "category": "tv", "x": 471, "y": 141, "iou": 0.9566, "error": null, "latency_ms": 4008.6}
+{"backend": "meta_api_sam3.1", "image_id": 9772, "category": "sink", "x": 364, "y": 387, "iou": 0.653, "error": null, "latency_ms": 3159.3}
+{"backend": "meta_api_sam3.1", "image_id": 285, "category": "bear", "x": 284, "y": 380, "iou": 0.9338, "error": null, "latency_ms": 5761.7}
+{"backend": "meta_api_sam3.1", "image_id": 18575, "category": "sandwich", "x": 76, "y": 266, "iou": 0.5048, "error": null, "latency_ms": 1990.2}
+{"backend": "meta_api_sam3.1", "image_id": 21839, "category": "person", "x": 252, "y": 442, "iou": 0.8804, "error": null, "latency_ms": 831.5}
+{"backend": "meta_api_sam3.1", "image_id": 18575, "category": "bottle", "x": 576, "y": 82, "iou": 0.8706, "error": null, "latency_ms": 2623.8}
+{"backend": "meta_api_sam3.1", "image_id": 21839, "category": "person", "x": 442, "y": 485, "iou": 0.8395, "error": null, "latency_ms": 895.8}
+{"backend": "meta_api_sam3.1", "image_id": 34257, "category": "broccoli", "x": 300, "y": 35, "iou": 0.1452, "error": null, "latency_ms": 1815.7}
+{"backend": "meta_api_sam3.1", "image_id": 42628, "category": "person", "x": 244, "y": 22, "iou": 0.9277, "error": null, "latency_ms": 1170.2}
+{"backend": "meta_api_sam3.1", "image_id": 42628, "category": "person", "x": 548, "y": 44, "iou": 0.1195, "error": null, "latency_ms": 1232.2}
+{"backend": "meta_api_sam3.1", "image_id": 34257, "category": "carrot", "x": 199, "y": 227, "iou": 0.0322, "error": null, "latency_ms": 1640.9}
+{"backend": "meta_api_sam3.1", "image_id": 44877, "category": "person", "x": 395, "y": 203, "iou": 0.6406, "error": null, "latency_ms": 1337.5}
+{"backend": "meta_api_sam3.1", "image_id": 46378, "category": "bird", "x": 335, "y": 270, "iou": 0.7994, "error": null, "latency_ms": 1958.5}
+{"backend": "meta_api_sam3.1", "image_id": 44877, "category": "person", "x": 16, "y": 367, "iou": 0.8467, "error": null, "latency_ms": 2085.7}
+{"backend": "meta_api_sam3.1", "image_id": 49759, "category": "person", "x": 472, "y": 195, "iou": 0.8316, "error": null, "latency_ms": 719.5}
+{"backend": "meta_api_sam3.1", "image_id": 46378, "category": "cat", "x": 192, "y": 108, "iou": 0.8131, "error": null, "latency_ms": 4320.5}
+{"backend": "meta_api_sam3.1", "image_id": 50811, "category": "bowl", "x": 263, "y": 491, "iou": 0.9488, "error": null, "latency_ms": 2754.2}
+{"backend": "meta_api_sam3.1", "image_id": 49759, "category": "person", "x": 350, "y": 191, "iou": 0.8461, "error": null, "latency_ms": 2810.1}
+{"backend": "meta_api_sam3.1", "image_id": 50811, "category": "bottle", "x": 456, "y": 412, "iou": 0.6582, "error": null, "latency_ms": 2794.7}
+{"backend": "meta_api_sam3.1", "image_id": 54967, "category": "person", "x": 423, "y": 477, "iou": 0.9138, "error": null, "latency_ms": 526.5}
+{"backend": "meta_api_sam3.1", "image_id": 54967, "category": "car", "x": 126, "y": 443, "iou": 0.8175, "error": null, "latency_ms": 615.6}
+{"backend": "meta_api_sam3.1", "image_id": 54164, "category": "surfboard", "x": 149, "y": 327, "iou": 0.8164, "error": null, "latency_ms": 662.2}
+{"backend": "meta_api_sam3.1", "image_id": 55022, "category": "bicycle", "x": 296, "y": 268, "iou": 0.5863, "error": null, "latency_ms": 781.2}
+{"backend": "meta_api_sam3.1", "image_id": 55022, "category": "bicycle", "x": 352, "y": 187, "iou": 0.4697, "error": null, "latency_ms": 1153.6}
+{"backend": "meta_api_sam3.1", "image_id": 54164, "category": "person", "x": 234, "y": 238, "iou": 0.8933, "error": null, "latency_ms": 2397.8}
+{"backend": "meta_api_sam3.1", "image_id": 55299, "category": "umbrella", "x": 56, "y": 238, "iou": 0.7677, "error": null, "latency_ms": 1079.0}
+{"backend": "meta_api_sam3.1", "image_id": 57149, "category": "car", "x": 353, "y": 338, "iou": 0.9164, "error": null, "latency_ms": 951.8}
+{"backend": "meta_api_sam3.1", "image_id": 55299, "category": "bird", "x": 453, "y": 287, "iou": 0.8718, "error": null, "latency_ms": 2025.3}
+{"backend": "meta_api_sam3.1", "image_id": 57149, "category": "train", "x": 200, "y": 258, "iou": 0.7222, "error": null, "latency_ms": 1635.9}
+{"backend": "meta_api_sam3.1", "image_id": 58029, "category": "sink", "x": 376, "y": 477, "iou": 0.7948, "error": null, "latency_ms": 1427.7}
+{"backend": "meta_api_sam3.1", "image_id": 58029, "category": "toilet", "x": 190, "y": 461, "iou": 0.9481, "error": null, "latency_ms": 1545.0}
+{"backend": "meta_api_sam3.1", "image_id": 58384, "category": "elephant", "x": 357, "y": 211, "iou": 0.9047, "error": null, "latency_ms": 1527.2}
+{"backend": "meta_api_sam3.1", "image_id": 58384, "category": "train", "x": 127, "y": 198, "iou": 0.8923, "error": null, "latency_ms": 1041.6}
+{"backend": "meta_api_sam3.1", "image_id": 59044, "category": "person", "x": 509, "y": 181, "iou": 0.6527, "error": null, "latency_ms": 823.8}
+{"backend": "meta_api_sam3.1", "image_id": 60932, "category": "person", "x": 403, "y": 190, "iou": 0.5568, "error": null, "latency_ms": 807.2}
+{"backend": "meta_api_sam3.1", "image_id": 59044, "category": "person", "x": 281, "y": 182, "iou": 0.5455, "error": null, "latency_ms": 1491.1}
+{"backend": "meta_api_sam3.1", "image_id": 60932, "category": "dining table", "x": 0, "y": 257, "iou": 0.5446, "error": null, "latency_ms": 1271.5}
+{"backend": "meta_api_sam3.1", "image_id": 63552, "category": "cat", "x": 405, "y": 336, "iou": 0.7234, "error": null, "latency_ms": 7433.9}
+{"backend": "meta_api_sam3.1", "image_id": 64898, "category": "person", "x": 499, "y": 273, "iou": 0.8325, "error": null, "latency_ms": 6896.6}
+{"backend": "meta_api_sam3.1", "image_id": 64898, "category": "surfboard", "x": 315, "y": 244, "iou": 0.8987, "error": null, "latency_ms": 6274.3}
+{"backend": "meta_api_sam3.1", "image_id": 63552, "category": "cat", "x": 0, "y": 585, "iou": 0.4531, "error": null, "latency_ms": 10365.9}
+{"backend": "meta_api_sam3.1", "image_id": 66135, "category": "train", "x": 188, "y": 190, "iou": 0.9323, "error": null, "latency_ms": 5327.3}
+{"backend": "meta_api_sam3.1", "image_id": 68933, "category": "zebra", "x": 204, "y": 181, "iou": 0.9572, "error": null, "latency_ms": 1019.7}
+{"backend": "meta_api_sam3.1", "image_id": 66635, "category": "tv", "x": 228, "y": 165, "iou": 0.9241, "error": null, "latency_ms": 7035.2}
+{"backend": "meta_api_sam3.1", "image_id": 68286, "category": "bed", "x": 261, "y": 200, "iou": 0.1187, "error": null, "latency_ms": 4405.4}
+{"backend": "meta_api_sam3.1", "image_id": 66635, "category": "mouse", "x": 540, "y": 358, "iou": 0.943, "error": null, "latency_ms": 7312.1}
+{"backend": "meta_api_sam3.1", "image_id": 68933, "category": "zebra", "x": 81, "y": 128, "iou": 0.9235, "error": null, "latency_ms": 1290.3}
+{"backend": "meta_api_sam3.1", "image_id": 78843, "category": "person", "x": 234, "y": 331, "iou": 0.8205, "error": null, "latency_ms": 3034.6}
+{"backend": "meta_api_sam3.1", "image_id": 74733, "category": "dining table", "x": 401, "y": 50, "iou": 0.7743, "error": null, "latency_ms": 3565.1}
+{"backend": "meta_api_sam3.1", "image_id": 74733, "category": "chair", "x": 436, "y": 108, "iou": 0.9237, "error": null, "latency_ms": 5682.6}
+{"backend": "meta_api_sam3.1", "image_id": 78843, "category": "person", "x": 394, "y": 119, "iou": 0.8554, "error": null, "latency_ms": 7917.5}
+{"backend": "meta_api_sam3.1", "image_id": 79565, "category": "giraffe", "x": 287, "y": 201, "iou": 0.846, "error": null, "latency_ms": 5339.6}
+{"backend": "meta_api_sam3.1", "image_id": 80274, "category": "elephant", "x": 405, "y": 262, "iou": 0.9242, "error": null, "latency_ms": 3527.6}
+{"backend": "meta_api_sam3.1", "image_id": 79565, "category": "giraffe", "x": 163, "y": 222, "iou": 0.8495, "error": null, "latency_ms": 6006.2}
+{"backend": "meta_api_sam3.1", "image_id": 82986, "category": "person", "x": 505, "y": 146, "iou": 0.6893, "error": null, "latency_ms": 1054.1}
+{"backend": "meta_api_sam3.1", "image_id": 82986, "category": "handbag", "x": 181, "y": 159, "iou": 0.376, "error": null, "latency_ms": 926.2}
+{"backend": "meta_api_sam3.1", "image_id": 83113, "category": "elephant", "x": 344, "y": 232, "iou": 0.9167, "error": null, "latency_ms": 919.4}
+{"backend": "meta_api_sam3.1", "image_id": 90003, "category": "dog", "x": 315, "y": 284, "iou": 0.9047, "error": null, "latency_ms": 1314.5}
+{"backend": "meta_api_sam3.1", "image_id": 83113, "category": "elephant", "x": 520, "y": 194, "iou": 0.8982, "error": null, "latency_ms": 3007.2}
+{"backend": "meta_api_sam3.1", "image_id": 80274, "category": "elephant", "x": 265, "y": 173, "iou": 0.8659, "error": null, "latency_ms": 5352.6}
+{"backend": "meta_api_sam3.1", "image_id": 87875, "category": "fire hydrant", "x": 229, "y": 332, "iou": 0.8731, "error": null, "latency_ms": 3975.2}
+{"backend": "meta_api_sam3.1", "image_id": 90003, "category": "dog", "x": 191, "y": 254, "iou": 0.7213, "error": null, "latency_ms": 2179.4}
+{"backend": "meta_api_sam3.1", "image_id": 90284, "category": "person", "x": 453, "y": 255, "iou": 0.8707, "error": null, "latency_ms": 4274.6}
+{"backend": "meta_api_sam3.1", "image_id": 90284, "category": "tennis racket", "x": 487, "y": 405, "iou": 0.8934, "error": null, "latency_ms": 3083.8}
+{"backend": "meta_api_sam3.1", "image_id": 94185, "category": "teddy bear", "x": 309, "y": 367, "iou": 0.8933, "error": null, "latency_ms": 2627.6}
+{"backend": "meta_api_sam3.1", "image_id": 94185, "category": "person", "x": 0, "y": 303, "iou": 0.9412, "error": null, "latency_ms": 2658.5}
+{"backend": "meta_api_sam3.1", "image_id": 98392, "category": "car", "x": 414, "y": 638, "iou": 0.0063, "error": null, "latency_ms": 658.7}
+{"backend": "meta_api_sam3.1", "image_id": 99024, "category": "scissors", "x": 624, "y": 431, "iou": 0.7018, "error": null, "latency_ms": 999.8}
+{"backend": "meta_api_sam3.1", "image_id": 99024, "category": "kite", "x": 329, "y": 254, "iou": 0.9095, "error": null, "latency_ms": 2818.8}
+{"backend": "meta_api_sam3.1", "image_id": 99039, "category": "bowl", "x": 544, "y": 363, "iou": 0.6726, "error": null, "latency_ms": 2600.2}
+{"backend": "meta_api_sam3.1", "image_id": 98392, "category": "car", "x": 479, "y": 557, "iou": 0.8748, "error": null, "latency_ms": 2933.8}
+{"backend": "meta_api_sam3.1", "image_id": 99039, "category": "bowl", "x": 337, "y": 359, "iou": 0.9068, "error": null, "latency_ms": 1960.3}
+{"backend": "meta_api_sam3.1", "image_id": 99428, "category": "cell phone", "x": 117, "y": 303, "iou": 0.9351, "error": null, "latency_ms": 2406.7}
+{"backend": "meta_api_sam3.1", "image_id": 100283, "category": "car", "x": 241, "y": 418, "iou": 0.9254, "error": null, "latency_ms": 2304.0}
+{"backend": "meta_api_sam3.1", "image_id": 100283, "category": "car", "x": 365, "y": 414, "iou": 0.2051, "error": null, "latency_ms": 2683.0}
+{"backend": "meta_api_sam3.1", "image_id": 107087, "category": "chair", "x": 341, "y": 235, "iou": 0.3195, "error": null, "latency_ms": 1268.5}
+{"backend": "meta_api_sam3.1", "image_id": 107087, "category": "cat", "x": 159, "y": 225, "iou": 0.844, "error": null, "latency_ms": 7650.7}
+{"backend": "meta_api_sam3.1", "image_id": 112634, "category": "giraffe", "x": 626, "y": 242, "iou": 0.8996, "error": null, "latency_ms": 6435.4}
+{"backend": "meta_api_sam3.1", "image_id": 112634, "category": "giraffe", "x": 219, "y": 148, "iou": 0.9158, "error": null, "latency_ms": 8279.8}
+{"backend": "meta_api_sam3.1", "image_id": 99428, "category": "laptop", "x": 126, "y": 0, "iou": 0.3636, "error": null, "latency_ms": 13591.1}
+{"backend": "meta_api_sam3.1", "image_id": 115946, "category": "traffic light", "x": 192, "y": 141, "iou": 0.631, "error": null, "latency_ms": 3587.8}
+{"backend": "meta_api_sam3.1", "image_id": 116208, "category": "pizza", "x": 600, "y": 338, "iou": 0.5909, "error": null, "latency_ms": 1091.4}
+{"backend": "meta_api_sam3.1", "image_id": 115946, "category": "car", "x": 144, "y": 521, "iou": 0.9243, "error": null, "latency_ms": 4718.2}
+{"backend": "meta_api_sam3.1", "image_id": 116208, "category": "cup", "x": 570, "y": 412, "iou": 0.9104, "error": null, "latency_ms": 2691.9}
+{"backend": "meta_api_sam3.1", "image_id": 115118, "category": "train", "x": 431, "y": 261, "iou": 0.78, "error": null, "latency_ms": 7055.8}
+{"backend": "meta_api_sam3.1", "image_id": 121031, "category": "person", "x": 409, "y": 191, "iou": 0.8122, "error": null, "latency_ms": 1801.7}
+{"backend": "meta_api_sam3.1", "image_id": 121031, "category": "person", "x": 170, "y": 166, "iou": 0.7001, "error": null, "latency_ms": 2323.8}
+{"backend": "meta_api_sam3.1", "image_id": 121744, "category": "person", "x": 145, "y": 104, "iou": 0.8666, "error": null, "latency_ms": 1227.6}
+{"backend": "meta_api_sam3.1", "image_id": 127270, "category": "bench", "x": 151, "y": 34, "iou": 0.2268, "error": null, "latency_ms": 978.8}
+{"backend": "meta_api_sam3.1", "image_id": 121744, "category": "person", "x": 483, "y": 58, "iou": 0.1002, "error": null, "latency_ms": 2949.2}
+{"backend": "meta_api_sam3.1", "image_id": 123585, "category": "bird", "x": 410, "y": 503, "iou": 0.8787, "error": null, "latency_ms": 2233.4}
+{"backend": "meta_api_sam3.1", "image_id": 130386, "category": "car", "x": 191, "y": 452, "iou": 0.8525, "error": null, "latency_ms": 901.6}
+{"backend": "meta_api_sam3.1", "image_id": 133244, "category": "person", "x": 436, "y": 68, "iou": 0.9332, "error": null, "latency_ms": 867.7}
+{"backend": "meta_api_sam3.1", "image_id": 123585, "category": "bird", "x": 260, "y": 323, "iou": 0.9079, "error": null, "latency_ms": 3228.1}
+{"backend": "meta_api_sam3.1", "image_id": 127270, "category": "person", "x": 149, "y": 285, "iou": 0.9663, "error": null, "latency_ms": 3668.2}
+{"backend": "meta_api_sam3.1", "image_id": 140270, "category": "horse", "x": 406, "y": 189, "iou": 0.7984, "error": null, "latency_ms": 2684.5}
+{"backend": "meta_api_sam3.1", "image_id": 133244, "category": "chair", "x": 245, "y": 101, "iou": 0.496, "error": null, "latency_ms": 3156.9}
+{"backend": "meta_api_sam3.1", "image_id": 140270, "category": "person", "x": 333, "y": 130, "iou": 0.9114, "error": null, "latency_ms": 2105.6}
+{"backend": "meta_api_sam3.1", "image_id": 140286, "category": "person", "x": 487, "y": 261, "iou": 0.8217, "error": null, "latency_ms": 992.3}
+{"backend": "meta_api_sam3.1", "image_id": 141671, "category": "motorcycle", "x": 333, "y": 308, "iou": 0.6776, "error": null, "latency_ms": 1014.9}
+{"backend": "meta_api_sam3.1", "image_id": 140286, "category": "horse", "x": 232, "y": 302, "iou": 0.8921, "error": null, "latency_ms": 2008.0}
+{"backend": "meta_api_sam3.1", "image_id": 144932, "category": "boat", "x": 532, "y": 221, "iou": 0.8114, "error": null, "latency_ms": 660.9}
+{"backend": "meta_api_sam3.1", "image_id": 141671, "category": "horse", "x": 414, "y": 228, "iou": 0.6003, "error": null, "latency_ms": 1983.2}
+{"backend": "meta_api_sam3.1", "image_id": 147338, "category": "truck", "x": 479, "y": 50, "iou": 0.8291, "error": null, "latency_ms": 927.5}
+{"backend": "meta_api_sam3.1", "image_id": 147415, "category": "chair", "x": 183, "y": 191, "iou": 0.875, "error": null, "latency_ms": 1143.8}
+{"backend": "meta_api_sam3.1", "image_id": 147338, "category": "car", "x": 21, "y": 162, "iou": 0.9154, "error": null, "latency_ms": 2964.7}
+{"backend": "meta_api_sam3.1", "image_id": 147415, "category": "keyboard", "x": 187, "y": 399, "iou": 0.0341, "error": null, "latency_ms": 3356.3}
+{"backend": "meta_api_sam3.1", "image_id": 147725, "category": "bus", "x": 265, "y": 183, "iou": 0.9554, "error": null, "latency_ms": 2532.3}
+{"backend": "meta_api_sam3.1", "image_id": 147725, "category": "car", "x": 482, "y": 211, "iou": 0.8296, "error": null, "latency_ms": 3339.2}
+{"backend": "meta_api_sam3.1", "image_id": 148662, "category": "hot dog", "x": 143, "y": 378, "iou": 0.9264, "error": null, "latency_ms": 1096.0}
+{"backend": "meta_api_sam3.1", "image_id": 148662, "category": "person", "x": 299, "y": 0, "iou": 0.8352, "error": null, "latency_ms": 4893.7}
+{"backend": "meta_api_sam3.1", "image_id": 159791, "category": "microwave", "x": 15, "y": 221, "iou": 0.88, "error": null, "latency_ms": 3015.3}
+{"backend": "meta_api_sam3.1", "image_id": 159791, "category": "refrigerator", "x": 261, "y": 190, "iou": 0.9176, "error": null, "latency_ms": 5798.0}
+{"backend": "meta_api_sam3.1", "image_id": 157213, "category": "elephant", "x": 338, "y": 122, "iou": 0.9339, "error": null, "latency_ms": 6265.3}
+{"backend": "meta_api_sam3.1", "image_id": 161128, "category": "car", "x": 28, "y": 411, "iou": 0.9242, "error": null, "latency_ms": 3130.9}
+{"backend": "meta_api_sam3.1", "image_id": 161128, "category": "car", "x": 61, "y": 397, "iou": 0.8186, "error": null, "latency_ms": 1605.0}
+{"backend": "meta_api_sam3.1", "image_id": 162130, "category": "bench", "x": 192, "y": 363, "iou": 0.8931, "error": null, "latency_ms": 1589.3}
+{"backend": "meta_api_sam3.1", "image_id": 168593, "category": "refrigerator", "x": 131, "y": 321, "iou": 0.9911, "error": null, "latency_ms": 2001.2}
+{"backend": "meta_api_sam3.1", "image_id": 168593, "category": "chair", "x": 577, "y": 349, "iou": 0.6733, "error": null, "latency_ms": 3256.8}
+{"backend": "meta_api_sam3.1", "image_id": 172330, "category": "car", "x": 383, "y": 124, "iou": 0.963, "error": null, "latency_ms": 4426.1}
+{"backend": "meta_api_sam3.1", "image_id": 172330, "category": "car", "x": 52, "y": 54, "iou": 0.8961, "error": null, "latency_ms": 3104.3}
+{"backend": "meta_api_sam3.1", "image_id": 172856, "category": "stop sign", "x": 205, "y": 296, "iou": 0.9227, "error": null, "latency_ms": 2867.0}
+{"backend": "meta_api_sam3.1", "image_id": 173383, "category": "cake", "x": 260, "y": 202, "iou": 0.1322, "error": null, "latency_ms": 1846.8}
+{"backend": "meta_api_sam3.1", "image_id": 179265, "category": "car", "x": 243, "y": 174, "iou": 0.8655, "error": null, "latency_ms": 847.0}
+{"backend": "meta_api_sam3.1", "image_id": 173383, "category": "dining table", "x": 46, "y": 424, "iou": 0.5093, "error": null, "latency_ms": 3957.6}
+{"backend": "meta_api_sam3.1", "image_id": 179265, "category": "bus", "x": 370, "y": 208, "iou": 0.9529, "error": null, "latency_ms": 3374.0}
+{"backend": "meta_api_sam3.1", "image_id": 181499, "category": "person", "x": 206, "y": 476, "iou": 0.763, "error": null, "latency_ms": 2841.7}
+{"backend": "meta_api_sam3.1", "image_id": 181499, "category": "keyboard", "x": 436, "y": 339, "iou": 0.2716, "error": null, "latency_ms": 7905.0}
+{"backend": "meta_api_sam3.1", "image_id": 193494, "category": "bed", "x": 208, "y": 483, "iou": 0.7666, "error": null, "latency_ms": 5107.6}
+{"backend": "meta_api_sam3.1", "image_id": 195165, "category": "toilet", "x": 29, "y": 387, "iou": 0.9448, "error": null, "latency_ms": 5066.9}
+{"backend": "meta_api_sam3.1", "image_id": 195165, "category": "sink", "x": 402, "y": 308, "iou": 0.9341, "error": null, "latency_ms": 5110.7}
+{"backend": "meta_api_sam3.1", "image_id": 196442, "category": "skis", "x": 183, "y": 231, "iou": 0.5725, "error": null, "latency_ms": 1179.9}
+{"backend": "meta_api_sam3.1", "image_id": 196442, "category": "person", "x": 170, "y": 177, "iou": 0.5921, "error": null, "latency_ms": 736.3}
+{"backend": "meta_api_sam3.1", "image_id": 203389, "category": "backpack", "x": 511, "y": 243, "iou": 0.0813, "error": null, "latency_ms": 1743.3}
+{"backend": "meta_api_sam3.1", "image_id": 203389, "category": "person", "x": 202, "y": 263, "iou": 0.6472, "error": null, "latency_ms": 1842.2}
+{"backend": "meta_api_sam3.1", "image_id": 206579, "category": "dining table", "x": 633, "y": 345, "iou": 0.0107, "error": null, "latency_ms": 1219.1}
+{"backend": "meta_api_sam3.1", "image_id": 212072, "category": "stop sign", "x": 386, "y": 103, "iou": 0.9679, "error": null, "latency_ms": 1235.4}
+{"backend": "meta_api_sam3.1", "image_id": 206579, "category": "person", "x": 569, "y": 39, "iou": 0.816, "error": null, "latency_ms": 2806.0}
+{"backend": "meta_api_sam3.1", "image_id": 210099, "category": "chair", "x": 244, "y": 292, "iou": 0.193, "error": null, "latency_ms": 2415.1}
+{"backend": "meta_api_sam3.1", "image_id": 219283, "category": "banana", "x": 151, "y": 311, "iou": 0.76, "error": null, "latency_ms": 1180.8}
+{"backend": "meta_api_sam3.1", "image_id": 210099, "category": "cat", "x": 232, "y": 235, "iou": 0.9262, "error": null, "latency_ms": 3569.4}
+{"backend": "meta_api_sam3.1", "image_id": 219283, "category": "bowl", "x": 94, "y": 354, "iou": 0.9203, "error": null, "latency_ms": 2246.5}
+{"backend": "meta_api_sam3.1", "image_id": 221155, "category": "cow", "x": 426, "y": 382, "iou": 0.7388, "error": null, "latency_ms": 1351.7}
+{"backend": "meta_api_sam3.1", "image_id": 221155, "category": "cow", "x": 165, "y": 379, "iou": 0.8922, "error": null, "latency_ms": 1424.2}
+{"backend": "meta_api_sam3.1", "image_id": 222235, "category": "cat", "x": 338, "y": 222, "iou": 0.7895, "error": null, "latency_ms": 2218.8}
+{"backend": "meta_api_sam3.1", "image_id": 228214, "category": "cell phone", "x": 218, "y": 347, "iou": 0.8976, "error": null, "latency_ms": 1895.2}
+{"backend": "meta_api_sam3.1", "image_id": 228214, "category": "umbrella", "x": 393, "y": 355, "iou": 0.3714, "error": null, "latency_ms": 1962.8}
+{"backend": "meta_api_sam3.1", "image_id": 222235, "category": "bird", "x": 307, "y": 116, "iou": 0.7732, "error": null, "latency_ms": 2002.8}
+{"backend": "meta_api_sam3.1", "image_id": 234366, "category": "clock", "x": 246, "y": 251, "iou": 0.9321, "error": null, "latency_ms": 1358.4}
+{"backend": "meta_api_sam3.1", "image_id": 234807, "category": "horse", "x": 172, "y": 290, "iou": 0.9351, "error": null, "latency_ms": 1867.1}
+{"backend": "meta_api_sam3.1", "image_id": 234807, "category": "horse", "x": 588, "y": 300, "iou": 0.9675, "error": null, "latency_ms": 2009.1}
+{"backend": "meta_api_sam3.1", "image_id": 238410, "category": "potted plant", "x": 281, "y": 144, "iou": 0.8124, "error": null, "latency_ms": 812.5}
+{"backend": "meta_api_sam3.1", "image_id": 231169, "category": "train", "x": 337, "y": 317, "iou": 0.8643, "error": null, "latency_ms": 4303.1}
+{"backend": "meta_api_sam3.1", "image_id": 249643, "category": "train", "x": 618, "y": 246, "iou": 0.8592, "error": null, "latency_ms": 2388.0}
+{"backend": "meta_api_sam3.1", "image_id": 238410, "category": "person", "x": 523, "y": 285, "iou": 0.6556, "error": null, "latency_ms": 4297.6}
+{"backend": "meta_api_sam3.1", "image_id": 249643, "category": "train", "x": 327, "y": 239, "iou": 0.9261, "error": null, "latency_ms": 5917.5}
+{"backend": "meta_api_sam3.1", "image_id": 257370, "category": "tv", "x": 434, "y": 252, "iou": 0.7504, "error": null, "latency_ms": 4288.0}
+{"backend": "meta_api_sam3.1", "image_id": 257370, "category": "person", "x": 97, "y": 213, "iou": 0.9402, "error": null, "latency_ms": 4955.4}
+{"backend": "meta_api_sam3.1", "image_id": 265518, "category": "cup", "x": 143, "y": 118, "iou": 0.8744, "error": null, "latency_ms": 3462.4}
+{"backend": "meta_api_sam3.1", "image_id": 265518, "category": "fork", "x": 182, "y": 455, "iou": 0.7767, "error": null, "latency_ms": 1929.8}
+{"backend": "meta_api_sam3.1", "image_id": 269932, "category": "horse", "x": 296, "y": 137, "iou": 0.8699, "error": null, "latency_ms": 1555.0}
+{"backend": "meta_api_sam3.1", "image_id": 272364, "category": "giraffe", "x": 122, "y": 589, "iou": 0.7866, "error": null, "latency_ms": 1822.6}
+{"backend": "meta_api_sam3.1", "image_id": 269932, "category": "chair", "x": 147, "y": 233, "iou": 0.8348, "error": null, "latency_ms": 4283.7}
+{"backend": "meta_api_sam3.1", "image_id": 275198, "category": "bowl", "x": 306, "y": 335, "iou": 0.1453, "error": null, "latency_ms": 3324.4}
+{"backend": "meta_api_sam3.1", "image_id": 272364, "category": "giraffe", "x": 199, "y": 290, "iou": 0.9073, "error": null, "latency_ms": 4046.5}
+{"backend": "meta_api_sam3.1", "image_id": 275198, "category": "person", "x": 373, "y": 191, "iou": 0.9029, "error": null, "latency_ms": 2597.6}
+{"backend": "meta_api_sam3.1", "image_id": 275791, "category": "boat", "x": 311, "y": 360, "iou": 0.9087, "error": null, "latency_ms": 1339.2}
+{"backend": "meta_api_sam3.1", "image_id": 277197, "category": "vase", "x": 267, "y": 335, "iou": 0.4453, "error": null, "latency_ms": 1244.9}
+{"backend": "meta_api_sam3.1", "image_id": 275791, "category": "boat", "x": 502, "y": 260, "iou": 0.6741, "error": null, "latency_ms": 1608.1}
+{"backend": "meta_api_sam3.1", "image_id": 277197, "category": "couch", "x": 535, "y": 324, "iou": 0.8832, "error": null, "latency_ms": 1837.5}
+{"backend": "meta_api_sam3.1", "image_id": 287667, "category": "knife", "x": 274, "y": 67, "iou": 0.779, "error": null, "latency_ms": 681.6}
+{"backend": "meta_api_sam3.1", "image_id": 288042, "category": "person", "x": 571, "y": 235, "iou": 0.8842, "error": null, "latency_ms": 1136.3}
+{"backend": "meta_api_sam3.1", "image_id": 287667, "category": "book", "x": 37, "y": 419, "iou": 0.923, "error": null, "latency_ms": 1576.0}
+{"backend": "meta_api_sam3.1", "image_id": 288042, "category": "umbrella", "x": 576, "y": 180, "iou": 0.9056, "error": null, "latency_ms": 1239.7}
+{"backend": "meta_api_sam3.1", "image_id": 293858, "category": "carrot", "x": 180, "y": 190, "iou": 0.537, "error": null, "latency_ms": 1527.5}
+{"backend": "meta_api_sam3.1", "image_id": 293858, "category": "hot dog", "x": 329, "y": 299, "iou": 0.945, "error": null, "latency_ms": 3617.0}
+{"backend": "meta_api_sam3.1", "image_id": 295231, "category": "sheep", "x": 194, "y": 340, "iou": 0.8975, "error": null, "latency_ms": 4787.0}
+{"backend": "meta_api_sam3.1", "image_id": 297085, "category": "tv", "x": 287, "y": 66, "iou": 0.7688, "error": null, "latency_ms": 4364.1}
+{"backend": "meta_api_sam3.1", "image_id": 295231, "category": "sheep", "x": 72, "y": 167, "iou": 0.8921, "error": null, "latency_ms": 4963.6}
+{"backend": "meta_api_sam3.1", "image_id": 297085, "category": "teddy bear", "x": 187, "y": 155, "iou": 0.8838, "error": null, "latency_ms": 1837.3}
+{"backend": "meta_api_sam3.1", "image_id": 299553, "category": "person", "x": 313, "y": 399, "iou": 0.7851, "error": null, "latency_ms": 720.1}
+{"backend": "meta_api_sam3.1", "image_id": 299553, "category": "person", "x": 358, "y": 385, "iou": 0.839, "error": null, "latency_ms": 1104.1}
+{"backend": "meta_api_sam3.1", "image_id": 304180, "category": "person", "x": 54, "y": 97, "iou": 0.9017, "error": null, "latency_ms": 1466.2}
+{"backend": "meta_api_sam3.1", "image_id": 298904, "category": "vase", "x": 227, "y": 360, "iou": 0.93, "error": null, "latency_ms": 6278.0}
+{"backend": "meta_api_sam3.1", "image_id": 304180, "category": "skateboard", "x": 317, "y": 372, "iou": 0.7864, "error": null, "latency_ms": 5828.1}
+{"backend": "meta_api_sam3.1", "image_id": 309391, "category": "person", "x": 616, "y": 311, "iou": 0.8428, "error": null, "latency_ms": 4753.1}
+{"backend": "meta_api_sam3.1", "image_id": 309391, "category": "car", "x": 349, "y": 226, "iou": 0.9084, "error": null, "latency_ms": 3910.4}
+{"backend": "meta_api_sam3.1", "image_id": 325483, "category": "person", "x": 420, "y": 243, "iou": 0.8978, "error": null, "latency_ms": 1336.9}
+{"backend": "meta_api_sam3.1", "image_id": 327617, "category": "person", "x": 160, "y": 448, "iou": 0.1193, "error": null, "latency_ms": 1476.4}
+{"backend": "meta_api_sam3.1", "image_id": 325483, "category": "laptop", "x": 140, "y": 394, "iou": 0.8977, "error": null, "latency_ms": 1519.1}
+{"backend": "meta_api_sam3.1", "image_id": 325527, "category": "teddy bear", "x": 280, "y": 237, "iou": 0.9485, "error": null, "latency_ms": 1696.3}
+{"backend": "meta_api_sam3.1", "image_id": 328601, "category": "sports ball", "x": 350, "y": 277, "iou": 0.9168, "error": null, "latency_ms": 880.4}
+{"backend": "meta_api_sam3.1", "image_id": 327617, "category": "tennis racket", "x": 198, "y": 450, "iou": 0.935, "error": null, "latency_ms": 1180.4}
+{"backend": "meta_api_sam3.1", "image_id": 328601, "category": "tennis racket", "x": 98, "y": 149, "iou": 0.9513, "error": null, "latency_ms": 934.7}
+{"backend": "meta_api_sam3.1", "image_id": 332570, "category": "cell phone", "x": 209, "y": 210, "iou": 0.953, "error": null, "latency_ms": 2409.2}
+{"backend": "meta_api_sam3.1", "image_id": 333069, "category": "giraffe", "x": 296, "y": 318, "iou": 0.7941, "error": null, "latency_ms": 2207.1}
+{"backend": "meta_api_sam3.1", "image_id": 333069, "category": "giraffe", "x": 175, "y": 445, "iou": 0.9078, "error": null, "latency_ms": 3489.7}
+{"backend": "meta_api_sam3.1", "image_id": 332570, "category": "person", "x": 0, "y": 499, "iou": 0.9595, "error": null, "latency_ms": 4591.8}
+{"backend": "meta_api_sam3.1", "image_id": 335450, "category": "horse", "x": 306, "y": 236, "iou": 0.7737, "error": null, "latency_ms": 4041.6}
+{"backend": "meta_api_sam3.1", "image_id": 335450, "category": "horse", "x": 422, "y": 232, "iou": 0.8923, "error": null, "latency_ms": 3234.9}
+{"backend": "meta_api_sam3.1", "image_id": 341469, "category": "suitcase", "x": 175, "y": 511, "iou": 0.9559, "error": null, "latency_ms": 2890.4}
+{"backend": "meta_api_sam3.1", "image_id": 341469, "category": "handbag", "x": 173, "y": 178, "iou": 0.9129, "error": null, "latency_ms": 2257.8}
+{"backend": "meta_api_sam3.1", "image_id": 344059, "category": "giraffe", "x": 378, "y": 239, "iou": 0.8713, "error": null, "latency_ms": 1518.1}
+{"backend": "meta_api_sam3.1", "image_id": 344059, "category": "giraffe", "x": 103, "y": 254, "iou": 0.8841, "error": null, "latency_ms": 2522.2}
+{"backend": "meta_api_sam3.1", "image_id": 346905, "category": "elephant", "x": 353, "y": 305, "iou": 0.9129, "error": null, "latency_ms": 2211.0}
+{"backend": "meta_api_sam3.1", "image_id": 346905, "category": "elephant", "x": 183, "y": 164, "iou": 0.862, "error": null, "latency_ms": 3609.3}
+{"backend": "meta_api_sam3.1", "image_id": 348243, "category": "horse", "x": 171, "y": 309, "iou": 0.9623, "error": null, "latency_ms": 2575.6}
+{"backend": "meta_api_sam3.1", "image_id": 348243, "category": "horse", "x": 184, "y": 418, "iou": 0.5439, "error": null, "latency_ms": 2269.2}
+{"backend": "meta_api_sam3.1", "image_id": 349152, "category": "donut", "x": 265, "y": 231, "iou": 0.9155, "error": null, "latency_ms": 1525.7}
+{"backend": "meta_api_sam3.1", "image_id": 349152, "category": "donut", "x": 301, "y": 237, "iou": 0.9199, "error": null, "latency_ms": 866.1}
+{"backend": "meta_api_sam3.1", "image_id": 350054, "category": "cat", "x": 262, "y": 170, "iou": 0.8006, "error": null, "latency_ms": 1030.3}
+{"backend": "meta_api_sam3.1", "image_id": 353518, "category": "boat", "x": 369, "y": 169, "iou": 0.5571, "error": null, "latency_ms": 1469.9}
+{"backend": "meta_api_sam3.1", "image_id": 350054, "category": "tv", "x": 312, "y": 86, "iou": 0.9145, "error": null, "latency_ms": 2257.9}
+{"backend": "meta_api_sam3.1", "image_id": 356498, "category": "broccoli", "x": 296, "y": 75, "iou": 0.9003, "error": null, "latency_ms": 1413.0}
+{"backend": "meta_api_sam3.1", "image_id": 353518, "category": "boat", "x": 528, "y": 172, "iou": 0.8817, "error": null, "latency_ms": 2096.1}
+{"backend": "meta_api_sam3.1", "image_id": 356498, "category": "broccoli", "x": 145, "y": 93, "iou": 0.5067, "error": null, "latency_ms": 1513.4}
+{"backend": "meta_api_sam3.1", "image_id": 364102, "category": "person", "x": 288, "y": 271, "iou": 0.9218, "error": null, "latency_ms": 1050.6}
+{"backend": "meta_api_sam3.1", "image_id": 360097, "category": "suitcase", "x": 274, "y": 52, "iou": 0.888, "error": null, "latency_ms": 1294.6}
+{"backend": "meta_api_sam3.1", "image_id": 360097, "category": "suitcase", "x": 318, "y": 81, "iou": 0.9445, "error": null, "latency_ms": 1122.6}
+{"backend": "meta_api_sam3.1", "image_id": 368940, "category": "sink", "x": 55, "y": 196, "iou": 0.487, "error": null, "latency_ms": 1557.4}
+{"backend": "meta_api_sam3.1", "image_id": 375078, "category": "bottle", "x": 248, "y": 561, "iou": 0.6369, "error": null, "latency_ms": 2147.2}
+{"backend": "meta_api_sam3.1", "image_id": 372819, "category": "dog", "x": 247, "y": 170, "iou": 0.9333, "error": null, "latency_ms": 2192.0}
+{"backend": "meta_api_sam3.1", "image_id": 372819, "category": "dog", "x": 448, "y": 242, "iou": 0.8287, "error": null, "latency_ms": 2693.1}
+{"backend": "meta_api_sam3.1", "image_id": 375078, "category": "vase", "x": 249, "y": 479, "iou": 0.6018, "error": null, "latency_ms": 2166.7}
+{"backend": "meta_api_sam3.1", "image_id": 376322, "category": "wine glass", "x": 477, "y": 498, "iou": 0.8897, "error": null, "latency_ms": 1451.7}
+{"backend": "meta_api_sam3.1", "image_id": 376322, "category": "fork", "x": 224, "y": 596, "iou": 0.8865, "error": null, "latency_ms": 1959.8}
+{"backend": "meta_api_sam3.1", "image_id": 376900, "category": "person", "x": 259, "y": 357, "iou": 0.5585, "error": null, "latency_ms": 1012.2}
+{"backend": "meta_api_sam3.1", "image_id": 376900, "category": "person", "x": 352, "y": 343, "iou": 0.934, "error": null, "latency_ms": 1189.6}
+{"backend": "meta_api_sam3.1", "image_id": 377946, "category": "bus", "x": 22, "y": 166, "iou": 0.9203, "error": null, "latency_ms": 1035.6}
+{"backend": "meta_api_sam3.1", "image_id": 378673, "category": "person", "x": 362, "y": 143, "iou": 0.9193, "error": null, "latency_ms": 995.2}
+{"backend": "meta_api_sam3.1", "image_id": 378673, "category": "skateboard", "x": 386, "y": 280, "iou": 0.8825, "error": null, "latency_ms": 1197.9}
+{"backend": "meta_api_sam3.1", "image_id": 377946, "category": "truck", "x": 308, "y": 208, "iou": 0.776, "error": null, "latency_ms": 4646.6}
+{"backend": "meta_api_sam3.1", "image_id": 380203, "category": "horse", "x": 263, "y": 214, "iou": 0.9332, "error": null, "latency_ms": 4265.5}
+{"backend": "meta_api_sam3.1", "image_id": 378873, "category": "person", "x": 521, "y": 47, "iou": 0.681, "error": null, "latency_ms": 5011.2}
+{"backend": "meta_api_sam3.1", "image_id": 378873, "category": "truck", "x": 492, "y": 23, "iou": 0.4312, "error": null, "latency_ms": 4366.5}
+{"backend": "meta_api_sam3.1", "image_id": 383606, "category": "person", "x": 327, "y": 183, "iou": 0.933, "error": null, "latency_ms": 1046.0}
+{"backend": "meta_api_sam3.1", "image_id": 383606, "category": "sink", "x": 210, "y": 340, "iou": 0.146, "error": null, "latency_ms": 824.8}
+{"backend": "meta_api_sam3.1", "image_id": 397354, "category": "oven", "x": 139, "y": 326, "iou": 0.0662, "error": null, "latency_ms": 1346.3}
+{"backend": "meta_api_sam3.1", "image_id": 400794, "category": "pizza", "x": 215, "y": 573, "iou": 0.8539, "error": null, "latency_ms": 1166.1}
+{"backend": "meta_api_sam3.1", "image_id": 397354, "category": "person", "x": 576, "y": 348, "iou": 0.5311, "error": null, "latency_ms": 2167.9}
+{"backend": "meta_api_sam3.1", "image_id": 400794, "category": "fork", "x": 154, "y": 623, "iou": 0.7046, "error": null, "latency_ms": 2191.2}
+{"backend": "meta_api_sam3.1", "image_id": 401991, "category": "dog", "x": 344, "y": 244, "iou": 0.6772, "error": null, "latency_ms": 1042.1}
+{"backend": "meta_api_sam3.1", "image_id": 401991, "category": "dog", "x": 111, "y": 92, "iou": 0.9797, "error": null, "latency_ms": 1510.5}
+{"backend": "meta_api_sam3.1", "image_id": 401862, "category": "person", "x": 554, "y": 300, "iou": 0.9121, "error": null, "latency_ms": 2602.3}
+{"backend": "meta_api_sam3.1", "image_id": 401862, "category": "person", "x": 423, "y": 312, "iou": 0.8575, "error": null, "latency_ms": 2113.8}
+{"backend": "meta_api_sam3.1", "image_id": 404249, "category": "person", "x": 161, "y": 236, "iou": 0.8737, "error": null, "latency_ms": 2557.9}
+{"backend": "meta_api_sam3.1", "image_id": 404249, "category": "skateboard", "x": 147, "y": 510, "iou": 0.8409, "error": null, "latency_ms": 2359.3}
+{"backend": "meta_api_sam3.1", "image_id": 406997, "category": "person", "x": 500, "y": 45, "iou": 0.8751, "error": null, "latency_ms": 2451.9}
+{"backend": "meta_api_sam3.1", "image_id": 406997, "category": "person", "x": 287, "y": 64, "iou": 0.7602, "error": null, "latency_ms": 2389.8}
+{"backend": "meta_api_sam3.1", "image_id": 409475, "category": "person", "x": 486, "y": 272, "iou": 0.9612, "error": null, "latency_ms": 1515.5}
+{"backend": "meta_api_sam3.1", "image_id": 412240, "category": "dog", "x": 200, "y": 118, "iou": 0.9142, "error": null, "latency_ms": 1962.3}
+{"backend": "meta_api_sam3.1", "image_id": 409475, "category": "person", "x": 193, "y": 249, "iou": 0.8742, "error": null, "latency_ms": 2302.1}
+{"backend": "meta_api_sam3.1", "image_id": 415727, "category": "baseball bat", "x": 459, "y": 184, "iou": 0.5108, "error": null, "latency_ms": 2301.3}
+{"backend": "meta_api_sam3.1", "image_id": 415727, "category": "baseball bat", "x": 510, "y": 163, "iou": 0.1111, "error": null, "latency_ms": 1403.4}
+{"backend": "meta_api_sam3.1", "image_id": 422886, "category": "couch", "x": 0, "y": 579, "iou": 0.0675, "error": null, "latency_ms": 953.2}
+{"backend": "meta_api_sam3.1", "image_id": 427055, "category": "clock", "x": 451, "y": 104, "iou": 0.8618, "error": null, "latency_ms": 1010.0}
+{"backend": "meta_api_sam3.1", "image_id": 422886, "category": "hot dog", "x": 333, "y": 371, "iou": 0.0646, "error": null, "latency_ms": 1286.1}
+{"backend": "meta_api_sam3.1", "image_id": 430073, "category": "person", "x": 539, "y": 239, "iou": 0.8034, "error": null, "latency_ms": 1257.5}
+{"backend": "meta_api_sam3.1", "image_id": 430073, "category": "chair", "x": 601, "y": 271, "iou": 0.1723, "error": null, "latency_ms": 817.2}
+{"backend": "meta_api_sam3.1", "image_id": 434996, "category": "cat", "x": 262, "y": 189, "iou": 0.9311, "error": null, "latency_ms": 661.7}
+{"backend": "meta_api_sam3.1", "image_id": 430871, "category": "parking meter", "x": 115, "y": 118, "iou": 0.9405, "error": null, "latency_ms": 1683.4}
+{"backend": "meta_api_sam3.1", "image_id": 434996, "category": "teddy bear", "x": 359, "y": 158, "iou": 0.8954, "error": null, "latency_ms": 1567.2}
+{"backend": "meta_api_sam3.1", "image_id": 438774, "category": "person", "x": 245, "y": 129, "iou": 0.7724, "error": null, "latency_ms": 1734.4}
+{"backend": "meta_api_sam3.1", "image_id": 438774, "category": "person", "x": 463, "y": 102, "iou": 0.8851, "error": null, "latency_ms": 1184.6}
+{"backend": "meta_api_sam3.1", "image_id": 438907, "category": "skateboard", "x": 53, "y": 366, "iou": 0.5131, "error": null, "latency_ms": 1120.2}
+{"backend": "meta_api_sam3.1", "image_id": 447465, "category": "skis", "x": 362, "y": 403, "iou": 0.419, "error": null, "latency_ms": 970.5}
+{"backend": "meta_api_sam3.1", "image_id": 438907, "category": "person", "x": 91, "y": 285, "iou": 0.8453, "error": null, "latency_ms": 1691.5}
+{"backend": "meta_api_sam3.1", "image_id": 443498, "category": "bus", "x": 328, "y": 237, "iou": 0.9543, "error": null, "latency_ms": 2142.5}
+{"backend": "meta_api_sam3.1", "image_id": 447917, "category": "person", "x": 170, "y": 130, "iou": 0.9511, "error": null, "latency_ms": 1593.1}
+{"backend": "meta_api_sam3.1", "image_id": 447465, "category": "person", "x": 133, "y": 167, "iou": 0.8636, "error": null, "latency_ms": 1906.7}
+{"backend": "meta_api_sam3.1", "image_id": 447917, "category": "sports ball", "x": 485, "y": 271, "iou": 0.9345, "error": null, "latency_ms": 1591.0}
+{"backend": "meta_api_sam3.1", "image_id": 455157, "category": "dining table", "x": 489, "y": 341, "iou": 0.8105, "error": null, "latency_ms": 2217.1}
+{"backend": "meta_api_sam3.1", "image_id": 455219, "category": "cow", "x": 364, "y": 276, "iou": 0.8494, "error": null, "latency_ms": 1673.0}
+{"backend": "meta_api_sam3.1", "image_id": 455219, "category": "person", "x": 512, "y": 251, "iou": 0.9272, "error": null, "latency_ms": 1842.4}
+{"backend": "meta_api_sam3.1", "image_id": 455157, "category": "bench", "x": 590, "y": 340, "iou": 0.6379, "error": null, "latency_ms": 1859.6}
+{"backend": "meta_api_sam3.1", "image_id": 460147, "category": "car", "x": 504, "y": 212, "iou": 0.9097, "error": null, "latency_ms": 874.0}
+{"backend": "meta_api_sam3.1", "image_id": 460841, "category": "bottle", "x": 107, "y": 270, "iou": 0.9423, "error": null, "latency_ms": 972.2}
+{"backend": "meta_api_sam3.1", "image_id": 460147, "category": "car", "x": 573, "y": 247, "iou": 0.9449, "error": null, "latency_ms": 1115.5}
+{"backend": "meta_api_sam3.1", "image_id": 460841, "category": "toilet", "x": 325, "y": 355, "iou": 0.4653, "error": null, "latency_ms": 1401.8}
+{"backend": "meta_api_sam3.1", "image_id": 463174, "category": "person", "x": 302, "y": 155, "iou": 0.843, "error": null, "latency_ms": 2537.4}
+{"backend": "meta_api_sam3.1", "image_id": 463174, "category": "tennis racket", "x": 68, "y": 285, "iou": 0.8209, "error": null, "latency_ms": 2208.8}
+{"backend": "meta_api_sam3.1", "image_id": 463730, "category": "person", "x": 59, "y": 220, "iou": 0.9124, "error": null, "latency_ms": 1912.3}
+{"backend": "meta_api_sam3.1", "image_id": 463730, "category": "car", "x": 601, "y": 246, "iou": 0.9643, "error": null, "latency_ms": 2369.3}
+{"backend": "meta_api_sam3.1", "image_id": 466085, "category": "sink", "x": 351, "y": 480, "iou": 0.9745, "error": null, "latency_ms": 1074.9}
+{"backend": "meta_api_sam3.1", "image_id": 473237, "category": "chair", "x": 539, "y": 257, "iou": 0.7454, "error": null, "latency_ms": 1256.0}
+{"backend": "meta_api_sam3.1", "image_id": 466602, "category": "skis", "x": 250, "y": 639, "iou": 0.7168, "error": null, "latency_ms": 2277.3}
+{"backend": "meta_api_sam3.1", "image_id": 466602, "category": "skis", "x": 206, "y": 525, "iou": 0.0088, "error": null, "latency_ms": 3449.2}
+{"backend": "meta_api_sam3.1", "image_id": 473237, "category": "pizza", "x": 254, "y": 311, "iou": 0.904, "error": null, "latency_ms": 2755.5}
+{"backend": "meta_api_sam3.1", "image_id": 474167, "category": "person", "x": 252, "y": 59, "iou": 0.8317, "error": null, "latency_ms": 2751.8}
+{"backend": "meta_api_sam3.1", "image_id": 474167, "category": "dining table", "x": 52, "y": 216, "iou": 0.5006, "error": null, "latency_ms": 4226.6}
+{"backend": "meta_api_sam3.1", "image_id": 474170, "category": "elephant", "x": 356, "y": 233, "iou": 0.8496, "error": null, "latency_ms": 3210.0}
+{"backend": "meta_api_sam3.1", "image_id": 474293, "category": "handbag", "x": 591, "y": 351, "iou": 0.8649, "error": null, "latency_ms": 2571.6}
+{"backend": "meta_api_sam3.1", "image_id": 474170, "category": "elephant", "x": 275, "y": 213, "iou": 0.7969, "error": null, "latency_ms": 2890.5}
+{"backend": "meta_api_sam3.1", "image_id": 484415, "category": "toilet", "x": 174, "y": 183, "iou": 0.2384, "error": null, "latency_ms": 745.4}
+{"backend": "meta_api_sam3.1", "image_id": 484415, "category": "person", "x": 43, "y": 158, "iou": 0.9537, "error": null, "latency_ms": 1364.3}
+{"backend": "meta_api_sam3.1", "image_id": 489611, "category": "person", "x": 201, "y": 477, "iou": 0.917, "error": null, "latency_ms": 4743.2}
+{"backend": "meta_api_sam3.1", "image_id": 474293, "category": "person", "x": 595, "y": 297, "iou": 0.8304, "error": null, "latency_ms": 5053.6}
+{"backend": "meta_api_sam3.1", "image_id": 489611, "category": "remote", "x": 514, "y": 366, "iou": 0.6547, "error": null, "latency_ms": 4197.4}
+{"backend": "meta_api_sam3.1", "image_id": 492362, "category": "backpack", "x": 173, "y": 253, "iou": 0.6953, "error": null, "latency_ms": 3654.8}
+{"backend": "meta_api_sam3.1", "image_id": 509131, "category": "banana", "x": 458, "y": 207, "iou": 0.7185, "error": null, "latency_ms": 476.2}
+{"backend": "meta_api_sam3.1", "image_id": 509131, "category": "orange", "x": 209, "y": 385, "iou": 0.2658, "error": null, "latency_ms": 723.2}
+{"backend": "meta_api_sam3.1", "image_id": 492362, "category": "skateboard", "x": 112, "y": 567, "iou": 0.5888, "error": null, "latency_ms": 1584.0}
+{"backend": "meta_api_sam3.1", "image_id": 512403, "category": "vase", "x": 440, "y": 507, "iou": 0.9429, "error": null, "latency_ms": 1386.9}
+{"backend": "meta_api_sam3.1", "image_id": 502732, "category": "refrigerator", "x": 234, "y": 247, "iou": 0.9215, "error": null, "latency_ms": 8430.3}
+{"backend": "meta_api_sam3.1", "image_id": 512403, "category": "potted plant", "x": 528, "y": 261, "iou": 0.4548, "error": null, "latency_ms": 8389.2}
+{"backend": "meta_api_sam3.1", "image_id": 513181, "category": "boat", "x": 195, "y": 266, "iou": 0.8135, "error": null, "latency_ms": 7491.3}
+{"backend": "meta_api_sam3.1", "image_id": 513688, "category": "chair", "x": 235, "y": 180, "iou": 0.7888, "error": null, "latency_ms": 8372.0}
+{"backend": "meta_api_sam3.1", "image_id": 513688, "category": "laptop", "x": 429, "y": 212, "iou": 0.9499, "error": null, "latency_ms": 2610.8}
+{"backend": "meta_api_sam3.1", "image_id": 518770, "category": "person", "x": 263, "y": 177, "iou": 0.8442, "error": null, "latency_ms": 2682.9}
+{"backend": "meta_api_sam3.1", "image_id": 518770, "category": "person", "x": 300, "y": 110, "iou": 0.8702, "error": null, "latency_ms": 3148.0}
+{"backend": "meta_api_sam3.1", "image_id": 525155, "category": "sheep", "x": 495, "y": 86, "iou": 0.8936, "error": null, "latency_ms": 3763.3}
+{"backend": "meta_api_sam3.1", "image_id": 527220, "category": "car", "x": 80, "y": 81, "iou": 0.948, "error": null, "latency_ms": 2733.0}
+{"backend": "meta_api_sam3.1", "image_id": 525155, "category": "person", "x": 432, "y": 305, "iou": 0.8935, "error": null, "latency_ms": 6440.2}
+{"backend": "meta_api_sam3.1", "image_id": 527220, "category": "motorcycle", "x": 370, "y": 129, "iou": 0.624, "error": null, "latency_ms": 5536.3}
+{"backend": "meta_api_sam3.1", "image_id": 527784, "category": "bottle", "x": 354, "y": 148, "iou": 0.9803, "error": null, "latency_ms": 2551.1}
+{"backend": "meta_api_sam3.1", "image_id": 527784, "category": "sandwich", "x": 206, "y": 267, "iou": 0.9233, "error": null, "latency_ms": 1391.2}
+{"backend": "meta_api_sam3.1", "image_id": 533958, "category": "fork", "x": 15, "y": 236, "iou": 0.7303, "error": null, "latency_ms": 1110.1}
+{"backend": "meta_api_sam3.1", "image_id": 528862, "category": "giraffe", "x": 204, "y": 120, "iou": 0.8405, "error": null, "latency_ms": 1303.5}
+{"backend": "meta_api_sam3.1", "image_id": 535156, "category": "elephant", "x": 328, "y": 187, "iou": 0.9641, "error": null, "latency_ms": 2991.7}
+{"backend": "meta_api_sam3.1", "image_id": 528862, "category": "giraffe", "x": 187, "y": 210, "iou": 0.7955, "error": null, "latency_ms": 3239.3}
+{"backend": "meta_api_sam3.1", "image_id": 535156, "category": "elephant", "x": 95, "y": 157, "iou": 0.8201, "error": null, "latency_ms": 2715.2}
+{"backend": "meta_api_sam3.1", "image_id": 537053, "category": "giraffe", "x": 242, "y": 359, "iou": 0.8927, "error": null, "latency_ms": 3119.1}
+{"backend": "meta_api_sam3.1", "image_id": 537812, "category": "chair", "x": 399, "y": 299, "iou": 0.9093, "error": null, "latency_ms": 1162.5}
+{"backend": "meta_api_sam3.1", "image_id": 537812, "category": "toilet", "x": 139, "y": 162, "iou": 0.9565, "error": null, "latency_ms": 2996.0}
+{"backend": "meta_api_sam3.1", "image_id": 543300, "category": "boat", "x": 178, "y": 328, "iou": 0.8921, "error": null, "latency_ms": 2950.2}
+{"backend": "meta_api_sam3.1", "image_id": 544811, "category": "bird", "x": 524, "y": 255, "iou": 0.6839, "error": null, "latency_ms": 2460.3}
+{"backend": "meta_api_sam3.1", "image_id": 544811, "category": "bird", "x": 363, "y": 270, "iou": 0.9023, "error": null, "latency_ms": 3077.2}
+{"backend": "meta_api_sam3.1", "image_id": 545730, "category": "zebra", "x": 426, "y": 315, "iou": 0.8627, "error": null, "latency_ms": 1376.5}
+{"backend": "meta_api_sam3.1", "image_id": 549738, "category": "kite", "x": 230, "y": 229, "iou": 0.8822, "error": null, "latency_ms": 1029.5}
+{"backend": "meta_api_sam3.1", "image_id": 546219, "category": "chair", "x": 59, "y": 404, "iou": 0.8138, "error": null, "latency_ms": 1425.7}
+{"backend": "meta_api_sam3.1", "image_id": 546219, "category": "person", "x": 45, "y": 286, "iou": 0.9243, "error": null, "latency_ms": 1840.8}
+{"backend": "meta_api_sam3.1", "image_id": 550322, "category": "spoon", "x": 313, "y": 276, "iou": 0.915, "error": null, "latency_ms": 1061.1}
+{"backend": "meta_api_sam3.1", "image_id": 550322, "category": "spoon", "x": 393, "y": 325, "iou": 0.7633, "error": null, "latency_ms": 1207.7}
+{"backend": "meta_api_sam3.1", "image_id": 545730, "category": "zebra", "x": 99, "y": 360, "iou": 0.855, "error": null, "latency_ms": 2697.4}
+{"backend": "meta_api_sam3.1", "image_id": 551815, "category": "bed", "x": 58, "y": 479, "iou": 0.0222, "error": null, "latency_ms": 1795.6}
+{"backend": "meta_api_sam3.1", "image_id": 555597, "category": "car", "x": 554, "y": 453, "iou": 0.9268, "error": null, "latency_ms": 1198.9}
+{"backend": "meta_api_sam3.1", "image_id": 555597, "category": "truck", "x": 231, "y": 393, "iou": 0.0492, "error": null, "latency_ms": 1161.4}
+{"backend": "meta_api_sam3.1", "image_id": 551815, "category": "cat", "x": 206, "y": 381, "iou": 0.9669, "error": null, "latency_ms": 5051.3}
+{"backend": "meta_api_sam3.1", "image_id": 559513, "category": "bottle", "x": 237, "y": 64, "iou": 0.9298, "error": null, "latency_ms": 3464.8}
+{"backend": "meta_api_sam3.1", "image_id": 556873, "category": "cake", "x": 177, "y": 431, "iou": 0.0272, "error": null, "latency_ms": 3669.4}
+{"backend": "meta_api_sam3.1", "image_id": 559513, "category": "fork", "x": 625, "y": 132, "iou": 0.8259, "error": null, "latency_ms": 3585.9}
+{"backend": "meta_api_sam3.1", "image_id": 560911, "category": "suitcase", "x": 10, "y": 309, "iou": 0.2949, "error": null, "latency_ms": 2079.6}
+{"backend": "meta_api_sam3.1", "image_id": 562059, "category": "dining table", "x": 197, "y": 51, "iou": 0.496, "error": null, "latency_ms": 2251.6}
+{"backend": "meta_api_sam3.1", "image_id": 562059, "category": "apple", "x": 69, "y": 366, "iou": 0.9465, "error": null, "latency_ms": 3392.2}
+{"backend": "meta_api_sam3.1", "image_id": 560911, "category": "person", "x": 214, "y": 357, "iou": 0.8902, "error": null, "latency_ms": 4185.8}
+{"backend": "meta_api_sam3.1", "image_id": 562121, "category": "zebra", "x": 362, "y": 306, "iou": 0.6546, "error": null, "latency_ms": 2411.3}
+{"backend": "meta_api_sam3.1", "image_id": 562121, "category": "zebra", "x": 417, "y": 290, "iou": 0.8441, "error": null, "latency_ms": 2124.1}
+{"backend": "meta_api_sam3.1", "image_id": 563882, "category": "person", "x": 248, "y": 155, "iou": 0.1994, "error": null, "latency_ms": 818.3}
+{"backend": "meta_api_sam3.1", "image_id": 571893, "category": "book", "x": 312, "y": 148, "iou": 0.7249, "error": null, "latency_ms": 959.7}
+{"backend": "meta_api_sam3.1", "image_id": 563882, "category": "cell phone", "x": 404, "y": 254, "iou": 0.8513, "error": null, "latency_ms": 1632.9}
+{"backend": "meta_api_sam3.1", "image_id": 571893, "category": "book", "x": 319, "y": 171, "iou": 0.8623, "error": null, "latency_ms": 865.5}
+{"backend": "meta_api_sam3.1", "image_id": 578500, "category": "potted plant", "x": 303, "y": 169, "iou": 0.7934, "error": null, "latency_ms": 765.6}
+{"backend": "meta_api_sam3.1", "image_id": 567432, "category": "airplane", "x": 274, "y": 336, "iou": 0.8143, "error": null, "latency_ms": 2329.2}
+{"backend": "meta_api_sam3.1", "image_id": 579655, "category": "cup", "x": 137, "y": 278, "iou": 0.7803, "error": null, "latency_ms": 871.7}
+{"backend": "meta_api_sam3.1", "image_id": 579655, "category": "cup", "x": 36, "y": 289, "iou": 0.6763, "error": null, "latency_ms": 1024.4}
+{"backend": "meta_api_sam3.1", "image_id": 578500, "category": "couch", "x": 418, "y": 192, "iou": 0.8327, "error": null, "latency_ms": 1478.3}

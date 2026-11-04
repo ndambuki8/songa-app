@@ -57,7 +57,11 @@ class Sam3Runner:
 
     # -- concept prompts -----------------------------------------------------------------------------------------
 
-    def segment(self, jpeg: bytes, concepts: list[str], threshold: float) -> list[dict[str, Any]]:
+    def segment(
+        self, jpeg: bytes, concepts: list[str], threshold: float, return_masks: bool = False
+    ) -> list[dict[str, Any]]:
+        """Boxes for every instance of each concept. With `return_masks`, each item also carries `mask_bits`, the
+        instance mask cropped to its box and bit-packed (same encoding as `isolate`), for evaluation."""
         image = Image.open(io.BytesIO(jpeg)).convert("RGB")
         width, height = image.size
         found: list[dict[str, Any]] = []
@@ -71,20 +75,24 @@ class Sam3Runner:
                 result = self.concept_processor.post_process_instance_segmentation(
                     outputs, threshold=threshold, mask_threshold=0.5, target_sizes=target_sizes
                 )[0]
-                for box, score in zip(result["boxes"].tolist(), result["scores"].tolist()):
+                masks = result.get("masks") if return_masks else None
+                for index, (box, score) in enumerate(zip(result["boxes"].tolist(), result["scores"].tolist())):
                     clamped = xyxy_to_box(*box, width, height)
                     if clamped.area == 0:
                         continue
-                    found.append(
-                        {
-                            "label": concept,
-                            "score": float(score),
-                            "x": clamped.x,
-                            "y": clamped.y,
-                            "width": clamped.width,
-                            "height": clamped.height,
-                        }
-                    )
+                    item: dict[str, Any] = {
+                        "label": concept,
+                        "score": float(score),
+                        "x": clamped.x,
+                        "y": clamped.y,
+                        "width": clamped.width,
+                        "height": clamped.height,
+                    }
+                    if masks is not None:
+                        full = masks[index].cpu().numpy().astype(bool)
+                        local = full[clamped.y : clamped.y + clamped.height, clamped.x : clamped.x + clamped.width]
+                        item["mask_bits"] = np.packbits(local, axis=None).tobytes()
+                    found.append(item)
         return found
 
     # -- point prompts -------------------------------------------------------------------------------------------

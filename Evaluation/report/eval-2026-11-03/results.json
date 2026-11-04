@@ -1,0 +1,529 @@
+{
+  "asr": {
+    "model": "muse-voice-transcribe-1.0",
+    "clips_total": 50,
+    "clips_failed": 0,
+    "primary": {
+      "overall": {
+        "clips": 23,
+        "reference_words": 616,
+        "wer": 0.1623,
+        "cer": 0.0694,
+        "swahili_words": 505,
+        "swahili_recall_strict": 0.8812,
+        "swahili_recall_lenient": 0.9307,
+        "swahili_to_english_rate": 0.0059,
+        "english_words": 111,
+        "english_recall_strict": 0.8739,
+        "english_recall_lenient": 0.9009,
+        "switch_window_words": 279,
+        "switch_window_error_rate": 0.1434,
+        "latency_p50_ms": 3902.2,
+        "latency_p95_ms": 5473.8,
+        "ci95": {
+          "wer": [
+            0.1353,
+            0.1943
+          ],
+          "cer": [
+            0.0536,
+            0.0875
+          ],
+          "swahili_recall_strict": [
+            0.8497,
+            0.91
+          ],
+          "swahili_recall_lenient": [
+            0.9034,
+            0.9548
+          ],
+          "english_recall_strict": [
+            0.7685,
+            0.944
+          ]
+        }
+      },
+      "code_switched_only": {
+        "clips": 20,
+        "reference_words": 600,
+        "wer": 0.165,
+        "cer": 0.07,
+        "swahili_words": 500,
+        "swahili_recall_strict": 0.88,
+        "swahili_recall_lenient": 0.93,
+        "swahili_to_english_rate": 0.006,
+        "english_words": 100,
+        "english_recall_strict": 0.86,
+        "english_recall_lenient": 0.89,
+        "switch_window_words": 279,
+        "switch_window_error_rate": 0.1434,
+        "latency_p50_ms": 3918.9,
+        "latency_p95_ms": 5527.9,
+        "ci95": {
+          "wer": [
+            0.1382,
+            0.197
+          ],
+          "cer": [
+            0.0544,
+            0.0864
+          ],
+          "swahili_recall_strict": [
+            0.8482,
+            0.9091
+          ],
+          "swahili_recall_lenient": [
+            0.9008,
+            0.9556
+          ],
+          "english_recall_strict": [
+            0.7553,
+            0.9412
+          ]
+        }
+      },
+      "by_language_pair": {
+        "English": {
+          "clips": 2,
+          "reference_words": 11,
+          "wer": 0.0909,
+          "cer": 0.0714,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 11,
+          "english_recall_strict": 1.0,
+          "english_recall_lenient": 1.0,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 1375.4,
+          "latency_p95_ms": 1437.2
+        },
+        "Kiswahili": {
+          "clips": 1,
+          "reference_words": 5,
+          "wer": 0.0,
+          "cer": 0.0,
+          "swahili_words": 5,
+          "swahili_recall_strict": 1.0,
+          "swahili_recall_lenient": 1.0,
+          "swahili_to_english_rate": 0.0,
+          "english_words": 0,
+          "english_recall_strict": null,
+          "english_recall_lenient": null,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 1560.9,
+          "latency_p95_ms": 1560.9
+        },
+        "Swahili-English": {
+          "clips": 20,
+          "reference_words": 600,
+          "wer": 0.165,
+          "cer": 0.07,
+          "swahili_words": 500,
+          "swahili_recall_strict": 0.88,
+          "swahili_recall_lenient": 0.93,
+          "swahili_to_english_rate": 0.006,
+          "english_words": 100,
+          "english_recall_strict": 0.86,
+          "english_recall_lenient": 0.89,
+          "switch_window_words": 279,
+          "switch_window_error_rate": 0.1434,
+          "latency_p50_ms": 3918.9,
+          "latency_p95_ms": 5527.9
+        }
+      },
+      "by_recording_type": {
+        "naturalistic_health_complaint": {
+          "clips": 19,
+          "reference_words": 597,
+          "wer": 0.1625,
+          "cer": 0.0695,
+          "swahili_words": 498,
+          "swahili_recall_strict": 0.8815,
+          "swahili_recall_lenient": 0.9317,
+          "swahili_to_english_rate": 0.006,
+          "english_words": 99,
+          "english_recall_strict": 0.8687,
+          "english_recall_lenient": 0.8889,
+          "switch_window_words": 276,
+          "switch_window_error_rate": 0.1377,
+          "latency_p50_ms": 3932.3,
+          "latency_p95_ms": 5557.7
+        },
+        "synthetic_triage_phrase": {
+          "clips": 4,
+          "reference_words": 19,
+          "wer": 0.1579,
+          "cer": 0.069,
+          "swahili_words": 7,
+          "swahili_recall_strict": 0.8571,
+          "swahili_recall_lenient": 0.8571,
+          "swahili_to_english_rate": 0.0,
+          "english_words": 12,
+          "english_recall_strict": 0.9167,
+          "english_recall_lenient": 1.0,
+          "switch_window_words": 3,
+          "switch_window_error_rate": 0.6667,
+          "latency_p50_ms": 1375.4,
+          "latency_p95_ms": 1543.4
+        }
+      }
+    },
+    "afrispeech": {
+      "overall": {
+        "clips": 27,
+        "reference_words": 445,
+        "wer": 0.1888,
+        "cer": 0.1012,
+        "swahili_words": 0,
+        "swahili_recall_strict": null,
+        "swahili_recall_lenient": null,
+        "swahili_to_english_rate": null,
+        "english_words": 445,
+        "english_recall_strict": 0.8652,
+        "english_recall_lenient": 0.8966,
+        "switch_window_words": 0,
+        "switch_window_error_rate": null,
+        "latency_p50_ms": 2014.7,
+        "latency_p95_ms": 3405.8,
+        "ci95": {
+          "wer": [
+            0.1422,
+            0.2464
+          ],
+          "cer": [
+            0.0735,
+            0.1351
+          ],
+          "english_recall_strict": [
+            0.8139,
+            0.9034
+          ]
+        }
+      },
+      "by_accent": {
+        "afrikaans (ZA)": {
+          "clips": 3,
+          "reference_words": 73,
+          "wer": 0.1644,
+          "cer": 0.0944,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 73,
+          "english_recall_strict": 0.863,
+          "english_recall_lenient": 0.9041,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 2506.5,
+          "latency_p95_ms": 3682.2
+        },
+        "hausa (NG)": {
+          "clips": 3,
+          "reference_words": 56,
+          "wer": 0.1607,
+          "cer": 0.0644,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 56,
+          "english_recall_strict": 0.8929,
+          "english_recall_lenient": 0.8929,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 1968.4,
+          "latency_p95_ms": 3343.2
+        },
+        "igbo (NG)": {
+          "clips": 3,
+          "reference_words": 77,
+          "wer": 0.1948,
+          "cer": 0.1404,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 77,
+          "english_recall_strict": 0.8701,
+          "english_recall_lenient": 0.9091,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 2801.2,
+          "latency_p95_ms": 3156.0
+        },
+        "kinyarwanda (RW)": {
+          "clips": 3,
+          "reference_words": 48,
+          "wer": 0.3333,
+          "cer": 0.2022,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 48,
+          "english_recall_strict": 0.7292,
+          "english_recall_lenient": 0.7917,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 2247.4,
+          "latency_p95_ms": 2248.4
+        },
+        "luganda (UG)": {
+          "clips": 3,
+          "reference_words": 47,
+          "wer": 0.1489,
+          "cer": 0.085,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 47,
+          "english_recall_strict": 0.8936,
+          "english_recall_lenient": 0.9149,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 1618.9,
+          "latency_p95_ms": 2774.4
+        },
+        "pidgin (NG)": {
+          "clips": 3,
+          "reference_words": 36,
+          "wer": 0.0556,
+          "cer": 0.0116,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 36,
+          "english_recall_strict": 0.9444,
+          "english_recall_lenient": 0.9722,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 1969.4,
+          "latency_p95_ms": 2094.5
+        },
+        "swahili (KE)": {
+          "clips": 3,
+          "reference_words": 37,
+          "wer": 0.2432,
+          "cer": 0.124,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 37,
+          "english_recall_strict": 0.8649,
+          "english_recall_lenient": 0.9189,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 2279.5,
+          "latency_p95_ms": 2503.4
+        },
+        "yoruba (NG)": {
+          "clips": 2,
+          "reference_words": 17,
+          "wer": 0.1765,
+          "cer": 0.0893,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 17,
+          "english_recall_strict": 0.8824,
+          "english_recall_lenient": 0.8824,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 1602.5,
+          "latency_p95_ms": 1928.6
+        },
+        "yoruba (US)": {
+          "clips": 1,
+          "reference_words": 23,
+          "wer": 0.1304,
+          "cer": 0.0758,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 23,
+          "english_recall_strict": 0.913,
+          "english_recall_lenient": 0.9565,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 2669.7,
+          "latency_p95_ms": 2669.7
+        },
+        "zulu (LS)": {
+          "clips": 1,
+          "reference_words": 10,
+          "wer": 0.0,
+          "cer": 0.0,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 10,
+          "english_recall_strict": 1.0,
+          "english_recall_lenient": 1.0,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 1714.3,
+          "latency_p95_ms": 1714.3
+        },
+        "zulu (ZA)": {
+          "clips": 2,
+          "reference_words": 21,
+          "wer": 0.381,
+          "cer": 0.1333,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 21,
+          "english_recall_strict": 0.7619,
+          "english_recall_lenient": 0.7619,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 1774.7,
+          "latency_p95_ms": 1990.7
+        }
+      },
+      "by_domain": {
+        "clinical": {
+          "clips": 14,
+          "reference_words": 206,
+          "wer": 0.1796,
+          "cer": 0.0772,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 206,
+          "english_recall_strict": 0.8786,
+          "english_recall_lenient": 0.9078,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 1992.1,
+          "latency_p95_ms": 3110.4
+        },
+        "general": {
+          "clips": 13,
+          "reference_words": 239,
+          "wer": 0.1967,
+          "cer": 0.1237,
+          "swahili_words": 0,
+          "swahili_recall_strict": null,
+          "swahili_recall_lenient": null,
+          "swahili_to_english_rate": null,
+          "english_words": 239,
+          "english_recall_strict": 0.8536,
+          "english_recall_lenient": 0.887,
+          "switch_window_words": 0,
+          "switch_window_error_rate": null,
+          "latency_p50_ms": 2153.2,
+          "latency_p95_ms": 3442.4
+        }
+      }
+    }
+  },
+  "segmentation": {
+    "dataset": "COCO val2017 (instances), sampled",
+    "images": 200,
+    "prompts": 1003,
+    "absent_prompts": 400,
+    "taps": 358,
+    "presence_threshold": 0.35,
+    "backends": {
+      "modal_gpu_sam3": {
+        "model": "facebook/sam3 (transformers)",
+        "presence": {
+          "prompts": 1003,
+          "failed_prompts": 0,
+          "precision": 0.9896,
+          "recall": 0.9453,
+          "accuracy": 0.9611,
+          "false_positive_rate_on_absent_objects": 0.015,
+          "mean_count_error_present": 1.823
+        },
+        "box_ap": {
+          "AP": 0.6339,
+          "AP50": 0.8219,
+          "AP75": 0.6816,
+          "AR100": 0.7367
+        },
+        "mask_ap": {
+          "AP": 0.5463,
+          "AP50": 0.809,
+          "AP75": 0.597,
+          "AR100": 0.6377
+        },
+        "tap_to_isolate": {
+          "taps": 358,
+          "failed_taps": 0,
+          "mean_iou": 0.7345,
+          "median_iou": 0.8462,
+          "share_iou_at_least_0.5": 0.8436,
+          "share_iou_at_least_0.75": 0.6788
+        },
+        "latency_per_photo": {
+          "p50_ms": 1385.7,
+          "p95_ms": 2482.9,
+          "mean_ms": 1542.7
+        },
+        "latency_per_tap": {
+          "p50_ms": 764.6,
+          "p95_ms": 1111.6,
+          "mean_ms": 829.9
+        }
+      },
+      "meta_api_sam3.1": {
+        "model": "sam-3.1",
+        "presence": {
+          "prompts": 1003,
+          "failed_prompts": 0,
+          "precision": 0.9907,
+          "recall": 0.8856,
+          "accuracy": 0.9262,
+          "false_positive_rate_on_absent_objects": 0.0125,
+          "mean_count_error_present": 0.856
+        },
+        "box_ap": {
+          "AP": 0.5801,
+          "AP50": 0.7386,
+          "AP75": 0.6308,
+          "AR100": 0.6183
+        },
+        "mask_ap": {
+          "AP": 0.5085,
+          "AP50": 0.7334,
+          "AP75": 0.5694,
+          "AR100": 0.5503
+        },
+        "tap_to_isolate": {
+          "taps": 358,
+          "failed_taps": 0,
+          "mean_iou": 0.7619,
+          "median_iou": 0.8552,
+          "share_iou_at_least_0.5": 0.8743,
+          "share_iou_at_least_0.75": 0.7207
+        },
+        "latency_per_photo": {
+          "p50_ms": 2064.7,
+          "p95_ms": 4472.1,
+          "mean_ms": 2383.5
+        },
+        "latency_per_tap": {
+          "p50_ms": 2100.9,
+          "p95_ms": 6274.9,
+          "mean_ms": 2572.3
+        }
+      }
+    }
+  },
+  "elapsed_minutes": 23.2
+}

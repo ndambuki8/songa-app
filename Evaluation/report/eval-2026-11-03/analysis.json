@@ -1,0 +1,343 @@
+{
+  "switch_effect": {
+    "near_switch_words": 279,
+    "near_switch_miss_rate": 0.1434,
+    "other_words": 337,
+    "other_miss_rate": 0.1009
+  },
+  "primary_substitutions_by_reference_language": {
+    "sw": 30,
+    "en": 10
+  },
+  "top_substitutions": [
+    {
+      "reference": "yanaenda",
+      "transcript": "yaendelea",
+      "count": 1
+    },
+    {
+      "reference": "natokwa",
+      "transcript": "tokwa",
+      "count": 1
+    },
+    {
+      "reference": "limekuwa",
+      "transcript": "kiwa",
+      "count": 1
+    },
+    {
+      "reference": "likiniuma",
+      "transcript": "mma",
+      "count": 1
+    },
+    {
+      "reference": "ni",
+      "transcript": "nitangujuzi",
+      "count": 1
+    },
+    {
+      "reference": "inauma",
+      "transcript": "tuma",
+      "count": 1
+    },
+    {
+      "reference": "fever",
+      "transcript": "homa",
+      "count": 1
+    },
+    {
+      "reference": "jino",
+      "transcript": "jinola",
+      "count": 1
+    },
+    {
+      "reference": "nina",
+      "transcript": "ni",
+      "count": 1
+    },
+    {
+      "reference": "na",
+      "transcript": "inaleo",
+      "count": 1
+    },
+    {
+      "reference": "leo",
+      "transcript": "nimechidunga",
+      "count": 1
+    },
+    {
+      "reference": "tangu",
+      "transcript": "tangusiku",
+      "count": 1
+    },
+    {
+      "reference": "usiku",
+      "transcript": "nimeharisha",
+      "count": 1
+    },
+    {
+      "reference": "mara",
+      "transcript": "mavara",
+      "count": 1
+    },
+    {
+      "reference": "tangu",
+      "transcript": "tangwa",
+      "count": 1
+    },
+    {
+      "reference": "hatua",
+      "transcript": "watoto",
+      "count": 1
+    },
+    {
+      "reference": "naona",
+      "transcript": "ona",
+      "count": 1
+    },
+    {
+      "reference": "kama",
+      "transcript": "kwa",
+      "count": 1
+    },
+    {
+      "reference": "nikilala",
+      "transcript": "kila",
+      "count": 1
+    },
+    {
+      "reference": "kichwa",
+      "transcript": "kiचwa",
+      "count": 1
+    },
+    {
+      "reference": "kazini",
+      "transcript": "kazi",
+      "count": 1
+    },
+    {
+      "reference": "stairs",
+      "transcript": "stea",
+      "count": 1
+    },
+    {
+      "reference": "leo",
+      "transcript": "zileo",
+      "count": 1
+    },
+    {
+      "reference": "na",
+      "transcript": "nanaikagonga",
+      "count": 1
+    },
+    {
+      "reference": "for",
+      "transcript": "fuorifi",
+      "count": 1
+    }
+  ],
+  "worst_clips": [
+    {
+      "filename": "kelvin_sample_30.mp3",
+      "dataset": "primary",
+      "language_pair": "Swahili-English",
+      "accent": "Kenya",
+      "wer": 0.6667,
+      "cer": 0.16,
+      "reference": "Naweza kubook appointment?",
+      "hypothesis": "Naweza kubuka pointment."
+    },
+    {
+      "filename": "afrispeech_ha_2.wav",
+      "dataset": "afrispeech",
+      "language_pair": "Hausa-English",
+      "accent": "hausa (NG)",
+      "wer": 0.5,
+      "cer": 0.26,
+      "reference": "PULMONARY WEDGE { a/v/m } 21/22/20",
+      "hypothesis": "pulmonary wedge EVM twenty fourth twenty second twenty"
+    },
+    {
+      "filename": "afrispeech_zu_2.wav",
+      "dataset": "afrispeech",
+      "language_pair": "Zulu-English",
+      "accent": "zulu (ZA)",
+      "wer": 0.5,
+      "cer": 0.1558,
+      "reference": "Dense old scars may undergo hyaline degeneration and subsequent calcification.",
+      "hypothesis": "fans all discards may undergo high line degeneration and subsequent calcification."
+    },
+    {
+      "filename": "afrispeech_ig_2.wav",
+      "dataset": "afrispeech",
+      "language_pair": "Igbo-English",
+      "accent": "igbo (NG)",
+      "wer": 0.3913,
+      "cer": 0.2746,
+      "reference": "Tuesday 28 April, 1998 next line. Neuro: Pt Daramola Achike 08 February, 2003",
+      "hypothesis": "tuesday twenty-eighth April comma nineteen ninety-eight next next line full stop neuro colon patient Daramola Achike zero eight February comma two thousand and three."
+    },
+    {
+      "filename": "afrispeech_rw_0.wav",
+      "dataset": "afrispeech",
+      "language_pair": "Kinyarwanda-English-French",
+      "accent": "kinyarwanda (RW)",
+      "wer": 0.3889,
+      "cer": 0.2432,
+      "reference": "Apart from the paucity of funding and insecurity in parts of the country, successive governments fail to perform.",
+      "hypothesis": "apart from the first funding and security in terms of the successive government, first to perform."
+    },
+    {
+      "filename": "afrispeech_rw_2.wav",
+      "dataset": "afrispeech",
+      "language_pair": "Kinyarwanda-English-French",
+      "accent": "kinyarwanda (RW)",
+      "wer": 0.3571,
+      "cer": 0.1744,
+      "reference": "All of them, especially the phalanges, are slightly concave on the inferior plantar side.",
+      "hypothesis": "all of them come up, especially the phalanges comma a slightly concave on the imperial planter side period."
+    }
+  ],
+  "most_missed_categories": {
+    "modal_gpu_sam3": [
+      {
+        "category": "dining table",
+        "missed": 4
+      },
+      {
+        "category": "bowl",
+        "missed": 2
+      },
+      {
+        "category": "parking meter",
+        "missed": 2
+      },
+      {
+        "category": "clock",
+        "missed": 2
+      },
+      {
+        "category": "truck",
+        "missed": 2
+      },
+      {
+        "category": "knife",
+        "missed": 2
+      },
+      {
+        "category": "traffic light",
+        "missed": 2
+      },
+      {
+        "category": "chair",
+        "missed": 2
+      },
+      {
+        "category": "sandwich",
+        "missed": 1
+      },
+      {
+        "category": "sports ball",
+        "missed": 1
+      }
+    ],
+    "meta_api_sam3.1": [
+      {
+        "category": "dining table",
+        "missed": 9
+      },
+      {
+        "category": "person",
+        "missed": 4
+      },
+      {
+        "category": "truck",
+        "missed": 4
+      },
+      {
+        "category": "knife",
+        "missed": 4
+      },
+      {
+        "category": "chair",
+        "missed": 3
+      },
+      {
+        "category": "bowl",
+        "missed": 3
+      },
+      {
+        "category": "remote",
+        "missed": 2
+      },
+      {
+        "category": "fork",
+        "missed": 2
+      },
+      {
+        "category": "parking meter",
+        "missed": 2
+      },
+      {
+        "category": "book",
+        "missed": 2
+      }
+    ]
+  },
+  "false_detections_on_absent": {
+    "modal_gpu_sam3": [
+      {
+        "category": "bus",
+        "times": 1
+      },
+      {
+        "category": "baseball bat",
+        "times": 1
+      },
+      {
+        "category": "sandwich",
+        "times": 1
+      },
+      {
+        "category": "potted plant",
+        "times": 1
+      },
+      {
+        "category": "dining table",
+        "times": 1
+      },
+      {
+        "category": "chair",
+        "times": 1
+      }
+    ],
+    "meta_api_sam3.1": [
+      {
+        "category": "bus",
+        "times": 1
+      },
+      {
+        "category": "sandwich",
+        "times": 1
+      },
+      {
+        "category": "potted plant",
+        "times": 1
+      },
+      {
+        "category": "dining table",
+        "times": 1
+      },
+      {
+        "category": "chair",
+        "times": 1
+      }
+    ]
+  },
+  "tap_head_to_head": {
+    "taps": 358,
+    "gpu_better_by_0.1": 8,
+    "meta_better_by_0.1": 20,
+    "within_0.1": 330
+  }
+}

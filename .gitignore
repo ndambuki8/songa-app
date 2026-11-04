@@ -34,5 +34,14 @@ mobile/node_modules/
 Thumbs.db
 *.log
 
+# Evaluation audio (health recordings and CC BY-NC-SA corpus clips) and raw downloaded run results.
+# Metadata CSVs, the README and the published report (Evaluation/report/) stay tracked.
+Evaluation/**/*.wav
+Evaluation/**/*.mp3
+Evaluation/**/*.m4a
+Evaluation/**/*.ogg
+Evaluation/results/
+!Evaluation/report/**/run.log
+
 # Local PR description draft (pasted into GitHub, not committed)
 PR_BODY.md
